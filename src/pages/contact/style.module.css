@@ -1,0 +1,56 @@
+.ultraContainer {
+  background-color: red;
+  height: 100%;
+  width: 90%;
+}
+
+.superContainer {
+  margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.container {
+  width: 80%;
+}
+
+.container h1 {
+  font-size: 60px;
+}
+
+.headline {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 7%;
+}
+
+.headline p {
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.container p {
+  color: white;
+}
+
+.socials {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.socials p {
+  color: white;
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.footerContainer {
+  margin-top: 10%;
+  margin-bottom: 5%;
+}

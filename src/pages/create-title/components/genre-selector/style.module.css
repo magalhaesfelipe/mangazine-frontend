@@ -1,0 +1,28 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 450px;
+}
+
+.genreDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px white;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.nameContainer {
+  padding: 10px;
+}
+
+.genreName {
+  display: flex;
+  color: white;
+  padding: 0;
+  font-size: 14px;
+}

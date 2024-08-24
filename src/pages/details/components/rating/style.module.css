@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.audiowide-regular {
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  align-items: center;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+.type {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.score {
+  display: flex;
+  align-items: baseline;
+}
+
+.score i {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.score p {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 23px;
+}
+
+.fullStar {
+  color: rgb(246, 205, 0);
+}
+
+.userStar {
+  color: var(--main-color);
+  cursor: pointer;
+}

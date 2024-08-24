@@ -1,0 +1,152 @@
+.contentContainer {
+  background-color: #161616;
+  display: flex;
+  flex-direction: column;
+  width: 190px;
+  height: 420px;
+  padding-bottom: 50px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Horizontal offset, Vertical offset, Blur radius, Color */
+}
+
+.coverContainer {
+  height: 270px;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  cursor: pointer;
+}
+
+.coverContainer img:hover {
+  filter: brightness(0.7);
+}
+
+.coverContainer img {
+  height: 270px;
+  width: 100%;
+  display: flex;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5%;
+  
+}
+
+.title {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-top: 7px;
+  margin-bottom: 20px;
+  max-width: 100px;
+}
+
+.title p {
+  margin: 0;
+  margin-left: 10px;
+  max-width: 95%;
+  word-wrap: break-word;
+  font-size: 20px;
+  color: white;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.authorDate {
+  padding-left: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 35px;
+}
+
+.authorDate p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15.5px;
+  margin: 0;
+  padding: 0;
+  color: rgb(180, 180, 180);
+  margin-bottom: 8px;
+  white-space: nowrap;
+}
+
+.rating {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.test {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  height: 20px;
+  padding-right: 10px;
+  margin-left: 40px;
+  cursor: pointer;
+  position: relative;
+}
+
+.rating i {
+  font-size: 16px;
+  padding-right: 5px;
+  margin: 0;
+}
+
+.rating p {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(199, 199, 199);
+  margin: 0;
+}
+
+.avgRating i {
+  color: #ffc800;
+  position: absolute;
+  left: -22px;
+  top: 7px;
+}
+
+.userRating i {
+  color: var(--main-color);
+  position: absolute;
+  left: -22px;
+  top: 7px;
+}
+
+.buttonContainer {
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  align-items: baseline;
+}
+
+.elementCardButton {
+  margin-left: 15px;
+  font-size: 16px;
+  color: rgb(231, 231, 231);
+  border-radius: 4px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  background-color: #ffffff12;
+  cursor: pointer;
+  border: 0;
+}
+
+.elementCardButton:hover {
+  background-color: rgba(255, 255, 255, 0.327);
+}
+
+.tag {
+  position: absolute;
+  right: 55px;
+  top: -6px;
+}

@@ -1,0 +1,68 @@
+.sign-in-container {
+  margin-top: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.boxContainer {
+  margin-top: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.box {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  width: 250px;
+}
+
+.box h3 {
+  padding-top: 45px;
+  border-top: solid 2px;
+  margin: 0;
+}
+
+.SignInContainer button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000000;
+  background-color: var(--main-color); /* Dark Red */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 40px;
+}
+
+/* Hover State */
+.SignInContainer button:hover {
+  background-color: #000000; /* Darker Red on Hover */
+  color: var(--main-color);
+  transition: 50ms;
+}
+
+/* Active State */
+.SignInContainer button:active {
+  background-color: #660000; /* Even Darker Red on Click */
+}
+
+/* Disabled State */
+.SignInContainer button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.test {
+  background-color: white;
+}

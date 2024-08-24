@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+.audiowide-regular {
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.headlineContainer {
+  height: 700px;
+  max-height: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: contain;
+  align-items: center;
+}
+
+.listName {
+  display: flex;
+  text-align: center;
+  color: white;
+  font-size: 60px;
+  font-family: "Audiowide", sans-serif;
+  margin-top: 300px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 40px;
+}
+
+.searchBarContainer input {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.textContainer p {
+  font-size: 20px;
+  color: rgb(219, 219, 219);
+}
+
+.contentGrid {
+  margin-top: 50px;
+  width: 76%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 25px;
+}
+
+.noItemsMessage {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 70%;
+}
+
+.footerContainer {
+  margin-top: 10%;
+  margin-bottom: 5%;
+}

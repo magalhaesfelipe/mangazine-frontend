@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  font-family: var(--secondary-font);
+  margin-top: 190px;
+}
+
+main h1,
+h2 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.name {
+  font-size: 80px;
+  color: var(--main-color);
+  display: flex;
+  font-family: var(--primary-font);
+}
+
+.searchBarContainer {
+  margin-top: 50px;
+  width: 600px;
+}
+
+.footerContainer {
+  margin-top: 30%;
+  margin-bottom: 3%;
+}

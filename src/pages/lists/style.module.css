@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.headline {
+  margin-top: 10%;
+  height: 100px;
+  background-color: var(--main-color);
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.headline h1 {
+  margin-left: 8%;
+  font-size: 55px;
+  background-color: white;
+  color: black;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: end;
+  margin-right: 5%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 650px;
+  margin-left: 5%;
+  margin-top: 3%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  gap: 10px;
+  background-color: rgb(255, 255, 255);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  cursor: pointer;
+  border: solid 3px transparent;
+}
+
+.box h3,
+.box p {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+.box h3 {
+  font-weight: bolder;
+  display: -webkit-box; /* Required for truncating text */
+  -webkit-box-orient: vertical; /* Required for truncating text */
+  -webkit-line-clamp: 2; /* Limits the text to 2 lines */
+  overflow: hidden; /* Ensures overflow is hidden */
+  text-overflow: ellipsis; /* Adds the ellipsis at the end */
+  font-size: 17px;
+  padding-bottom: 10px;
+}
+
+.box p {
+  font-size: 14px;
+}
+
+.box:hover {
+  transition: 100ms;
+  border: solid 3px white;
+}
+
+.box:hover,
+.box:hover h3,
+.box:hover p {
+  background-color: rgba(10, 10, 10, 0.761);
+  color: white;
+}
+
+.footerContainer {
+  margin-top: 10%;
+  margin-bottom: 3%;
+}

@@ -1,0 +1,74 @@
+.container {
+  color: white;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+}
+
+.form-container {
+  max-width: 600px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.form-container {
+  color: white;
+}
+
+.form-container h2 P {
+  color: white;
+}
+
+.form-container form {
+  background-color: black;
+  padding: 30px;
+  padding-right: 40px;
+  border-radius: 8px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.form-container input[type="text"],
+.form-container input[type="date"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+}
+
+.form-container button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.uploadImage {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.uploadImage button {
+  background-color: rgb(19, 190, 225);
+  border-radius: 5px;
+  border: 0;
+  padding: 10px;
+}

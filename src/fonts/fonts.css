@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+.kanit-regular {
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.audiowide-regular {
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Botanika Mono";
+  src: url(./BotanikaMonoTRIAL-Regular-BF65a7316330835.otf) format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Botanika Mono Medium";
+  src: url(./BotanikaMonoTRIAL-Medium-BF65a7316339008.otf) format("opentype");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Botanika Mono Bold";
+  src: url(./BotanikaMonoTRIAL-SemiBoldItalic-BF65a731633db5e.otf)
+    format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "x";
+  src: url(./BotanikaMonoTRIAL-Medium-BF65a7316339008.otf) format("opentype");
+}
