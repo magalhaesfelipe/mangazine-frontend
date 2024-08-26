@@ -13,8 +13,8 @@ import Header from "../../components/header/Header";
 export const Auth = () => {
   return (
     <>
-      <Header />
       <div className={classes.SignInContainer}>
+        <Header />
         <SignedOut>
           <div className={classes.boxContainer}>
             <div className={classes.box}>
@@ -29,7 +29,7 @@ export const Auth = () => {
         </SignedOut>
 
         <SignedIn>
-          <div className={classes["test"]}>
+          <div>
             <UserButton />
           </div>
           <Navigate to="/home" />

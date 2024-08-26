@@ -1,13 +1,15 @@
 .sign-in-container {
-  margin-top: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  flex-direction: column;
+  position: relative;
 }
 
 .boxContainer {
-  margin-top: 20%;
+  position: absolute;
+  top: 30%;
+  left: 39%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,17 +54,7 @@
   transition: 50ms;
 }
 
-/* Active State */
+/* Active State/on click */
 .SignInContainer button:active {
-  background-color: #660000; /* Even Darker Red on Click */
-}
-
-/* Disabled State */
-.SignInContainer button[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.test {
-  background-color: white;
+  color: rgb(193, 0, 0);
 }
