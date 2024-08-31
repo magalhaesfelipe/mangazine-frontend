@@ -15,7 +15,7 @@ const Home = () => {
       const checkAndCreateUser = async () => {
         try {
           const checkUser = await axios.get(
-            `http://localhost:2000/api/v1/user/exists/${user.id}`
+            `https://mangazine-backend.onrender.com/api/v1/user/exists/${user.id}`
           );
           const checkData = checkUser.data;
 
@@ -28,7 +28,7 @@ const Home = () => {
             };
 
             const createUser = await axios.post(
-              "http://localhost:2000/api/v1/user/signup",
+              "https://mangazine-backend.onrender.com/api/v1/user/signup",
               userData
             );
 

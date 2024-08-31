@@ -17,7 +17,7 @@ const AddButton = ({ titleData }) => {
     if (!userId || !titleId) return;
     try {
       const response = await axios.get(
-        `http://localhost:2000/api/v1/user/readlist/${userId}/check-item-exists/${titleId}`
+        `https://mangazine-backend.onrender.com/api/v1/user/readlist/${userId}/check-item-exists/${titleId}`
       );
       console.log(response);
       setTitleExists(response.data.exists);

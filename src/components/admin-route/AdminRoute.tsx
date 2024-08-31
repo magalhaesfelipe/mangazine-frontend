@@ -14,7 +14,7 @@ const AdminRoute = ({ element: Element, ...rest }) => {
       console.log(userId);
 
       // Fetch user role
-      Axios.get(`http://localhost:2000/api/v1/user/get-role/${userId}`)
+      Axios.get(`https://mangazine-backend.onrender.com/api/v1/user/get-role/${userId}`)
         .then((response) => {
           setRole(response.data.userRole);
           setLoading(false);

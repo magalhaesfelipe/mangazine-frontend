@@ -15,7 +15,7 @@ const Tag = ({ userId, itemId }) => {
 
       try {
         const response = await axios.get(
-          `http://localhost:2000/api/v1/user/readlist/${userId}/check-item-exists/${itemId}`
+          `https://mangazine-backend.onrender.com/api/v1/user/readlist/${userId}/check-item-exists/${itemId}`
         );
         setIsOnReadlist(response.data.exists);
       } catch (error) {
@@ -35,12 +35,12 @@ const Tag = ({ userId, itemId }) => {
     try {
       if (isOnReadlist) {
         await axios.delete(
-          `http://localhost:2000/api/v1/user/readlist/${userId}/remove-from-readlist/${itemId}`
+          `https://mangazine-backend.onrender.com/api/v1/user/readlist/${userId}/remove-from-readlist/${itemId}`
         );
         setIsOnReadlist(false); // Reflect item removal in UI
       } else {
         await axios.patch(
-          `http://localhost:2000/api/v1/user/readlist/${userId}/add-to-readlist/${itemId}`
+          `https://mangazine-backend.onrender.com/api/v1/user/readlist/${userId}/add-to-readlist/${itemId}`
         );
         setIsOnReadlist(true); // Reflect item addition in UI
       }

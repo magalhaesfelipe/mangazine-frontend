@@ -84,7 +84,7 @@ const CreateTitle = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:2000/api/v1/titles",
+        "https://mangazine-backend.onrender.com/api/v1/titles",
         formData
       );
 

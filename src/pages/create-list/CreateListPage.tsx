@@ -41,7 +41,7 @@ const CreateList = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:2000/api/v1/lists/create-list",
+        "https://mangazine-backend.onrender.com/api/v1/lists/create-list",
         finalFormData
       );
 

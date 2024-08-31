@@ -17,7 +17,7 @@ const Prompt = ({ onClose, titleData }) => {
   const addToList = async (titleId: any, listId: any) => {
     try {
       const response = await axios.patch(
-        `http://localhost:2000/api/v1/lists/${listId}/add-to-list/${titleId}`
+        `https://mangazine-backend.onrender.com/api/v1/lists/${listId}/add-to-list/${titleId}`
       );
 
       // Create a new object for titleExists to ensure re-render

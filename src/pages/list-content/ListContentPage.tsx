@@ -18,7 +18,7 @@ const ListContent = () => {
   const fetchItems = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:2000/api/v1/lists/${listId}`
+        `https://mangazine-backend.onrender.com/api/v1/lists/${listId}`
       );
 
       setList(response.data.list);

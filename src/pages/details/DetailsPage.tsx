@@ -16,7 +16,7 @@ const Details = () => {
     const fetchTitleData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:2000/api/v1/titles/${titleId}`
+          `https://mangazine-backend.onrender.com/api/v1/titles/${titleId}`
         );
         console.log("RESPONSE", response);
         setTitleData(response.data.title);
