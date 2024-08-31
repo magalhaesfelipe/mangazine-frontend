@@ -15,7 +15,7 @@ const Readlist = () => {
       if (user) {
         try {
           const response = await axios.get(
-            `http://localhost:2000/api/v1/user/readlist/${user.id}`
+            `https://mangazine-backend.onrender.com/api/v1/user/readlist/${user.id}`
           );
           console.log("THIS is the response: ", response);
           setReadList(response.data.readList);
