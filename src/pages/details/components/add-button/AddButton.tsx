@@ -32,7 +32,7 @@ const AddButton = ({ titleData }) => {
     if (titleExists) {
       try {
         const response = await axios.delete(
-          `http://localhost:2000/api/v1/user/readlist/${userId}/remove-from-readlist/${titleId}`
+          `https://mangazine-backend.onrender.com/api/v1/user/readlist/${userId}/remove-from-readlist/${titleId}`
         );
         console.log(
           "This is the response of removing item from the readlist",
@@ -45,7 +45,7 @@ const AddButton = ({ titleData }) => {
     } else {
       try {
         const response = await axios.patch(
-          `http://localhost:2000/api/v1/user/readlist/${userId}/add-to-readlist/${titleId}`
+          `https://mangazine-backend.onrender.com/api/v1/user/readlist/${userId}/add-to-readlist/${titleId}`
         );
         console.log(response);
         // After adding/removing the item, re-check if it exists in the readlist
