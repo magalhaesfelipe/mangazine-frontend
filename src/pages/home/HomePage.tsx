@@ -15,7 +15,7 @@ const Home = () => {
       const checkAndCreateUser = async () => {
         try {
           const checkUser = await axios.get(
-            `https://mangazine-backend.onrender.com/api/v1/user/exists/${user.id}`
+            `${process.env.API_URL}/user/exists/${user.id}`
           );
           const checkData = checkUser.data;
 
@@ -28,7 +28,7 @@ const Home = () => {
             };
 
             const createUser = await axios.post(
-              "https://mangazine-backend.onrender.com/api/v1/user/signup",
+              `${process.env.API_URL}/user/signup`,
               userData
             );
 
@@ -47,12 +47,6 @@ const Home = () => {
 
       checkAndCreateUser();
     }
-
-    document.body.classList.add(classes.bodyStyle);
-
-    return () => {
-      document.body.classList.remove(classes.bodyStyle);
-    };
   }, [user]);
 
   return (

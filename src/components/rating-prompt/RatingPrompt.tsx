@@ -16,7 +16,7 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
     try {
       console.log("Creating/updating rating...");
       const response = await axios.post(
-        `https://mangazine-backend.onrender.com/api/v1/rating/create-update-rating`,
+        `${process.env.API_URL}/rating/create-update-rating`,
         {
           userId: user.id,
           titleId: titleData._id,
@@ -34,7 +34,7 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
     try {
       console.log("Deleting rating..."); // Debug log
       const response = await axios.delete(
-        `https://mangazine-backend.onrender.com/api/v1/rating/${user.id}/delete-rating/${titleData._id}`
+        `${process.env.API_URL}/rating/${user.id}/delete-rating/${titleData._id}`
       );
       console.log("Delete Response:", response.data); // Debug
       onRatingChange();

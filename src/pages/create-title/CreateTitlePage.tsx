@@ -84,7 +84,7 @@ const CreateTitle = () => {
 
     try {
       const response = await axios.post(
-        "https://mangazine-backend.onrender.com/api/v1/titles",
+        `${process.env.API_URL}/titles`,
         formData
       );
 
@@ -94,7 +94,7 @@ const CreateTitle = () => {
         setIsUploading(false);
       } else {
         console.error("Failed to add title:", response.statusText);
-        setIsUploading(false);
+        setIsUploading(false); 
       }
     } catch (err) {
       console.error("Error adding title: ", err);

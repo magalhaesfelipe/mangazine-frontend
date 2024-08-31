@@ -25,7 +25,7 @@ const AllListsPage = () => {
 
       try {
         const response = await axios.get(
-          `https://mangazine-backend.onrender.com/api/v1/lists/get-all-lists/${user.id}`
+          `${process.env.API_URL}/lists/get-all-lists/${user.id}`
         );
         setLists(response.data.lists);
         console.log(lists);

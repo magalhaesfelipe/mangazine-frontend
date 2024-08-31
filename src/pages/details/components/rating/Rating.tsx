@@ -17,7 +17,7 @@ const Rating = ({ titleData }) => {
     if (!user) return;
     try {
       const averageResponse = await axios.get(
-        `https://mangazine-backend.onrender.com/api/v1/rating/average-rating/${titleId}`
+        `${process.env.API_URL}/rating/average-rating/${titleId}`
       );
       setAverageRating(averageResponse.data.averageRating);
     } catch (err) {
@@ -25,7 +25,7 @@ const Rating = ({ titleData }) => {
     }
     try {
       const userResponse = await axios.get(
-        `https://mangazine-backend.onrender.com/api/v1/rating/${userId}/get-rating/${titleId}`
+        `${process.env.API_URL}/rating/${userId}/get-rating/${titleId}`
       );
       setUserRating(userResponse.data.userRating.rating);
     } catch (err) {

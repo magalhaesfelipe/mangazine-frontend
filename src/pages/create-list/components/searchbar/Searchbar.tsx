@@ -35,7 +35,7 @@ const Searchbar: React.FC<SearchbarProps> = ({
       try {
         console.log(searchedName);
         const response = await axios.get(
-          `https://mangazine-backend.onrender.com/api/v1/titles/search/${searchedName}`
+          `${process.env.API_URL}/titles/search/${searchedName}`
         );
         const titles = response.data.titles;
         setItems(titles);

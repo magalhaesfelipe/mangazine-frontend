@@ -12,7 +12,7 @@ export const useLists = (userId: any, titleId: any) => {
       try {
         // Fetch all lists
         const response = await axios.get(
-          `https://mangazine-backend.onrender.com/api/v1/lists/get-all-lists/${userId}`
+          `${process.env.API_URL}/lists/get-all-lists/${userId}`
         );
         const fetchedLists = response.data.lists;
         setLists(fetchedLists);
@@ -22,7 +22,7 @@ export const useLists = (userId: any, titleId: any) => {
         await Promise.all(
           fetchedLists.map(async (list: any) => {
             const existsResponse = await axios.get(
-              `https://mangazine-backend.onrender.com/api/v1/lists/${list._id}/titles/${titleId}/exists`
+              `${process.env.API_URL}/lists/${list._id}/titles/${titleId}/exists`
             );
             titleExistsObj[list._id] = existsResponse.data.exists;
           })
