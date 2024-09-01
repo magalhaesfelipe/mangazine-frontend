@@ -21,8 +21,9 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
 
       try {
         console.log(searchedName);
+        console.log("API URL:", process.env.REACT_APP_API_URL);
         const response = await axios.get(
-          `hellooooooo${process.env.REACT_APP_API_URL}/titles/search/${searchedName}`
+          `${process.env.REACT_APP_API_URL}/titles/search/${searchedName}`
         );
         const titles = response.data.titles;
         setItems(titles);
