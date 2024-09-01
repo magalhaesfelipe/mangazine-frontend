@@ -15,7 +15,7 @@ const Readlist = () => {
       if (user) {
         try {
           const response = await axios.get(
-            `${process.env.API_URL}/user/readlist/${user.id}`
+            `${import.meta.env.VITE_API_URL}/user/readlist/${user.id}`
           );
           console.log("THIS is the response: ", response);
           setReadList(response.data.readList);

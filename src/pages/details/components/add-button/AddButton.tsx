@@ -17,7 +17,7 @@ const AddButton = ({ titleData }) => {
     if (!userId || !titleId) return;
     try {
       const response = await axios.get(
-        `${process.env.API_URL}/user/readlist/${userId}/check-item-exists/${titleId}`
+        `${import.meta.env.VITE_API_URL}/user/readlist/${userId}/check-item-exists/${titleId}`
       );
       console.log(response);
       setTitleExists(response.data.exists);
@@ -32,7 +32,7 @@ const AddButton = ({ titleData }) => {
     if (titleExists) {
       try {
         const response = await axios.delete(
-          `${process.env.API_URL}/user/readlist/${userId}/remove-from-readlist/${titleId}`
+          `${import.meta.env.VITE_API_URL}/user/readlist/${userId}/remove-from-readlist/${titleId}`
         );
         console.log(
           "This is the response of removing item from the readlist",
@@ -45,7 +45,7 @@ const AddButton = ({ titleData }) => {
     } else {
       try {
         const response = await axios.patch(
-          `${process.env.API_URL}/user/readlist/${userId}/add-to-readlist/${titleId}`
+          `${import.meta.env.VITE_API_URL}/user/readlist/${userId}/add-to-readlist/${titleId}`
         );
         console.log(response);
         // After adding/removing the item, re-check if it exists in the readlist

@@ -14,7 +14,7 @@ const AdminRoute = ({ element: Element, ...rest }) => {
       console.log(userId);
 
       // Fetch user role
-      Axios.get(`${process.env.API_URL}/user/get-role/${userId}`)
+      Axios.get(`${import.meta.env.VITE_API_URL}/user/get-role/${userId}`)
         .then((response) => {
           setRole(response.data.userRole);
           setLoading(false);

@@ -24,14 +24,14 @@ const ElementCard = (props: any) => {
       try {
         // Fetch average rating
         const avgResponse = await axios.get(
-          `${process.env.API_URL}/rating/average-rating/${itemId}`
+          `${import.meta.env.VITE_API_URL}/rating/average-rating/${itemId}`
         );
         setAverageRating(avgResponse.data.averageRating);
 
         // Fetch user rating
         try {
           const userResponse = await axios.get(
-            `${process.env.API_URL}/rating/${userId}/get-rating/${itemId}`
+            `${import.meta.env.VITE_API_URL}/rating/${userId}/get-rating/${itemId}`
           );
           setUserRating(userResponse.data.userRating.rating);
         } catch (userErr) {

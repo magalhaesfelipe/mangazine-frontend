@@ -41,7 +41,7 @@ const CreateList = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.API_URL}/lists/create-list`,
+        `${import.meta.env.VITE_API_URL}/lists/create-list`,
         finalFormData
       );
 

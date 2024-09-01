@@ -35,7 +35,7 @@ const Searchbar: React.FC<SearchbarProps> = ({
       try {
         console.log(searchedName);
         const response = await axios.get(
-          `${process.env.API_URL}/titles/search/${searchedName}`
+          `${import.meta.env.VITE_API_URL}/titles/search/${searchedName}`
         );
         const titles = response.data.titles;
         setItems(titles);

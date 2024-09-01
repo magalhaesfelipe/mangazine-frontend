@@ -16,7 +16,7 @@ const Details = () => {
     const fetchTitleData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/titles/${titleId}`
+          `${import.meta.env.VITE_API_URL}/titles/${titleId}`
         );
         console.log("RESPONSE", response);
         setTitleData(response.data.title);

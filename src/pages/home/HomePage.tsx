@@ -15,7 +15,7 @@ const Home = () => {
       const checkAndCreateUser = async () => {
         try {
           const checkUser = await axios.get(
-            `${process.env.API_URL}/user/exists/${user.id}`
+            `${import.meta.env.VITE_API_URL}/user/exists/${user.id}`
           );
           const checkData = checkUser.data;
 
@@ -28,7 +28,7 @@ const Home = () => {
             };
 
             const createUser = await axios.post(
-              `${process.env.API_URL}/user/signup`,
+              `${import.meta.env.VITE_API_URL}/user/signup`,
               userData
             );
 

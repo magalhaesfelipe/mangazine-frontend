@@ -25,7 +25,7 @@ const AllListsPage = () => {
 
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/lists/get-all-lists/${user.id}`
+          `${import.meta.env.VITE_API_URL}/lists/get-all-lists/${user.id}`
         );
         setLists(response.data.lists);
         console.log(lists);

@@ -12,11 +12,6 @@ import Header from "../../components/header/Header";
 import { useEffect } from "react";
 
 export const Auth = () => {
-  useEffect(() => {
-    const apiUrl = import.meta.env.VITE_API_URL;
-    console.log("API URL:", apiUrl);
-  }, []);
-
   return (
     <>
       <div className={classes.SignInContainer}>

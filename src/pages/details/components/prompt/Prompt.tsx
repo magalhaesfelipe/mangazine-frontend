@@ -17,7 +17,7 @@ const Prompt = ({ onClose, titleData }) => {
   const addToList = async (titleId: any, listId: any) => {
     try {
       const response = await axios.patch(
-        `${process.env.API_URL}/lists/${listId}/add-to-list/${titleId}`
+        `${import.meta.env.VITE_API_URL}/lists/${listId}/add-to-list/${titleId}`
       );
 
       // Create a new object for titleExists to ensure re-render
@@ -34,7 +34,7 @@ const Prompt = ({ onClose, titleData }) => {
   const removeFromList = async (titleId: any, listId: any) => {
     try {
       const response = await axios.patch(
-        `${process.env.API_URL}/lists/${listId}/remove-from-list/${titleId}`
+        `${import.meta.env.VITE_API_URL}/lists/${listId}/remove-from-list/${titleId}`
       );
       setItemExistsArray((prevItemExists) => ({
         ...prevItemExists,

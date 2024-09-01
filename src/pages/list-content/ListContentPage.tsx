@@ -18,7 +18,7 @@ const ListContent = () => {
   const fetchItems = async () => {
     try {
       const response = await axios.get(
-        `${process.env.API_URL}/lists/${listId}`
+        `${import.meta.env.VITE_API_URL}/lists/${listId}`
       );
 
       setList(response.data.list);

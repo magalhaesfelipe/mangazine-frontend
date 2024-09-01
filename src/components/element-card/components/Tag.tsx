@@ -15,7 +15,7 @@ const Tag = ({ userId, itemId }) => {
 
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/user/readlist/${userId}/check-item-exists/${itemId}`
+          `${import.meta.env.VITE_API_URL}/user/readlist/${userId}/check-item-exists/${itemId}`
         );
         setIsOnReadlist(response.data.exists);
       } catch (error) {
@@ -35,12 +35,12 @@ const Tag = ({ userId, itemId }) => {
     try {
       if (isOnReadlist) {
         await axios.delete(
-          `${process.env.API_URL}/user/readlist/${userId}/remove-from-readlist/${itemId}`
+          `${import.meta.env.VITE_API_URL}/user/readlist/${userId}/remove-from-readlist/${itemId}`
         );
         setIsOnReadlist(false); // Reflect item removal in UI
       } else {
         await axios.patch(
-          `${process.env.API_URL}/user/readlist/${userId}/add-to-readlist/${itemId}`
+          `${import.meta.env.VITE_API_URL}/user/readlist/${userId}/add-to-readlist/${itemId}`
         );
         setIsOnReadlist(true); // Reflect item addition in UI
       }
