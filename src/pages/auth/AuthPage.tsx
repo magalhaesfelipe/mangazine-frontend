@@ -11,6 +11,7 @@ import { Navigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 
 export const Auth = () => {
+  console.log("THIS IS THE API URL: ", process.env.REACT_APP_API_URL);
   return (
     <>
       <div className={classes.SignInContainer}>
