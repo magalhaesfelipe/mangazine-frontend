@@ -9,9 +9,14 @@ import {
 
 import { Navigate } from "react-router-dom";
 import Header from "../../components/header/Header";
+import { useEffect } from "react";
 
 export const Auth = () => {
-  console.log("THIS IS THE API URL: ", process.env.REACT_APP_API_URL);
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    console.log("API URL:", apiUrl);
+  }, []);
+
   return (
     <>
       <div className={classes.SignInContainer}>
