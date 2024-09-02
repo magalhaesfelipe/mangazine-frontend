@@ -1,7 +1,14 @@
+.superContainer {
+  background-color: blueviolet;
+  width: 460px;
+  margin-top: 8%;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  width: 450px;
+  margin-bottom: 10%;
+  margin-top: 5%;
 }
 
 .genreDiv {

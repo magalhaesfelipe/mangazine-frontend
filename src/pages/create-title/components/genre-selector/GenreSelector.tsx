@@ -2,7 +2,7 @@ import classes from "./style.module.css";
 
 const GenreSelector = ({ genres, selectedGenres, onGenreClick }) => {
   return (
-    <div>
+    <div className={classes.superContainer}>
       <label>Genre:</label>
       <div className={classes.container}>
         {genres.map((genre, index) => (
