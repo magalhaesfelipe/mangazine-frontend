@@ -75,10 +75,10 @@
 }
 
 .iconContainer i {
-  margin-top: 10px;
   font-size: 18px;
   border: solid 2px transparent;
-  padding: 10px;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 .iconContainer i:hover {
