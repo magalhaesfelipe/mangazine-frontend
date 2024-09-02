@@ -62,10 +62,12 @@ const Searchbar: React.FC<SearchbarProps> = ({
 
   const handleClick = (item: Item) => {
     setLocalSelectedItems((prevSelectedItems) => {
-      if (
-        !prevSelectedItems.some((selectedItem) => selectedItem._id === item._id)
-      ) {
-        return [...prevSelectedItems, item];
+      if (!prevSelectedItems.some((selectedItem) => selectedItem._id === item._id)) {
+        const updatedSelectedItems = [...prevSelectedItems, item];
+
+        // Update both local and parent state
+        setSelectedItems(updatedSelectedItems); // Update parent state
+        return updatedSelectedItems; // Update local state
       }
       return prevSelectedItems;
     });

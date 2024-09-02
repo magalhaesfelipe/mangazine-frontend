@@ -12,14 +12,9 @@ const AllListsPage = () => {
   const [lists, setLists] = useState([]);
   const navigate = useNavigate();
 
-  const handleClick = (listId: any) => {
-    console.log("This is the list id: ", listId);
-    navigate(`/list/${listId}`);
-  };
-
   useEffect(() => {
     const fetchLists = async () => {
-      if (!user || !user.id) {
+      if (!user) {
         return <div>No user</div>;
       }
 
@@ -28,7 +23,6 @@ const AllListsPage = () => {
           `${import.meta.env.VITE_API_URL}/lists/get-all-lists/${user.id}`
         );
         setLists(response.data.lists);
-        console.log(lists);
       } catch (err) {
         console.error("Error fetching lists: ", err);
       }
@@ -36,6 +30,23 @@ const AllListsPage = () => {
 
     fetchLists();
   }, [user]);
+
+  const goToList = (listId: any) => {
+    navigate(`/list/${listId}`);
+  };
+
+  const deleteList = async (listId: any) => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/lists/delete-list/${listId}`
+      );
+
+      // Update the lists state by removing the deleted list
+      setLists((prevLists) => prevLists.filter((list) => list._id !== listId));
+    } catch (error) {
+      console.error("Error deleting list: ", error);
+    }
+  };
 
   return (
     <div className={classes.container}>
@@ -48,9 +59,18 @@ const AllListsPage = () => {
       </div>
       <div className={classes.grid}>
         {lists.map((list, index) => (
-          <div className={classes.box} onClick={() => handleClick(list._id)}>
-              <h3 className={classes.name}>{list.name}</h3>
-              <p>{list.titles.length} titles </p>
+          <div className={classes.box} onClick={() => goToList(list._id)}>
+            <h3 className={classes.name}>{list.name}</h3>
+            <p>{list.titles.length} title(s) </p>
+            <div className={classes.iconContainer}>
+              <i
+                className="fa-solid fa-trash"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevents triggering the parent onClick event
+                  deleteList(list._id);
+                }}
+              ></i>
+            </div>
           </div>
         ))}
       </div>

@@ -59,11 +59,6 @@
   border: solid 3px transparent;
 }
 
-.box h3,
-.box p {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-}
 .box h3 {
   font-weight: bolder;
   display: -webkit-box; /* Required for truncating text */
@@ -77,6 +72,17 @@
 
 .box p {
   font-size: 14px;
+}
+
+.iconContainer i {
+  margin-top: 10px;
+  font-size: 18px;
+  border: solid 2px transparent;
+  padding: 10px;
+}
+
+.iconContainer i:hover {
+  border: solid 2px white;
 }
 
 .box:hover {

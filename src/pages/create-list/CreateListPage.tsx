@@ -37,8 +37,6 @@ const CreateList = () => {
     const titles = selectedItems.map((item) => item._id);
     const finalFormData = { ...formData, titles };
 
-    console.log("FormData being sent: ", finalFormData);
-
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/lists/create-list`,

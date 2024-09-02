@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-     "jsx": "react-jsx",                                /* Specify what JSX code is generated. */
+    "jsx": "react-jsx",                                /* Specify what JSX code is generated. */
     "module": "ESNext",                                /* Specify what module code is generated. */
     "moduleResolution": "node10",                     /* Specify how TypeScript looks up a file from a given module specifier. */
     "types": ["node", "react", "react-dom", "react-router-dom"],                                      /* Specify type package names to be included without being referenced in a source file. */

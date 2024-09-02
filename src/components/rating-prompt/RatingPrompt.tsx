@@ -23,8 +23,8 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
           ratingValue: rating,
         }
       );
-      console.log("Create/Update Response:", response.data); // Debug
       onRatingChange();
+      onClose();
     } catch (err) {
       console.error("Error trying to send the request ", err);
     }
@@ -34,10 +34,12 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
     try {
       console.log("Deleting rating..."); // Debug log
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/rating/${user.id}/delete-rating/${titleData._id}`
+        `${import.meta.env.VITE_API_URL}/rating/${user.id}/delete-rating/${
+          titleData._id
+        }`
       );
-      console.log("Delete Response:", response.data); // Debug
       onRatingChange();
+      onClose();
     } catch (err) {
       console.error(err);
     }
