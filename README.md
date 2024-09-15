@@ -60,18 +60,19 @@ yarn install
 ## Project Structure
 
 ```
-├── src/                 # Source code for the application
-│   ├── components/      # Reusable components for the UI
-│   ├── pages/           # Page-level components for different routes
-│   ├── fonts/           # Style fonts
-│   ├── app.tsx          # Main React component
-│   ├── main.tsx         # Entry point for the React app
-│   └── general.css      # General css styles
-├── .env                # Environment configuration variables
-├── package.json        # Project metadata and scripts
-├── tsconfig.json       # TypeScript configuration file
-├── README.md           # Project overview and instructions
-├── LICENSE             # License for the project
+├── src/                       # Source code for the application
+│   ├── components/            # Reusable components for the UI
+│   ├── pages/                 # Page-level components for different routes
+│   ├── fonts/                 # Style fonts
+│   ├── app.tsx                # Main React component
+│   ├── main.tsx               # Entry point for the React app
+│   └── general.css            # General css styles
+│   └── declarations.d.ts      # Typescript css module declaration
+├── .env                       # Environment configuration variables
+├── package.json               # Project metadata and scripts
+├── tsconfig.json              # TypeScript configuration file
+├── README.md                  # Project overview and instructions
+├── LICENSE                    # License for the project
 
 ```
 
@@ -79,28 +80,28 @@ yarn install
 
 > Create a .env file in the root directory and add the following variables:
 
-Environment
+API URL
 
 ```
-NODE_ENV=development
+VITE_API_URL=<api-url>
 ```
 
-Server
+Clerk Publishable Key
 
 ```
-PORT=5000
+VITE_CLERK_PUBLISHABLE_KEY=<your-publishable-key>
 ```
 
-Database
+Cloudinary Cloud Name
 
 ```
-DATABASE=mongodb://localhost:27017/your-db-name
+VITE_CLOUDINARY_CLOUD_NAME=<your-cloud-name>
 ```
 
-Client Url
+Cloudinary Upload Preset
 
 ```
-http://localhost:5173/
+VITE_CLOUDINARY_UPLOAD_PRESET=<your-upload-preset>
 ```
 
 <br>
@@ -125,87 +126,6 @@ This will start the application using node.
 
 <br>
 
-## API Documentation
-
-### Base URL
-
-`http://localhost:5000/api/`
-
-
-### Endpoints
-
-> #### *User Routes*
-
-`{baseURL}/user`
-
-```
-POST    /signup                  # Register user
-
-GET	    /exists/:userId          # Check if user exists
-
-GET	    /get-role/:userId        # Get user role
-
-GET     /readlist/:userId        # Get readlist
-
-GET     /readlist/:userId/check-item-exists/:titleId   # Check title exists in the readlist
-
-DELETE	/readlist/:userId/remove-from-readlist/:titleId           # Remove item from readlist
-
-GET     /lists/:userId           # Get user lists
-
-
-```
-
-
-
-
-<br>
-<br>
-
-> #### *Title Routes*
-
-`{baseURL}/titles`
-
-```
-GET	    /get-all-titles         # Fetch all titles
-
-GET    /search/:titleName       # Fetch title by name
-
-GET    /:titleId                # Fetch title by ID
-
-PATCH  /update-title/:titleId   # Update title data
-
-POST    /create-title           # Create new title
-
-DELETE	/delete/:titleId        # Delete title
-```
-
-<br>
-<br>
-
-> #### *List Routes*
-
-`{baseURL}/lists`
-
-```
-GET	    /:listsId/titles/:titleId/exists     # Check if item exists in the list
-
-GET     /get-all-lists/:userId               # Fetch all lists
-
-GET     /get-list/:listId                    # Fetch list by ID
-
-POST    /create-list                         # Create a new list
-
-DELETE	/delete-list/:listId                 # Delete list
-
-PATCH   /:listId/add-to-list/:titleId        # Add item to list
-
-PATCH   /:listId/remove-from-list/:titleId   # Remove from list
-```
-
-<br>
-<br>
-
 > #### *Rating Routes*
 
 `{baseURL}/rating`
@@ -222,34 +142,6 @@ DELETE	/:userId/delete-rating/:titleId      # Delete list
 ```
 
 <br>
-<br>
-
-## Database Schema
-
-> ### *User Model*
-
-```
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  role: { type: String, enum: ['user', 'admin'], default: 'user' }
-});
-```
-
-<br>
-
-> ### *Title Model*
-
-```
-const titleSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  author: { type: String, required: true },
-  genre: [String],
-  rating: { type: Number, default: 0 }
-});
-```
-
 <br>
 
 ## Contributing
