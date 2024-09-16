@@ -7,7 +7,7 @@
 Mangazine is a source for Storytelling content. It's a web platform where users can discover and keep track of everything they want to read. We cover a wide range of content, such as mangas, comics, books, manhwa, magazines, etc.
 Users can check information about what they are reading, rate titles, add titles they want to read to their 'readlist', create their own lists and we still have a lot of features coming in. At Mangazine, our goal is to be a comprehensive source of information, share amazing Storytelling works from diverse authors around the world, and connect people through culture.
 
-This is the frontend of our platform, built using React, TypeScript, and CSS for an intuitive and responsive user experience. 
+This is the frontend of our platform, built using React, TypeScript, and CSS for an intuitive and responsive user experience.
 
 <br>
 
@@ -50,7 +50,9 @@ cd mangazine-frontend
 ```
 npm install
 ```
+
 Or if you're using Yarn:
+
 ```
 yarn install
 ```
@@ -111,10 +113,12 @@ VITE_CLOUDINARY_UPLOAD_PRESET=<your-upload-preset>
 > #### Running the application in development
 
 ```
-npm run start:dev
+npm run dev
 ```
 
 This will start the application using nodemon for hot-reloading.
+
+<br>
 
 > #### Running the application in production
 
@@ -126,20 +130,43 @@ This will start the application using node.
 
 <br>
 
-> #### *Rating Routes*
-
-`{baseURL}/rating`
+> #### Building the application for production
 
 ```
-GET	    /:userId/get-rating/:titleId         # Fetch rating
-
-GET     /average-rating/:titleId             # Fetch average rating
-
-POST    /create-update-rating                # Create/Update rating
-
-DELETE	/:userId/delete-rating/:titleId      # Delete list
-
+npm run build
 ```
+
+This will create a production-ready build of the application.
+
+<br>
+
+## Application Routes
+
+The following routes are used in the Mangazine frontend:
+
+### Public Routes
+
+- **`/auth`** - The authentication page where users can log in or sign up.
+- **`/home`** - The home page, where users can browse popular titles and discover new content.
+- **`/details/:titleId`** - Displays detailed information about a specific title (e.g., manga, book). The `:titleId` is a dynamic parameter representing the ID of the title.
+- **`/about`** - A page providing information about Mangazine's mission and background.
+- **`/contact`** - The contact page, where users can find ways to reach out to Mangazine's team.
+
+### Protected Routes (Requires Authentication)
+
+These routes are accessible only to logged-in users.
+
+- **`/readlist`** - Displays the user's readlist, where they can keep track of titles they want to read.
+- **`/lists`** - Shows all custom lists created by the user (e.g., "Top 10 Favorites").
+- **`/list/:listId`** - Displays the content of a specific user-created list. The `:listId` is a dynamic parameter representing the ID of the list.
+- **`/rating`** - A page where users can rate a title and provide feedback.
+- **`/create-list`** - Allows users to create a new list of titles.
+
+### Admin Routes (Requires Admin Access)
+
+These routes are restricted to users with admin privileges.
+
+- **`/create-title`** - Allows admin users to add a new title to the platform, such as a new manga or book.
 
 <br>
 <br>
