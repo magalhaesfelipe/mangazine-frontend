@@ -14,7 +14,15 @@ const ContactPage = () => {
           </div>
           <div className={classes.socials}>
             <h1>SOCIALS</h1>
-            <p>Discord: mangazinesdfasfd</p>
+            <p>
+              Join our Discord Server:
+              <a
+                href="https://discord.gg/eZQ83wzQ"
+                target="_blank"
+                rel="noopener noreferrer"
+              ></a>
+              https://discord.gg/eZQ83wzQ
+            </p>
           </div>
         </div>
       </div>
