@@ -1,5 +1,7 @@
 # MANGAZINE FRONTEND
 
+Discord server: https://discord.gg/eZQ83wzQ
+
 ## Overview
 
 <br>
