@@ -84,7 +84,7 @@ const CreateTitle = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/titles`,
+        `${import.meta.env.VITE_API_URL}/titles/create-title`,
         formData
       );
 
