@@ -17,40 +17,43 @@ const ElementCard = (props: any) => {
   const itemId = item?._id;
   const userId = user?.id;
 
+  const fetchRatings = async () => {
+    try {
+      // Fetch average rating
+      const avgResponse = await axios.get(
+        `${import.meta.env.VITE_API_URL}/rating/average-rating/${itemId}`
+      );
+      setAverageRating(avgResponse.data.averageRating);
+
+      // Fetch user rating
+      try {
+        const userResponse = await axios.get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/rating/${userId}/get-rating/${itemId}`
+        );
+        setUserRating(userResponse.data.userRating.rating);
+      } catch (userErr: any) {
+        // Handle the case where no user rating is found
+        if (userErr.response?.status === 404) {
+          setUserRating(null);
+        } else {
+          console.error("Failed to fetch user rating: ", userErr);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to fetch average rating: ", err.message);
+    }
+  };
   useEffect(() => {
     if (!user) return;
 
-    const fetchRatings = async () => {
-      try {
-        // Fetch average rating
-        const avgResponse = await axios.get(
-          `${import.meta.env.VITE_API_URL}/rating/average-rating/${itemId}`
-        );
-        setAverageRating(avgResponse.data.averageRating);
-
-        // Fetch user rating
-        try {
-          const userResponse = await axios.get(
-            `${
-              import.meta.env.VITE_API_URL
-            }/rating/${userId}/get-rating/${itemId}`
-          );
-          setUserRating(userResponse.data.userRating.rating);
-        } catch (userErr) {
-          // Handle the case where no user rating is found
-          if (userErr.response?.status === 404) {
-            setUserRating(null);
-          } else {
-            console.error("Failed to fetch user rating: ", userErr);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to fetch average rating: ", err.message);
-      }
-    };
-
     fetchRatings();
   }, [user, itemId, userId]);
+
+  const handleRatingChange = () => {
+    fetchRatings();
+  };
 
   const navigateToDetails = (itemId: any) => {
     navigate(`/details/${itemId}`);
@@ -124,7 +127,13 @@ const ElementCard = (props: any) => {
           </div>
         </div>
       </div>
-      {showPrompt && <RatingPrompt onClose={closePrompt} titleData={item} />}
+      {showPrompt && (
+        <RatingPrompt
+          onClose={closePrompt}
+          titleData={item}
+          onRatingChange={handleRatingChange}
+        />
+      )}
     </>
   );
 };

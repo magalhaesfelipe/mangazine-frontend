@@ -23,7 +23,7 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
           ratingValue: rating,
         }
       );
-      onRatingChange();
+      onRatingChange(); // Called after updating the rating
       onClose();
     } catch (err) {
       console.error("Error trying to send the request ", err);
@@ -38,7 +38,7 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
           titleData._id
         }`
       );
-      onRatingChange();
+      onRatingChange(); // Called after deleting the rating
       onClose();
     } catch (err) {
       console.error(err);
