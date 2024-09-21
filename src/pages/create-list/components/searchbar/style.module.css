@@ -33,7 +33,7 @@
   margin-bottom: 30px;
   padding-top: 10px;
   padding-bottom: 40px;
-  background-color: rgb(28, 28, 28);
+  background-color: rgb(255, 255, 255);
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   row-gap: 0px;
@@ -45,15 +45,21 @@
 .gridItem {
   margin-top: 20px;
   height: 140px;
-  width: 200px;
+  width: 300px;
   display: flex;
   border-radius: 10px;
-  padding-right: 60px;
+  padding-right: 10px;
   margin-right: 10px;
   margin-left: 15px;
   background-color: rgb(229, 227, 227);
   color: black;
   cursor: pointer;
+  border: solid 1.5px transparent;
+}
+
+.gridItem:hover {
+  background-color: rgb(255, 255, 255);
+  border: solid 1.5px rgb(229, 227, 227);
 }
 
 .cover {
@@ -66,11 +72,12 @@
 
 .informationContainer {
   margin-left: 20px;
+  width: 200px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  margin: 10px;
+  margin-left: 20px;
+  padding-right: 60px;
 }
 
 .box2 {
@@ -79,8 +86,21 @@
 }
 
 .author {
+  width: 180px;
   margin-top: 15px;
   margin-bottom: 25px;
+  display: -webkit-box;
+  display: box; /* Standard property (future-proofing) */
+  -webkit-box-orient: vertical;
+  box-orient: vertical; /* Standard property */
+  -webkit-line-clamp: 2; /* Vendor-prefixed for WebKit-based browsers */
+  line-clamp: 2; /* Standard property (not fully supported yet) */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 1.1; /* Adjust line-height for a better fit */
+  color: rgb(0, 0, 0);
+  margin-bottom: 13px;
 }
 
 .box2 p {

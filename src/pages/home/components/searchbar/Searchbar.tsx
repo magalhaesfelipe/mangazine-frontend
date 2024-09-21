@@ -75,12 +75,14 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
                 onClick={() => handleClick(item._id)}
                 className={classes.gridItem}
               >
-                <img src={item.cover} className={classes.cover} />
+                <div className={classes.imgContainer}>
+                  <img src={item.cover} className={classes.cover} />
+                </div>
                 <div className={classes.informationContainer}>
                   <p className={classes.name}>{item.name}</p>
                   <div className={classes.box2}>
                     <p className={classes.author}>{item.author} </p>
-                    <p className={classes.releaseYear}> {item.releaseYear}</p>
+                    <p className={classes.year}> {item.releaseYear}</p>
                   </div>
                 </div>
               </div>

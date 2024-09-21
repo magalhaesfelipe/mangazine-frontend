@@ -9,14 +9,14 @@
   position: relative;
   display: block;
   justify-content: center;
-  width: 500px;
+  width: 700px;
 }
 
 .searchbar {
   color: rgb(246, 246, 246);
   font-size: 17px;
   font-family: Kanit;
-  width: 90%;
+  width: 300px;
   height: 40px;
   padding-left: 30px;
   border-radius: 20px;
@@ -30,11 +30,13 @@
 }
 
 .gridContainer {
+  position: absolute;
+  left: -20px;
   display: grid;
   align-items: center;
   justify-content: center;
   align-content: center;
-  width: 100%;
+  width: auto;
   height: auto;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -47,14 +49,13 @@
   border-radius: 5px;
   padding-right: 20px;
   padding-left: 20px;
-  background-color: rgba(0, 0, 0, 0.581);
-  position: absolute;
+  background-color: rgb(255, 255, 255);
 }
 
 .gridItem {
   margin-top: 20px;
-  height: 90px;
-  width: 200px;
+  height: 130px;
+  width: 300px;
   display: flex;
   padding: 10px;
   border-radius: 10px;
@@ -66,9 +67,18 @@
   cursor: pointer;
 }
 
-.cover {
+.gridItem:hover {
+  background-color: rgb(229, 227, 227);
+}
+
+.imgContainer {
   height: 100%;
-  width: 100px;
+  width: 90px;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   border: 1px solid transparent;
 }
@@ -80,24 +90,33 @@
   flex-direction: column;
 }
 
+.name {
+  display: -webkit-box;
+  display: box; /* Standard property (future-proofing) */
+  -webkit-box-orient: vertical;
+  box-orient: vertical; /* Standard property */
+  -webkit-line-clamp: 2; /* Vendor-prefixed for WebKit-based browsers */
+  line-clamp: 2; /* Standard property (not fully supported yet) */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 20px;
+  line-height: 1.1; /* Adjust line-height for a better fit */
+  color: rgb(0, 0, 0);
+  margin-bottom: 13px;
+}
+
 .box2 {
   display: flex;
   flex-direction: column;
+  font-size: 14px;
+  color: rgba(39, 39, 39, 0.841);
 }
 
 .author {
   margin-top: 15px;
-  margin-bottom: 25px;
-}
-
-.box2, p {
-  font-size: 14px;
-  color: rgba(69, 69, 69, 0.841);
-}
-
-.name {
-  font-size: 20px;
-  color: rgb(0, 0, 0);
+  margin-bottom: 20px;
+  width: 100%;
+  line-height: 15px;
 }
 
 .loading {
