@@ -22,7 +22,10 @@ const HorizontalScrollbar: React.FC<ScrollbarProps> = ({
           <div key={item._id} className={classes.item}>
             <img src={item.cover} />
             <div className={classes.nameContainer}>
-              <p>{item.name}</p>
+                {item.name}
+              <p>
+
+              </p>
             </div>
           </div>
         ))}
