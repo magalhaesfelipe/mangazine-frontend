@@ -70,8 +70,8 @@
 
 .closeButton {
   position: absolute;
-  top: 17%;
-  right: 5%;
+  top: 5%;
+  right: 1%;
   width: 50px;
   height: 50px;
   border-radius: 50%;
