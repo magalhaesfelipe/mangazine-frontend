@@ -31,7 +31,9 @@ const ElementCard = (props: any) => {
         // Fetch user rating
         try {
           const userResponse = await axios.get(
-            `${import.meta.env.VITE_API_URL}/rating/${userId}/get-rating/${itemId}`
+            `${
+              import.meta.env.VITE_API_URL
+            }/rating/${userId}/get-rating/${itemId}`
           );
           setUserRating(userResponse.data.userRating.rating);
         } catch (userErr) {
@@ -78,8 +80,8 @@ const ElementCard = (props: any) => {
 
         <div className={classes.info}>
           <div className={classes.authorDate}>
-            <p>{item.author} </p>
-            <p>{item.releaseYear}</p>
+            <p className={classes.author}>{item.author} </p>
+            <p className={classes.year}>{item.releaseYear}</p>
           </div>
 
           <div className={classes.rating}>
