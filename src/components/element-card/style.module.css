@@ -3,11 +3,12 @@
   display: flex;
   flex-direction: column;
   width: 190px;
-  height: 420px;
+  max-height: 440px;
   padding-bottom: 50px;
   margin-bottom: 30px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Horizontal offset, Vertical offset, Blur radius, Color */
+  
 }
 
 .coverContainer {
@@ -30,24 +31,32 @@
   display: flex;
   border-top-left-radius: 5px;
   border-top-right-radius: 5%;
-  
 }
 
 .title {
+  display: block;
+  height: auto; /* Remove fixed height */
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  margin-top: 7px;
+  margin-top: 10px;
   margin-bottom: 20px;
-  max-width: 100px;
+  max-width: 180px;
 }
 
 .title p {
-  margin: 0;
+  display: -webkit-box;
+  display: box; /* Standard property (future-proofing) */
+  -webkit-box-orient: vertical;
+  box-orient: vertical; /* Standard property */
+  -webkit-line-clamp: 2; /* Vendor-prefixed for WebKit-based browsers */
+  line-clamp: 2; /* Standard property (not fully supported yet) */
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-left: 10px;
-  max-width: 95%;
-  word-wrap: break-word;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
+  line-height: 1.2; /* Adjust line-height for a better fit */
 }
+
 
 .info {
   display: flex;
