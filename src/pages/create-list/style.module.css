@@ -61,6 +61,7 @@
 }
 
 .submitButton {
+  z-index: 200;
   font-family: var(--secondary-font);
   color: black;
   background-color: rgb(255, 255, 255);
@@ -78,4 +79,5 @@
   color: white;
   border: solid 2px white;
   background-color: black;
+  
 }
