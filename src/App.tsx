@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<Navigate to="auth" />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/details/:titleId" element={<DetailsPage />} />
+          <Route path="/details/:itemId/:itemType" element={<DetailsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
 

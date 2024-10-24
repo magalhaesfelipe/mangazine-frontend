@@ -3,12 +3,32 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+interface MangaItem {
+  _id: string;
+  name: string;
+  authorName: string;
+  releaseYear?: string;
+  cover?: string;
+  type: string;
+}
+
+interface BookItem {
+  _id: string;
+  name: string;
+  authorName: string;
+  releaseYear: string;
+  cover?: string;
+  type: string;
+}
+
+type SearchItem = MangaItem | BookItem;
+
 interface SearchbarProps {
   placeholder: string;
 }
 
 const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<SearchItem[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -20,12 +40,25 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
       setLoading(true);
 
       try {
-        console.log(searchedName);
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/titles/search/${searchedName}`
-        );
-        const titles = response.data.titles;
-        setItems(titles);
+        const [mangaResponse, bookResponse] = await Promise.all([
+          axios.get(`${import.meta.env.VITE_API_URL}/mangas/search/`, {
+            params: { name: searchedName },
+          }),
+          axios.get(`${import.meta.env.VITE_API_URL}/books/search/`, {
+            params: { name: searchedName },
+          }),
+        ]);
+
+        const mangaItems = mangaResponse.data.items;
+        const bookItems = bookResponse.data.items;
+        
+        const combinedItems = [...mangaItems, ...bookItems];
+
+        console.log(mangaItems)
+        console.log(bookItems)
+        console.log(combinedItems)
+
+        setItems(combinedItems);
         setShowResults(true);
       } catch (err) {
         console.log(err);
@@ -48,9 +81,9 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
 
   const debouncedHandleSearch = debounce(handleSearch, 300); // Adjust delay
 
-  const handleClick = (titleId: string) => {
-    console.log(titleId);
-    navigate(`/details/${titleId}`);
+  const handleClick = (itemId: string, itemType: string) => {
+    console.log(itemId);
+    navigate(`/details/${itemId}/${itemType}`);
   };
 
   return (
@@ -72,7 +105,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
             {items.map((item) => (
               <div
                 key={item._id}
-                onClick={() => handleClick(item._id)}
+                onClick={() => handleClick(item._id, item.type)}
                 className={classes.gridItem}
               >
                 <div className={classes.imgContainer}>
@@ -81,7 +114,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
                 <div className={classes.informationContainer}>
                   <p className={classes.name}>{item.name}</p>
                   <div className={classes.box2}>
-                    <p className={classes.author}>{item.author} </p>
+                    <p className={classes.author}>{item.authorName} </p>
                     <p className={classes.year}> {item.releaseYear}</p>
                   </div>
                 </div>

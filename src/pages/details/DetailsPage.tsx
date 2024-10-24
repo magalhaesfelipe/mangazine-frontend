@@ -8,25 +8,32 @@ import AddButton from "./components/add-button/AddButton";
 import Header from "../../components/header/Header";
 
 const Details = () => {
-  const { titleId } = useParams();
-  console.log("Title ID from URL:", titleId);
+  const { itemId, itemType } = useParams();
   const [titleData, setTitleData] = useState(null);
 
   useEffect(() => {
     const fetchTitleData = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/titles/${titleId}`
-        );
-        console.log("RESPONSE", response);
-        setTitleData(response.data.title);
+        if (itemType === "manga") {
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_URL}/mangas/${itemId}`
+          );
+          setTitleData(response.data.title);
+          console.log("RESPONSE:", response);
+        } else if (itemType === "book") {
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_URL}/books/${itemId}`
+          );
+          setTitleData(response.data.title);
+          console.log("RESPONSE:", response);
+        }
       } catch (err) {
-        console.error("ERROR", err);
+        console.error("ERROR:", err);
       }
     };
 
     fetchTitleData();
-  }, [titleId]);
+  }, [itemId]);
 
   if (!titleData) {
     return <div> Loading...</div>;
