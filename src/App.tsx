@@ -5,7 +5,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Auth } from "./pages/auth/AuthPage.js";
-import CreateTitlePage from "./pages/create-title/CreateTitlePage.js";
 import ListContentPage from "./pages/list-content/ListContentPage.js";
 import ListsPage from "./pages/lists/ListsPage.js";
 import HomePage from "./pages/home/HomePage.js";
@@ -18,6 +17,8 @@ import ProtectedRoute from "./components/protected-route/ProtectedRoute.js";
 import AboutPage from "./pages/about/AboutPage.js";
 import AdminRoute from "./components/admin-route/AdminRoute.js";
 import ContactPage from "./pages/contact/ContactPage.js";
+import CreateResource from "./pages/create/CreatePage.js";
+import CreateMangaPage from "./pages/create-title/CreateMangaPage.js";
 
 function App() {
   return (
@@ -35,7 +36,10 @@ function App() {
             path="/readlist"
             element={<ProtectedRoute element={ReadlistPage} />}
           />
-          <Route path="/Lists" element={<ProtectedRoute element={ListsPage} />} />
+          <Route
+            path="/Lists"
+            element={<ProtectedRoute element={ListsPage} />}
+          />
           <Route
             path="/list/:listId"
             element={<ProtectedRoute element={ListContentPage} />}
@@ -50,8 +54,13 @@ function App() {
           />
 
           <Route
-            path="/create-title"
-            element={<AdminRoute element={CreateTitlePage} />}
+            path="/create-resource"
+            element={<AdminRoute element={CreateResource} />}
+          ></Route>
+
+          <Route
+            path="/create-manga"
+            element={<AdminRoute element={CreateMangaPage} />}
           />
 
           {/* // Example of props being passed to the component through the wrapper component 'ProtectedRoute'

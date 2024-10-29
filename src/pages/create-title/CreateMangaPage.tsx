@@ -6,10 +6,10 @@ import FormSelect from "./components/form-select/FormSelect";
 import GenreSelector from "./components/genre-selector/GenreSelector";
 import ImageUploader from "./components/image-uploader/ImageUploader";
 
-const CreateTitle = () => {
+const CreateMangaPage = () => {
   const [formData, setFormData] = useState({
     name: "",
-    author: "",
+    authorName: "",
     releaseYear: "", // select
     description: "",
     chapters: "",
@@ -258,4 +258,4 @@ const CreateTitle = () => {
   );
 };
 
-export default CreateTitle;
+export default CreateMangaPage;
