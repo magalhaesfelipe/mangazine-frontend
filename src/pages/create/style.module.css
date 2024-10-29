@@ -1,0 +1,30 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.title {
+  color: white;
+  margin-bottom: 50px;
+}
+
+.item {
+  background-color: black;
+  color: white;
+  margin: 20px;
+  padding: 10px;
+  border: solid 2px white;
+}
+
+.item:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}

@@ -17,8 +17,8 @@ import ProtectedRoute from "./components/protected-route/ProtectedRoute.js";
 import AboutPage from "./pages/about/AboutPage.js";
 import AdminRoute from "./components/admin-route/AdminRoute.js";
 import ContactPage from "./pages/contact/ContactPage.js";
-import CreateResource from "./pages/create/CreatePage.js";
 import CreateMangaPage from "./pages/create-title/CreateMangaPage.js";
+import CreateNewTitlePage from "./pages/create/CreateNewTitlePage.js";
 
 function App() {
   return (
@@ -31,6 +31,8 @@ function App() {
           <Route path="/details/:itemId/:itemType" element={<DetailsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/create-new-title" element={<CreateNewTitlePage />} />
+
 
           <Route
             path="/readlist"
@@ -52,11 +54,6 @@ function App() {
             path="/create-list"
             element={<ProtectedRoute element={CreateListPage} />}
           />
-
-          <Route
-            path="/create-resource"
-            element={<AdminRoute element={CreateResource} />}
-          ></Route>
 
           <Route
             path="/create-manga"

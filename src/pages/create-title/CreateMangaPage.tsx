@@ -19,7 +19,8 @@ const CreateMangaPage = () => {
     otherCovers: [],
     type: "", // select
     status: "", // select
-    alternateName: "",
+    alternativeName: "",
+    author: ""
   });
 
   const [imageSelected, setImageSelected] = useState(null); // STATE TO STORE SELECTED IMAGE
@@ -84,7 +85,7 @@ const CreateMangaPage = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/titles/create-title`,
+        `${import.meta.env.VITE_API_URL}/mangas`,
         formData
       );
 
@@ -104,7 +105,7 @@ const CreateMangaPage = () => {
 
     setFormData({
       name: "",
-      author: "",
+      authorName: "",
       releaseYear: "",
       description: "",
       chapters: "",
@@ -114,7 +115,8 @@ const CreateMangaPage = () => {
       otherCovers: [],
       type: "",
       status: "",
-      alternateName: "",
+      alternativeName: "",
+      author: "",
     });
   };
 
