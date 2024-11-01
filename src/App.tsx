@@ -17,8 +17,8 @@ import ProtectedRoute from "./components/protected-route/ProtectedRoute.js";
 import AboutPage from "./pages/about/AboutPage.js";
 import AdminRoute from "./components/admin-route/AdminRoute.js";
 import ContactPage from "./pages/contact/ContactPage.js";
-import CreateMangaPage from "./pages/create-title/CreateMangaPage.js";
-import CreateNewTitlePage from "./pages/create/CreateNewTitlePage.js";
+import CreateItemPage from "./pages/create-item/CreateItemPage.js";
+import AddMangaPage from "./pages/create-item/add-pages/add-manga/AddMangaPage.js";
 
 function App() {
   return (
@@ -31,8 +31,8 @@ function App() {
           <Route path="/details/:itemId/:itemType" element={<DetailsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/create-new-title" element={<CreateNewTitlePage />} />
-
+          <Route path="/create-item" element={<CreateItemPage />} />
+          <Route path="/add-manga" element={<AddMangaPage /> }/>
 
           <Route
             path="/readlist"
@@ -53,11 +53,6 @@ function App() {
           <Route
             path="/create-list"
             element={<ProtectedRoute element={CreateListPage} />}
-          />
-
-          <Route
-            path="/create-manga"
-            element={<AdminRoute element={CreateMangaPage} />}
           />
 
           {/* // Example of props being passed to the component through the wrapper component 'ProtectedRoute'

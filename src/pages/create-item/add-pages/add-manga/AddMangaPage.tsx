@@ -1,4 +1,4 @@
-import classes from "./style.module.css";
+import classes from "./AddMangaPage.module.css";
 import { useState } from "react";
 import axios from "axios";
 import FormInput from "./components/form-input/FormInput";
@@ -6,7 +6,7 @@ import FormSelect from "./components/form-select/FormSelect";
 import GenreSelector from "./components/genre-selector/GenreSelector";
 import ImageUploader from "./components/image-uploader/ImageUploader";
 
-const CreateMangaPage = () => {
+const AddMangaPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     authorName: "",
@@ -20,7 +20,7 @@ const CreateMangaPage = () => {
     type: "", // select
     status: "", // select
     alternativeName: "",
-    author: ""
+    author: "",
   });
 
   const [imageSelected, setImageSelected] = useState(null); // STATE TO STORE SELECTED IMAGE
@@ -95,7 +95,7 @@ const CreateMangaPage = () => {
         setIsUploading(false);
       } else {
         console.error("Failed to add title:", response.statusText);
-        setIsUploading(false); 
+        setIsUploading(false);
       }
     } catch (err) {
       console.error("Error adding title: ", err);
@@ -145,119 +145,126 @@ const CreateMangaPage = () => {
 
   return (
     <div className={classes.container}>
-      <h2>Add New Title</h2>
       {isSuccess && <div className={classes.successPrompt}>Title created!</div>}
-      <div className={classes["form-container"]}>
-        <form onSubmit={handleSubmit}>
-          <FormInput
-            label="Name"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required={true}
-          />
-          <FormInput
-            label="Author"
-            type="text"
-            name="author"
-            value={formData.author}
-            onChange={handleChange}
-            required={true}
-          />
-          <FormInput
-            label="Release Year"
-            type="number"
-            name="releaseYear"
-            value={formData.releaseYear}
-            onChange={handleChange}
-            placeholder="YYYY"
-            required={true}
-          />
-
-          <div>
-            <label>Description:</label>
-            <textarea
-              name="description"
-              value={formData.description}
+      <div className={classes.secondContainer}>
+        <h2>Add New Title</h2>
+        <form className={classes.theForm} onSubmit={handleSubmit}>
+          <div className={classes.firstHalf}>
+            <FormInput
+              label="Name"
+              type="text"
+              name="name"
+              value={formData.name}
               onChange={handleChange}
-              required
+              required={true}
             />
+            <FormInput
+              label="Author"
+              type="text"
+              name="author"
+              value={formData.author}
+              onChange={handleChange}
+              required={true}
+            />
+            <FormInput
+              label="Release Year"
+              type="number"
+              name="releaseYear"
+              value={formData.releaseYear}
+              onChange={handleChange}
+              placeholder="YYYY"
+              required={true}
+            />
+
+            <FormInput
+              label="Chapters"
+              type="number"
+              name="chapters"
+              value={formData.chapters}
+              onChange={handleChange}
+              required={true}
+            />
+            <FormInput
+              label="Published By"
+              type="text"
+              name="publishedBy"
+              value={formData.publishedBy}
+              onChange={handleChange}
+              required={false}
+            />
+
+            <FormInput
+              label="Alternative Name"
+              type="text"
+              name="alternateName"
+              value={formData.alternativeName}
+              onChange={handleChange}
+              required={false}
+            />
+
+            <FormSelect
+              label="Type"
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              options={typeOptions}
+            />
+            <FormSelect
+              label="Status"
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              options={statusOptions}
+            />
+            <div>
+              <label>Description:</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
-          <FormInput
-            label="Chapters"
-            type="number"
-            name="chapters"
-            value={formData.chapters}
-            onChange={handleChange}
-            required={true}
-          />
-          <FormInput
-            label="Published By"
-            type="text"
-            name="publishedBy"
-            value={formData.publishedBy}
-            onChange={handleChange}
-            required={false}
-          />
 
-          <FormInput
-            label="Alternate Name"
-            type="text"
-            name="alternateName"
-            value={formData.alternateName}
-            onChange={handleChange}
-            required={false}
-          />
-
-          <GenreSelector
-            genres={genreOptions}
-            selectedGenres={formData.genre}
-            onGenreClick={handleGenreClick}
-          />
-
-          <div>
-            {formData.genre.map((g, index) => (
-              <button
-                key={index}
-                className={classes.genreButton}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setFormData({
-                    ...formData,
-                    genre: formData.genre.filter((genre) => genre !== g),
-                  });
-                }}
-              >
-                {g}
-              </button>
-            ))}
+          <div className={classes.genreContainer}>
+            <GenreSelector
+              genres={genreOptions}
+              selectedGenres={formData.genre}
+              onGenreClick={handleGenreClick}
+            />
+            <div>
+              {formData.genre.map((g, index) => (
+                <button
+                  key={index}
+                  className={classes.genreButton}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFormData({
+                      ...formData,
+                      genre: formData.genre.filter((genre) => genre !== g),
+                    });
+                  }}
+                >
+                  {g}
+                </button>
+              ))}
+            </div>
           </div>
-
-          <FormSelect
-            label="Type"
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
-            options={typeOptions}
-          />
-          <FormSelect
-            label="Status"
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            options={statusOptions}
-          />
-
+        </form>
+        <div className={classes.secondHalf}>
           <ImageUploader onSelectImage={setImageSelected} />
-
-          <button type="submit" disabled={isUploading}>
+          <button
+            type="submit"
+            disabled={isUploading}
+            className={classes.submitButton}
+          >
             {isUploading ? "Uploading..." : "Submit"}
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
 };
 
-export default CreateMangaPage;
+export default AddMangaPage;

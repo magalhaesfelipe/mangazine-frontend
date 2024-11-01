@@ -9,11 +9,9 @@ const GenreSelector = ({ genres, selectedGenres, onGenreClick }) => {
           <div
             key={index}
             onClick={() => onGenreClick(genre)}
-            className={classes.genreDiv}
+            className={classes.genreBlock}
           >
-            <div className={classes.nameContainer}>
               <p className={classes.genreName}>{genre}</p>
-            </div>
           </div>
         ))}
       </div>

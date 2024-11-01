@@ -1,19 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import classes from "./style.module.css";
 
-const CreateNewTitlePage = () => {
+const CreateItemPage = () => {
   const navigate = useNavigate();
 
   const handleClick = (type: string) => {
     switch (type) {
       case "manga":
-        navigate("/create-manga");
+        navigate("/add-manga");
         break;
       case "book":
-        navigate("create-book");
+        navigate("add-book");
         break;
       case "author":
-        navigate("/create-author");
+        navigate("/add-author");
         break;
       default:
         break;
@@ -38,4 +38,4 @@ const CreateNewTitlePage = () => {
   );
 };
 
-export default CreateNewTitlePage;
+export default CreateItemPage;
