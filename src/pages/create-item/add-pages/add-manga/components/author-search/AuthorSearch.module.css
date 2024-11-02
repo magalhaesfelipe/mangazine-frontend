@@ -1,0 +1,35 @@
+.authorFieldContainer {
+  background-color: rgb(46, 0, 211);
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 500px;
+  height: 200px;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.authorSearchbar {
+  width: 120px;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+  border: 0;
+}
+
+.authorFieldContainer button {
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.container2 {
+  background-color: red;
+  display: flex;
+  align-items: center;
+
+}

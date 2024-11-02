@@ -57,8 +57,20 @@
 }
 
 .coverUpload {
-  background-color: blue;
   margin-left: 80px;
+  background-color: red;
+  height: 200px;
+  width: 140px;
+}
+
+.coversUpload {
+  width: 500px;
+  height: 280px;
+  margin-left: 80px;
+}
+
+.coversUpload p {
+  margin-bottom: 10px;
 }
 
 .submitButton {
@@ -77,11 +89,12 @@
   cursor: pointer;
 }
 
-
+.genreContainer p {
+  margin-bottom: 10px;
+}
 
 .selectedGenres {
   margin-bottom: 10px;
-
 }
 
 .blockContainer {
@@ -96,7 +109,7 @@
 }
 
 .genreName {
-  margin-top: 10px; 
+  margin-top: 10px;
   border: solid 1px;
   border-radius: 15px;
   display: flex;
@@ -121,31 +134,3 @@
   cursor: pointer;
   background-color: black;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

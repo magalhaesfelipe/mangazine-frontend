@@ -11,17 +11,19 @@ const MultipleImagesUploader = () => {
     setImages((prevImages) => [...prevImages, ...imageUrls]);
   };
 
-  const handleRemoveImage = (index) => {
+  const handleRemoveImage = (index: any) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
   return (
-    <div>
+    <div className={classes.container}>
+      <p>Other Covers</p>
       <input
         type="file"
         accept="image/png, image/jpg, image/jpeg"
         multiple
         onChange={handleImageChange}
+        className={classes.theInput}
       />
       <div className={classes.imagePreviewContainer}>
         {images.map((image, index) => (

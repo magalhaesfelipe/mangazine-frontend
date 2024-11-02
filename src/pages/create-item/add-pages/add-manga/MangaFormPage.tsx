@@ -1,4 +1,4 @@
-import classes from "./AddMangaPage.module.css";
+import classes from "./MangaFormPage.module.css";
 import { useState } from "react";
 import axios from "axios";
 import FormInput from "./components/form-input/FormInput";
@@ -7,7 +7,7 @@ import GenreSelector from "./components/genre-selector/GenreSelector";
 import ImageUploader from "./components/image-uploader/ImageUploader";
 import MultipleImagesUploader from "./components/multiple-images-uploader/MultipleImagesUpload";
 
-const AddMangaPage = () => {
+const MangaFormPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     authorName: "",
@@ -300,16 +300,13 @@ const AddMangaPage = () => {
               </div>
             </div>
           </div>
-          <div className={classes.coverUpload}>
-            <p>Cover</p>
-            <ImageUploader onSelectImage={setImageSelected} />
-          </div>
+          <ImageUploader onSelectImage={setImageSelected} />
         </form>
         <div className={classes.secondHalf}>
-          <div className={classes.coverUpload}>
-          <p>Other covers</p>
-          <MultipleImagesUploader />
+          <div className={classes.coversUpload}>
+            <MultipleImagesUploader />
           </div>
+
           <button
             type="submit"
             disabled={isUploading}
@@ -323,4 +320,4 @@ const AddMangaPage = () => {
   );
 };
 
-export default AddMangaPage;
+export default MangaFormPage;

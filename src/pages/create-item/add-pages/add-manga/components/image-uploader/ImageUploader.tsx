@@ -28,6 +28,7 @@ const ImageUploader = ({ onSelectImage }) => {
 
   return (
     <div className={classes.container}>
+      <p>Cover</p>
       <div onClick={handleClick} className={classes.uploadArea}>
         {!imagePreview && (
           <span className={classes.placeholder}>Click to upload</span>
@@ -41,13 +42,11 @@ const ImageUploader = ({ onSelectImage }) => {
         />
       </div>
       {imagePreview && (
-        <div className={classes.imageContainer}>
           <img
             src={imagePreview}
             alt="Image Preview"
             className={classes.image}
           />
-        </div>
       )}
     </div>
   );
