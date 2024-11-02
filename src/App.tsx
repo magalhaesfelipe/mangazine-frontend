@@ -19,6 +19,7 @@ import AdminRoute from "./components/admin-route/AdminRoute.js";
 import ContactPage from "./pages/contact/ContactPage.js";
 import CreateItemPage from "./pages/create-item/CreateItemPage.js";
 import AddMangaPage from "./pages/create-item/add-pages/add-manga/AddMangaPage.js";
+import MultipleImagesUploader from "./pages/create-item/add-pages/add-manga/components/multiple-images-uploader/MultipleImagesUpload.js";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/create-item" element={<CreateItemPage />} />
           <Route path="/add-manga" element={<AddMangaPage /> }/>
+          <Route path="/image-pre" element={<MultipleImagesUploader /> } />
+
 
           <Route
             path="/readlist"

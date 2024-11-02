@@ -22,10 +22,16 @@ const ImageUploader = ({ onSelectImage }) => {
     }
   };
 
+  const handleClick = () => {
+    document.getElementById("fileInput")?.click();
+  };
+
   return (
     <div className={classes.container}>
-      <label>Cover:</label>
-      <div>
+      <div onClick={handleClick} className={classes.uploadArea}>
+        {!imagePreview && (
+          <span className={classes.placeholder}>Click to upload</span>
+        )}
         <input
           type="file"
           accept="image/png, image/jpg, image/jpeg"
@@ -33,9 +39,6 @@ const ImageUploader = ({ onSelectImage }) => {
           className={classes.fileInput}
           id="fileInput"
         />
-        <label htmlFor="fileInput" className={classes.customButton}>
-          Choose Image
-        </label>
       </div>
       {imagePreview && (
         <div className={classes.imageContainer}>
@@ -46,9 +49,6 @@ const ImageUploader = ({ onSelectImage }) => {
           />
         </div>
       )}
-        <span className={classes.fileName}>
-          {image ? image.name : "No file chosen"}
-        </span>
     </div>
   );
 };
