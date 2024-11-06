@@ -20,7 +20,7 @@ import ContactPage from "./pages/contact/ContactPage.js";
 import CreateItemPage from "./pages/create-item/CreateItemPage.js";
 import AddMangaPage from "./pages/create-item/add-pages/add-manga/MangaFormPage.js";
 import MultipleImagesUploader from "./pages/create-item/add-pages/add-manga/components/multiple-images-uploader/MultipleImagesUpload.js";
-import AuthorSearch from "./pages/create-item/add-pages/add-manga/components/author-search/AuthorSearch.js";
+import AuthorSearch from "./pages/create-item/add-pages/add-manga/components/author-search/AuthorSearchbar.js";
 
 function App() {
   return (
