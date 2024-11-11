@@ -6,6 +6,7 @@ import AdditionalInformation from "./components/additional-information/Additiona
 import Rating from "./components/rating/Rating";
 import AddButton from "./components/add-button/AddButton";
 import Header from "../../components/header/Header";
+import AuthorSection from "./components/author-section/AuthorSection";
 
 const Details = () => {
   const { itemId, itemType } = useParams();
@@ -19,6 +20,7 @@ const Details = () => {
             `${import.meta.env.VITE_API_URL}/mangas/${itemId}`
           );
           setTitleData(response.data.title);
+          console.log("This is the titledata: ", titleData);
         } else if (itemType === "book") {
           const response = await axios.get(
             `${import.meta.env.VITE_API_URL}/books/${itemId}`
@@ -29,13 +31,14 @@ const Details = () => {
         console.error("ERROR:", err);
       }
     };
-
     fetchTitleData();
   }, [itemId]);
 
   if (!titleData) {
     return <div> Loading...</div>;
   }
+
+  const authorId: string = titleData.author;
 
   return (
     <>
@@ -81,9 +84,13 @@ const Details = () => {
           <div className={classes.sectionName}>Other covers</div>
           <div className={classes.imagesContainer}>
             {titleData.otherCovers.map((cover) => (
-                <img src={cover} />
+              <img src={cover} />
             ))}
           </div>
+        </div>
+
+        <div className={classes.authorSection}>
+          <AuthorSection authorId={authorId} />
         </div>
       </div>
     </>

@@ -19,8 +19,8 @@ import AdminRoute from "./components/admin-route/AdminRoute.js";
 import ContactPage from "./pages/contact/ContactPage.js";
 import CreateItemPage from "./pages/create-item/CreateItemPage.js";
 import AddMangaPage from "./pages/create-item/add-pages/add-manga/MangaFormPage.js";
-import MultipleImagesUploader from "./pages/create-item/add-pages/add-manga/components/multiple-images-uploader/MultipleImagesUpload.js";
 import AuthorSearch from "./pages/create-item/add-pages/add-manga/components/author-search/AuthorSearchbar.js";
+import AuthorSection from "./pages/details/components/author-section/AuthorSection.js";
 
 function App() {
   return (
@@ -36,6 +36,7 @@ function App() {
           <Route path="/create-item" element={<CreateItemPage />} />
           <Route path="/add-manga" element={<AddMangaPage />} />
           <Route path="/search-author" element={<AuthorSearch />} />
+          <Route path="/authorsec" element={<AuthorSection /> } />
 
           <Route
             path="/readlist"

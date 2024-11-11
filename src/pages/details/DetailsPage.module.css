@@ -131,3 +131,9 @@
   height: 240px;
   border-radius: 5px;
 }
+
+.authorSection {
+  background-color: pink;
+  width: 100%;
+  height: 500px;
+}
