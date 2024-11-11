@@ -1,4 +1,4 @@
-import classes from "./style.module.css";
+import classes from "./DetailsPage.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -19,13 +19,11 @@ const Details = () => {
             `${import.meta.env.VITE_API_URL}/mangas/${itemId}`
           );
           setTitleData(response.data.title);
-          console.log("RESPONSE:", response);
         } else if (itemType === "book") {
           const response = await axios.get(
             `${import.meta.env.VITE_API_URL}/books/${itemId}`
           );
           setTitleData(response.data.title);
-          console.log("RESPONSE:", response);
         }
       } catch (err) {
         console.error("ERROR:", err);
@@ -63,7 +61,7 @@ const Details = () => {
               <div>
                 <div className={classes.minibox}>
                   <h3 className={classes.field}>Author</h3>
-                  <h3> {titleData.author} </h3>
+                  <h3> {titleData.authorName} </h3>
                 </div>
                 <div className={classes.minibox}>
                   <h3 className={classes.field}>Released </h3>
@@ -78,6 +76,14 @@ const Details = () => {
         </div>
         <div className={classes.otherInfoContainer}>
           <AdditionalInformation titleData={titleData} />
+        </div>
+        <div className={classes.otherConversSection}>
+          <div className={classes.sectionName}>Other covers</div>
+          <div className={classes.imagesContainer}>
+            {titleData.otherCovers.map((cover) => (
+                <img src={cover} />
+            ))}
+          </div>
         </div>
       </div>
     </>
