@@ -73,8 +73,26 @@ const AuthorSection = (props: any) => {
     }
   }, [authorData]);
 
+  if (!authorId) {
+    return (
+      <>
+        <div className={classes.headline}> About the Author</div>
+        <div className={classes.noAuthorMessage}>
+          No Author found for this title
+        </div>
+      </>
+    );
+  }
+
   if (!authorData) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div className={classes.headline}> About the Author</div>
+        <div className={classes.loading}>
+          <p>Loading...</p>
+        </div>
+      </>
+    );
   }
 
   return (
