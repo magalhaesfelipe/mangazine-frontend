@@ -1,51 +1,114 @@
+.headline {
+  font-family: var(--font2);
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
 .container {
-  background-color: brown;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;  
+  align-items: top;
 }
 
 .imageContainer {
   height: 360px;
   width: 300px;
-  border: solid 10px;
-  border-radius: 15px;
+  border: double white;
+  margin-right: 50px;
 }
 
 .imageContainer img {
   height: 100%;
   width: 100%;
-  border-radius: 15px;
 }
 
 .informationContainer {
   display: flex;
   flex-direction: column;
-  background-color: blue;
   width: 70%;
   height: 100%;
 }
 
 .information1 {
   display: flex;
-  background-color: red;
+  align-items: center;
+  gap: 170px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-family: var(--font1);
+  font-size: 17px;
 }
+
+.block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.field {
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+  padding-right: 2px
+}
+
 
 .information2 {
-  background-color: yellowgreen;
+  font-family: var(--font1);
+  margin-top: 30px;
+  padding-bottom: 30px;
+  line-height: 1.4;
 }
 
-.information3 {
-  background-color: slateblue;
+.otherWorks {
+  margin-top: 40px;
+  width: 900px;
+  height: 300px;
 }
 
-.workContainer {
-  height: 100px;
-  width:  70px;
+.otherWorks h3 {
+  margin-bottom: 10px;
 }
 
-.workContainer img {
+.allWorksContainer {
+  display: flex;
+  gap: 20px;
+  margin-left: 10px;
+}
+
+.itemContainer {
+  height: 240px;
+  width:  120px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.itemContainer:hover {
+  background-color: rgb(255, 249, 249);
+  transition: 300ms;
+  color: black;
+  font-weight: bolder;
+}
+
+.itemContainer img {
   width: 100%;
-  height: 100%;
+  border-radius: 3px;
+  margin-bottom: 7px;
+}
+
+.itemContainer p {
+  font-size: 13px;
+  margin: 2px;
+  margin-bottom: 5px;
+  margin-left: 4px;
+  font-family: var(--font1);
 }

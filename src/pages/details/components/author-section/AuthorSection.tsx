@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import classes from "./AuthorSection.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AuthorSection = (props: any) => {
   const [authorData, setAuthorData] = useState();
   const [authorWorks, setAuthorWorks] = useState<any[]>([]);
-  const { authorId } = props;
-
-  console.log("This is the author id: ", authorId);
+  const { authorId, currentTitleId } = props;
+  const navigate = useNavigate();
 
   const fetchAuthorData = async () => {
     try {
@@ -21,24 +21,46 @@ const AuthorSection = (props: any) => {
   };
 
   const fetchAuthorWorks = async () => {
-    if (!authorData || !authorData.works)
+    if (!authorData || !authorData.works) {
       console.error("❌ No author data or author works!!");
+      return;
+    }
 
-    const worksRequests = authorData.works.map(async (work: any) => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/${work.type}s/${work.titleId}`
-        );
+    const worksRequests = authorData.works
+      .filter((work) => work.titleId !== currentTitleId)
+      .map(async (work: any) => {
+        try {
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_URL}/${work.type}s/${work.titleId}`
+          );
 
-        console.log("This is the response to fetch authors: ", response);
-        return response.data.data;
-      } catch (error) {
-        console.error(`Error fetching ${work.type} data: `, error);
-      }
-    });
+          return response.data.data;
+        } catch (error) {
+          console.error(`Error fetching ${work.type} data: `, error);
+        }
+      });
 
     const works = await Promise.all(worksRequests);
     setAuthorWorks(works);
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  const handleClick = (titleId: any, titleType: any) => {
+    console.log(
+      "This is the titleId: ",
+      titleId,
+      "And this is the title type: ",
+      titleType
+    );
+    navigate(`/details/${titleId}/${titleType}`);
   };
 
   useEffect(() => {
@@ -57,17 +79,23 @@ const AuthorSection = (props: any) => {
 
   return (
     <>
-      <div> About the Author</div>
+      <div className={classes.headline}> About the Author</div>
       <div className={classes.container}>
         <div className={classes.imageContainer}>
           <img src={authorData.photo} />
         </div>
         <div className={classes.informationContainer}>
           <div className={classes.information1}>
-            <p>Name: {authorData.name}</p>|
-            <p>
-              Born: {authorData.dateOfBirth} • {authorData.placeOfBirth}{" "}
-            </p>
+            <div className={classes.block}>
+              <p className={classes.field}>NAME</p>
+              <p>{authorData.name}</p>
+            </div>
+            <div className={classes.block}>
+              <p className={classes.field}>BORN</p>
+              <p>
+                {formatDate(authorData.dateOfBirth)} • {authorData.placeOfBirth}{" "}
+              </p>
+            </div>
           </div>
           <div className={classes.information2}>
             <p>{authorData.bio}</p>
@@ -75,16 +103,22 @@ const AuthorSection = (props: any) => {
 
           {/* Render author's works */}
           <div className={classes.otherWorks}>
-            <h3>Author's Works</h3>
+            <h3>Other Works</h3>
             {authorWorks.length > 0 ? (
-              <ul>
-                {authorWorks.map((work, index) => (
-                  <li key={index} className={classes.workContainer}>
-                    <p>{work.name}</p>
-                    <p>{work.description}</p>
-                    <img src="https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/5971776-01.jpg" />
-                  </li>
-                ))}
+              <ul className={classes.allWorksContainer}>
+                {authorWorks.map((work, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className={classes.itemContainer}
+                      onClick={() => handleClick(work._id, work.type)}
+                    >
+                      <img src={work.cover} />
+                      <p>{work.name}</p>
+                      <p>{work.releaseYear}</p>
+                    </li>
+                  );
+                })}
               </ul>
             ) : (
               <p>No works found.</p>

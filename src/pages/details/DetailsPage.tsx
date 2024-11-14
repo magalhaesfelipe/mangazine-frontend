@@ -101,7 +101,7 @@ const Details = () => {
         </div>
 
         <div className={classes.authorSection}>
-          <AuthorSection authorId={authorId} />
+          <AuthorSection authorId={authorId} currentTitleId={itemId}/>
         </div>
       </div>
     </>
