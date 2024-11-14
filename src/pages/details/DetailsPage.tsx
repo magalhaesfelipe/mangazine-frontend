@@ -17,22 +17,33 @@ const Details = () => {
       try {
         if (itemType === "manga") {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/mangas/${itemId}`
+            `${import.meta.env.VITE_API_URL}/mangas/${itemId}`,
+            {
+              headers: {
+                "Cache-Control": "no-cache",
+              },
+            }
           );
-          setTitleData(response.data.title);
-          console.log("This is the titledata: ", titleData);
+          setTitleData(response.data.data);
+          console.log(response.data);
         } else if (itemType === "book") {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/books/${itemId}`
+            `${import.meta.env.VITE_API_URL}/books/${itemId}`,
+            {
+              headers: {
+                "Cache-Control": "no-cache",
+              },
+            }
           );
-          setTitleData(response.data.title);
+          setTitleData(response.data.data);
+          console.log(response.data);
         }
       } catch (err) {
         console.error("ERROR:", err);
       }
     };
     fetchTitleData();
-  }, [itemId]);
+  }, [itemId, itemType]);
 
   if (!titleData) {
     return <div> Loading...</div>;
@@ -83,8 +94,8 @@ const Details = () => {
         <div className={classes.otherConversSection}>
           <div className={classes.sectionName}>Other covers</div>
           <div className={classes.imagesContainer}>
-            {titleData.otherCovers.map((cover) => (
-              <img src={cover} />
+            {titleData.otherCovers.map((cover, index) => (
+              <img src={cover} key={index} />
             ))}
           </div>
         </div>
