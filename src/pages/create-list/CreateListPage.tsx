@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import classes from "./style.module.css";
-import Searchbar from "../create-list/components/searchbar/Searchbar";
+import Searchbar from "./components/searchbar/Searchbar";
 import axios from "axios";
 import Header from "../../components/header/Header";
 

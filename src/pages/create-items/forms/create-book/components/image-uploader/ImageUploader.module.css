@@ -1,0 +1,44 @@
+.container {
+  width: 140px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadArea {
+  width: 137px;
+  height: 180px;
+  border: 2px dashed #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  margin-top: 10px;
+}
+
+.placeholder {
+  color: #f0f0f0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.fileName {
+  font-size: 14px;
+  white-space: nowrap;
+  color: #555; /* Customize text color */
+}
+
+.image {
+  width: 140px;
+  height: 182px;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

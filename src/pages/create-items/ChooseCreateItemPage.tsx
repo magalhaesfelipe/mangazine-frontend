@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import classes from "./style.module.css";
+import classes from "./ChooseCreateItemPage.module.css";
 
 const CreateItemPage = () => {
   const navigate = useNavigate();

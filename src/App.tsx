@@ -9,7 +9,7 @@ import ListContentPage from "./pages/list-content/ListContentPage.js";
 import ListsPage from "./pages/lists/ListsPage.js";
 import HomePage from "./pages/home/HomePage.js";
 import DetailsPage from "./pages/details/DetailsPage.js";
-import CreateListPage from "./pages/create-list/CreateListPage";
+import CreateListPage from "./pages/create-list/CreateListPage.js";
 import "./general.css";
 import ReadlistPage from "./pages/readlist/ReadlistPage.js";
 import RatingPrompt from "./components/rating-prompt/RatingPrompt.js";
@@ -17,10 +17,12 @@ import ProtectedRoute from "./components/protected-route/ProtectedRoute.js";
 import AboutPage from "./pages/about/AboutPage.js";
 import AdminRoute from "./components/admin-route/AdminRoute.js";
 import ContactPage from "./pages/contact/ContactPage.js";
-import CreateItemPage from "./pages/create-item/CreateItemPage.js";
-import AddMangaPage from "./pages/create-item/add-pages/add-manga/MangaFormPage.js";
-import AuthorSearch from "./pages/create-item/add-pages/add-manga/components/author-search/AuthorSearchbar.js";
+import CreateItemPage from "./pages/create-items/ChooseCreateItemPage.js";
+import MangaForm from "./pages/create-items/forms/create-manga/MangaForm.js";
+import AuthorSearchBar from "./pages/create-items/forms/create-book/components/author-search/AuthorSearchbar.js";
 import AuthorSection from "./pages/details/components/author-section/AuthorSection.js";
+import BookForm from "./pages/create-items/forms/create-book/BookForm.js";
+import AuthorForm from "./pages/create-items/forms/create-author/AuthorForm.js";
 
 function App() {
   return (
@@ -34,9 +36,12 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/create-item" element={<CreateItemPage />} />
-          <Route path="/add-manga" element={<AddMangaPage />} />
-          <Route path="/search-author" element={<AuthorSearch />} />
-          <Route path="/authorsec" element={<AuthorSection /> } />
+          <Route path="/create-manga" element={<MangaForm />} />
+          <Route path="/create-book" element={<BookForm />} />
+          <Route path="/create-author" element={<AuthorForm />} />
+
+          <Route path="/search-author" element={<AuthorSearchBar />} />
+          <Route path="/authorsec" element={<AuthorSection />} />
 
           <Route
             path="/readlist"

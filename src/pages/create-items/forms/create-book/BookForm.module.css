@@ -1,0 +1,146 @@
+.container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.container h2 {
+  margin-bottom: 60px;
+  margin-top: 5%;
+}
+
+.theForm {
+  display: flex;
+  align-items: baseline;
+
+}
+
+.firstHalf {
+  display: grid;
+  align-items: end;
+  grid-template-columns: repeat(5, 100px);
+  column-gap: 20px;
+  margin-bottom: 10px;
+}
+
+.theForm input[type="text"],
+.theForm input[type="date"],
+.theForm input[type="number"],
+.theForm textarea,
+.theForm select {
+  width: 90px;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+.description {
+  margin-top: 6px;
+}
+
+.genreContainer {
+  margin-left: 50px;
+}
+
+.secondContainer {
+}
+
+.secondHalf {
+  position: relative;
+  margin-top: 50px;
+  height: 200px;
+  width: 100%px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coverUpload {
+  margin-left: 80px;
+  background-color: red;
+  height: 200px;
+  width: 140px;
+}
+
+.coversUpload {
+  width: 500px;
+  height: 280px;
+  margin-left: 80px;
+}
+
+.coversUpload p {
+  margin-bottom: 10px;
+}
+
+.submitButton {
+  background-color: green;
+  height: 40px;
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 15px;
+  margin: 20px;
+  margin-left: 800px;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+}
+
+.genreContainer p {
+  margin-bottom: 10px;
+}
+
+.selectedGenres {
+  margin-bottom: 10px;
+}
+
+.blockContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+}
+
+.message {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.genreName {
+  margin-top: 10px;
+  border: solid 1px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.genreTagContainer {
+  display: flex;
+}
+
+.selectedGenres button {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px white;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  background-color: black;
+}
+
+.searchAuthorContainer {
+  background-color: blue;
+  margin-left: 20px;
+  width: 400px;
+}

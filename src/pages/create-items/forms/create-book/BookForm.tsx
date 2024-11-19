@@ -1,53 +1,53 @@
-import classes from "./MangaFormPage.module.css";
+import classes from "./BookForm.module.css";
 import { useState } from "react";
 import axios from "axios";
 import FormInput from "./components/form-input/FormInput";
-import FormSelect from "./components/form-select/FormSelect";
-import GenreSelector from "./components/genre-selector/GenreSelector";
 import ImageUploader from "./components/image-uploader/ImageUploader";
 import MultipleImagesUploader from "./components/multiple-images-uploader/MultipleImagesUpload";
+import AuthorSearchbar from "./components/author-search/AuthorSearchbar";
 
-const MangaFormPage = () => {
+const BookForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     authorName: "",
     releaseYear: "",
     description: "",
-    chapters: "",
+    pages: "",
     publishedBy: "",
     genre: [],
-    demographic: "",
-    status: "",
     type: "",
-    alternativeName: "",
     author: "",
     cover: "",
     otherCovers: [],
   });
 
-  console.log(formData);
-
-  const [imageSelected, setImageSelected] = useState(null); // STATE TO STORE SELECTED IMAGE
+  const [coverSelected, setCoverSelected] = useState(null); // STATE TO STORE SELECTED IMAGE
+  const [otherCoversSelected, setOtherCoversSelected] = useState([]);
+  const [authorSelected, setAuthorSelected] = useState(null);
   const [isUploading, setIsUploading] = useState(false); // STATE TO TRACK IMAGE UPLOAD STATUS
   const [isSuccess, setIsSuccess] = useState(false); // STATE TO TRACK SUCCESSFUL CREATION
 
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
+  console.log(formData);
+  console.log("Author selected: ", authorSelected);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // UPLOAD ONE IMAGE
   const uploadImage = async () => {
-    if (!imageSelected) {
+    if (!coverSelected) {
       alert("Please select an image before submitting.");
       setIsUploading(false);
       return null;
     }
 
     const imageData = new FormData();
-    imageData.append("file", imageSelected);
+    imageData.append("file", coverSelected);
     imageData.append("upload_preset", uploadPreset);
 
     try {
@@ -55,7 +55,7 @@ const MangaFormPage = () => {
         `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
         imageData
       );
-      const imageUrl = response.data.secure_url; //
+      const imageUrl = response.data.secure_url;
       return imageUrl;
     } catch (error) {
       console.error("Error uploading image: ", error);
@@ -63,31 +63,77 @@ const MangaFormPage = () => {
     }
   };
 
+  // UPLOAD MULTIPLE IMAGES
+  const uploadMultipleImages = async () => {
+    if (!otherCoversSelected || otherCoversSelected.length === 0) {
+      alert("Please select some images before submitting.");
+      setIsUploading(false);
+      return null;
+    }
+
+    const uploadedUrls = [];
+
+    for (const file of otherCoversSelected) {
+      const oneImageData = new FormData();
+      oneImageData.append("file", file);
+      oneImageData.append("upload_preset", uploadPreset);
+
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+          oneImageData
+        );
+        uploadedUrls.push(response.data.secure_url);
+      } catch (error) {
+        console.error("Error uploading multiple images: ", error);
+      }
+    }
+    return uploadedUrls;
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsUploading(true); // SET TO TRUE BEFORE IMAGE UPLOAD STARTS
 
-    const imageUrl = await uploadImage();
-    if (imageUrl) {
-      formData.cover = imageUrl;
+    const coverUrl = await uploadImage();
+
+    if (coverUrl) {
+      formData.cover = coverUrl;
     } else {
       alert("Image upload failed. Please try again.");
       setIsUploading(false);
       return;
     }
 
+    const otherCoversUrls = await uploadMultipleImages();
+
+    if (otherCoversUrls) {
+      formData.otherCovers = otherCoversUrls;
+    } else {
+      alert("Other covers not selected.");
+      setIsUploading(false);
+      return;
+    }
+
+    if (authorSelected) {
+      formData.author = authorSelected;
+    } else {
+      alert("No author selected.");
+      setIsUploading(false);
+    }
+
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/mangas`,
+        `${import.meta.env.VITE_API_URL}/books`,
         formData
       );
 
       if (response.status === 201) {
-        console.log("Title added successfully");
+        console.log("Book added successfully");
         setIsSuccess(true);
         setIsUploading(false);
       } else {
-        console.error("Failed to add title:", response.statusText);
+        console.error("Failed to add book:", response.statusText);
         setIsUploading(false);
       }
     } catch (err) {
@@ -101,13 +147,10 @@ const MangaFormPage = () => {
       authorName: "",
       releaseYear: "",
       description: "",
-      chapters: "",
+      pages: "",
       publishedBy: "",
       genre: [],
-      demographic: "",
-      status: "",
       type: "",
-      alternativeName: "",
       author: "",
       cover: "",
       otherCovers: [],
@@ -140,22 +183,11 @@ const MangaFormPage = () => {
     "Biographical",
   ];
 
-  const typeOptions = ["Manga", "Manhwa", "Manhua", "Comics"];
-  const statusOptions = ["Ongoing", "Completed", "Hiatus"];
-  const demographicOptions = [
-    "Shounen",
-    "Seinen",
-    "Shojo",
-    "Josei",
-    "Kodomomuke",
-    "Seijin",
-  ];
-
   return (
     <div className={classes.container}>
       {isSuccess && <div className={classes.successPrompt}>Title created!</div>}
       <div className={classes.secondContainer}>
-        <h2>Add a New Manga</h2>
+        <h2>Create a New Book</h2>
         <form className={classes.theForm} onSubmit={handleSubmit}>
           <div className={classes.firstHalf}>
             <FormInput
@@ -184,10 +216,10 @@ const MangaFormPage = () => {
             />
 
             <FormInput
-              label="Chapters"
+              label="Pages"
               type="number"
-              name="chapters"
-              value={formData.chapters}
+              name="pages"
+              value={formData.pages}
               onChange={handleChange}
               required={true}
             />
@@ -198,37 +230,6 @@ const MangaFormPage = () => {
               value={formData.publishedBy}
               onChange={handleChange}
               required={false}
-            />
-
-            <FormInput
-              label="Alternative Name"
-              type="text"
-              name="alternateName"
-              value={formData.alternativeName}
-              onChange={handleChange}
-              required={false}
-            />
-
-            <FormSelect
-              label="Type"
-              name="type"
-              value={formData.type}
-              onChange={handleChange}
-              options={typeOptions}
-            />
-            <FormSelect
-              label="Status"
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              options={statusOptions}
-            />
-            <FormSelect
-              label="Demographic"
-              name="demographic"
-              value={formData.demographic}
-              onChange={handleChange}
-              options={demographicOptions}
             />
 
             <div>
@@ -300,11 +301,15 @@ const MangaFormPage = () => {
               </div>
             </div>
           </div>
-          <ImageUploader onSelectImage={setImageSelected} />
+          <ImageUploader onSelectImage={setCoverSelected} />
+          <AuthorSearchbar onSelectAuthor={setAuthorSelected} />
         </form>
         <div className={classes.secondHalf}>
           <div className={classes.coversUpload}>
-            <MultipleImagesUploader />
+            <MultipleImagesUploader
+              onSelectImages={setOtherCoversSelected}
+              headline={"Other covers"}
+            />
           </div>
 
           <button
@@ -320,4 +325,4 @@ const MangaFormPage = () => {
   );
 };
 
-export default MangaFormPage;
+export default BookForm;
