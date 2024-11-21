@@ -13,8 +13,7 @@
 
 .theForm {
   display: flex;
-  align-items: baseline;
-
+  align-items: end;
 }
 
 .firstHalf {
@@ -44,27 +43,21 @@
 }
 
 .genreContainer {
-  margin-left: 50px;
-}
-
-.secondContainer {
+  margin-left: 30px;
+  margin-right: 0px;
 }
 
 .secondHalf {
   position: relative;
   margin-top: 50px;
   height: 200px;
-  width: 100%px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.coverUpload {
-  margin-left: 80px;
-  background-color: red;
-  height: 200px;
-  width: 140px;
+.second {
+  display: flex;
 }
 
 .coversUpload {
@@ -79,18 +72,25 @@
 
 .submitButton {
   background-color: green;
-  height: 40px;
-  width: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  padding: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   margin: 20px;
-  margin-left: 800px;
+  margin-left: 50px;
   border-radius: 8px;
-  border: 0;
+  border: solid 2px transparent;
   cursor: pointer;
+  font-weight: bolder;
+}
+
+.submitButton:hover {
+  background-color: rgb(0, 65, 0);
+  border: solid 2px rgb(26, 239, 26);
 }
 
 .genreContainer p {
@@ -137,10 +137,4 @@
   width: 15px;
   cursor: pointer;
   background-color: black;
-}
-
-.searchAuthorContainer {
-  background-color: blue;
-  margin-left: 20px;
-  width: 400px;
 }

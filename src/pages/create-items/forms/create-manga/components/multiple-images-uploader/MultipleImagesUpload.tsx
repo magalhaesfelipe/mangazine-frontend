@@ -1,14 +1,15 @@
 import { useState } from "react";
 import classes from "./MultipleImagesUpload.module.css";
 
-const MultipleImagesUploader = () => {
+const MultipleImagesUploader = ({ onSelectImages, headline }: any) => {
   const [images, setImages] = useState([]);
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e: any) => {
     const selectedFiles = Array.from(e.target.files);
     const imageUrls = selectedFiles.map((file) => URL.createObjectURL(file));
 
     setImages((prevImages) => [...prevImages, ...imageUrls]);
+    onSelectImages((prevImages) => [...prevImages, ...selectedFiles]);
   };
 
   const handleRemoveImage = (index: any) => {
@@ -17,7 +18,7 @@ const MultipleImagesUploader = () => {
 
   return (
     <div className={classes.container}>
-      <p>Other Covers</p>
+      <p>{headline}</p>
       <input
         type="file"
         accept="image/png, image/jpg, image/jpeg"

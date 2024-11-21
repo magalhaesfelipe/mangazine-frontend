@@ -12,21 +12,15 @@ const Details = () => {
   const { itemId, itemType } = useParams();
   const [titleData, setTitleData] = useState(null);
 
+  if (!itemId || !itemType) {
+    console.error("Missing itemId or itemType");
+    return;
+  }
+
   useEffect(() => {
     const fetchTitleData = async () => {
       try {
-        if (itemType === "manga") {
-          const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/mangas/${itemId}`,
-            {
-              headers: {
-                "Cache-Control": "no-cache",
-              },
-            }
-          );
-          setTitleData(response.data.data);
-          console.log(response.data);
-        } else if (itemType === "book") {
+        if (itemType === "book") {
           const response = await axios.get(
             `${import.meta.env.VITE_API_URL}/books/${itemId}`,
             {
@@ -38,6 +32,17 @@ const Details = () => {
           setTitleData(response.data.data);
           console.log(response.data);
         }
+
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/mangas/${itemId}`,
+          {
+            headers: {
+              "Cache-Control": "no-cache",
+            },
+          }
+        );
+        setTitleData(response.data.data);
+        console.log(response.data);
       } catch (err) {
         console.error("ERROR:", err);
       }
@@ -101,7 +106,7 @@ const Details = () => {
         </div>
 
         <div className={classes.authorSection}>
-          <AuthorSection authorId={authorId} currentTitleId={itemId}/>
+          <AuthorSection authorId={authorId} currentTitleId={itemId} />
         </div>
       </div>
     </>

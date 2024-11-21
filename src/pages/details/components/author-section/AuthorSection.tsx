@@ -14,6 +14,7 @@ const AuthorSection = (props: any) => {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/authors/${authorId}`
       );
+      console.log("THis is the author data fetched: ", response);
       setAuthorData(response.data.data);
     } catch (error) {
       console.error("Error fetching author data:", error);
@@ -26,8 +27,10 @@ const AuthorSection = (props: any) => {
       return;
     }
 
+    const x = await axios.get()
+
     const worksRequests = authorData.works
-      .filter((work) => work.titleId !== currentTitleId)
+      .filter((work: any) => work.titleId !== currentTitleId)
       .map(async (work: any) => {
         try {
           const response = await axios.get(

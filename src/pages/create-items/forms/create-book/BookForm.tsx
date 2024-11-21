@@ -2,9 +2,10 @@ import classes from "./BookForm.module.css";
 import { useState } from "react";
 import axios from "axios";
 import FormInput from "./components/form-input/FormInput";
-import ImageUploader from "./components/image-uploader/ImageUploader";
+import ImageUploader from "./../components/image-uploader/ImageUploader";
 import MultipleImagesUploader from "./components/multiple-images-uploader/MultipleImagesUpload";
-import AuthorSearchbar from "./components/author-search/AuthorSearchbar";
+import AuthorSearchbar from "./../components/author-search/AuthorSearchbar";
+import { useNavigate } from "react-router-dom";
 
 const BookForm = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,6 @@ const BookForm = () => {
     pages: "",
     publishedBy: "",
     genre: [],
-    type: "",
     author: "",
     cover: "",
     otherCovers: [],
@@ -25,15 +25,14 @@ const BookForm = () => {
   const [otherCoversSelected, setOtherCoversSelected] = useState([]);
   const [authorSelected, setAuthorSelected] = useState(null);
   const [isUploading, setIsUploading] = useState(false); // STATE TO TRACK IMAGE UPLOAD STATUS
-  const [isSuccess, setIsSuccess] = useState(false); // STATE TO TRACK SUCCESSFUL CREATION
+  const navigate = useNavigate();
 
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
-  console.log(formData);
   console.log("Author selected: ", authorSelected);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -128,16 +127,19 @@ const BookForm = () => {
         formData
       );
 
+      console.log("RESPONSE: ", response);
+      const itemId = response.data.data._id;
+
       if (response.status === 201) {
-        console.log("Book added successfully");
-        setIsSuccess(true);
+        navigate(`/details/${itemId}/book/`);
+        console.log("Book created successfully");
         setIsUploading(false);
       } else {
-        console.error("Failed to add book:", response.statusText);
+        console.error("Failed to create book:", response.statusText);
         setIsUploading(false);
       }
     } catch (err) {
-      console.error("Error adding title: ", err);
+      console.error("Error creating book: ", err);
     }
 
     console.log("FormData sent: ", formData);
@@ -150,7 +152,6 @@ const BookForm = () => {
       pages: "",
       publishedBy: "",
       genre: [],
-      type: "",
       author: "",
       cover: "",
       otherCovers: [],
@@ -185,7 +186,6 @@ const BookForm = () => {
 
   return (
     <div className={classes.container}>
-      {isSuccess && <div className={classes.successPrompt}>Title created!</div>}
       <div className={classes.secondContainer}>
         <h2>Create a New Book</h2>
         <form className={classes.theForm} onSubmit={handleSubmit}>
@@ -303,6 +303,13 @@ const BookForm = () => {
           </div>
           <ImageUploader onSelectImage={setCoverSelected} />
           <AuthorSearchbar onSelectAuthor={setAuthorSelected} />
+          <button
+            type="submit"
+            disabled={isUploading}
+            className={classes.submitButton}
+          >
+            {isUploading ? "Uploading..." : "Submit"}
+          </button>
         </form>
         <div className={classes.secondHalf}>
           <div className={classes.coversUpload}>
@@ -311,14 +318,6 @@ const BookForm = () => {
               headline={"Other covers"}
             />
           </div>
-
-          <button
-            type="submit"
-            disabled={isUploading}
-            className={classes.submitButton}
-          >
-            {isUploading ? "Uploading..." : "Submit"}
-          </button>
         </div>
       </div>
     </div>

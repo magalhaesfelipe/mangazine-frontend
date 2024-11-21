@@ -20,7 +20,8 @@
 
 .coverContainer {
   display: flex;
-  width: 25%;
+  height: 350px;
+  width: 300px;
   border-radius: 7px;
 }
 

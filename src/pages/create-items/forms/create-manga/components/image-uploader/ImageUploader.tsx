@@ -13,7 +13,7 @@ const ImageUploader = ({ onSelectImage }) => {
     };
   }, [imagePreview]);
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e: any) => {
     const file = e.target.files[0];
     if (file) {
       setImage(file);
@@ -29,7 +29,12 @@ const ImageUploader = ({ onSelectImage }) => {
   return (
     <div className={classes.container}>
       <p>Cover</p>
-      <div onClick={handleClick} className={classes.uploadArea}>
+      <div
+        onClick={handleClick}
+        className={`${classes.uploadArea} ${
+          imagePreview ? classes.transparentBorder : ""
+        }`}
+      >
         {!imagePreview && (
           <span className={classes.placeholder}>Click to upload</span>
         )}
@@ -42,11 +47,7 @@ const ImageUploader = ({ onSelectImage }) => {
         />
       </div>
       {imagePreview && (
-          <img
-            src={imagePreview}
-            alt="Image Preview"
-            className={classes.image}
-          />
+        <img src={imagePreview} alt="Image Preview" className={classes.image} />
       )}
     </div>
   );

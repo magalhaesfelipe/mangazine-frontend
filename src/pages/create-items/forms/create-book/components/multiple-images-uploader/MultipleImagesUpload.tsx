@@ -4,11 +4,11 @@ import classes from "./MultipleImagesUpload.module.css";
 const MultipleImagesUploader = ({ onSelectImages, headline }: any) => {
   const [images, setImages] = useState([])
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e: any) => {
     const selectedFiles = Array.from(e.target.files);
-    const filePreviews = selectedFiles.map((file) => URL.createObjectURL(file));
+    const imageUrls = selectedFiles.map((file) => URL.createObjectURL(file));
 
-    setImages((prevImages) => [...prevImages, ...filePreviews]);
+    setImages((prevImages) => [...prevImages, ...imageUrls]);
     onSelectImages((prevImages) => [...prevImages, ...selectedFiles]); // Pass files to parent
   };
 

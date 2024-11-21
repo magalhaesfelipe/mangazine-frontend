@@ -3,8 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 import FormInput from "./components/form-input/FormInput";
 import FormSelect from "./components/form-select/FormSelect";
-import ImageUploader from "./components/image-uploader/ImageUploader";
+import ImageUploader from "./../components/image-uploader/ImageUploader";
 import MultipleImagesUploader from "./components/multiple-images-uploader/MultipleImagesUpload";
+import { useNavigate } from "react-router-dom";
+import AuthorSearchbar from "./../components/author-search/AuthorSearchbar";
 
 const MangaFormPage = () => {
   const [formData, setFormData] = useState({
@@ -15,38 +17,39 @@ const MangaFormPage = () => {
     chapters: "",
     publishedBy: "",
     genre: [],
+    type: "",
     demographic: "",
     status: "",
-    type: "",
     alternativeName: "",
     author: "",
     cover: "",
     otherCovers: [],
   });
 
-  console.log(formData);
-
-  const [imageSelected, setImageSelected] = useState(null); // STATE TO STORE SELECTED IMAGE
+  const [coverSelected, setCoverSelected] = useState(null); // STATE TO STORE SELECTED IMAGE
+  const [otherCoverSelected, setOtherCoversSelected] = useState([]);
+  const [authorSelected, setAuthorSelected] = useState(null);
   const [isUploading, setIsUploading] = useState(false); // STATE TO TRACK IMAGE UPLOAD STATUS
-  const [isSuccess, setIsSuccess] = useState(false); // STATE TO TRACK SUCCESSFUL CREATION
+  const navigate = useNavigate();
 
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // UPLOAD ONE IMAGE
   const uploadImage = async () => {
-    if (!imageSelected) {
+    if (!coverSelected) {
       alert("Please select an image before submitting.");
       setIsUploading(false);
       return null;
     }
 
     const imageData = new FormData();
-    imageData.append("file", imageSelected);
+    imageData.append("file", coverSelected);
     imageData.append("upload_preset", uploadPreset);
 
     try {
@@ -62,17 +65,63 @@ const MangaFormPage = () => {
     }
   };
 
+  // UPLOAD MULTIPLE IMAGES
+  const uploadMultipleImages = async () => {
+    if (!otherCoverSelected || otherCoverSelected.length === 0) {
+      alert("Please select some images before submitting.");
+      setIsUploading(false);
+      return null;
+    }
+
+    const uploadedUrls = [];
+
+    for (const file of otherCoverSelected) {
+      const oneImageData = new FormData();
+      oneImageData.append("file", file);
+      oneImageData.append("upload_preset", uploadPreset);
+
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+          oneImageData
+        );
+
+        uploadedUrls.push(response.data.secure_url);
+      } catch (error) {
+        console.error("Error uploading multiple images: ", error);
+      }
+    }
+    return uploadedUrls;
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsUploading(true); // SET TO TRUE BEFORE IMAGE UPLOAD STARTS
 
-    const imageUrl = await uploadImage();
-    if (imageUrl) {
-      formData.cover = imageUrl;
+    const coverUrl = await uploadImage();
+    if (coverUrl) {
+      formData.cover = coverUrl;
     } else {
       alert("Image upload failed. Please try again.");
       setIsUploading(false);
       return;
+    }
+
+    const otherCoversUrls = await uploadMultipleImages();
+
+    if (otherCoversUrls) {
+      formData.otherCovers = otherCoversUrls;
+    } else {
+      alert("Image upload failed. Please try again.");
+      setIsUploading(false);
+      return;
+    }
+
+    if (authorSelected) {
+      formData.author = authorSelected;
+    } else {
+      alert("No author selected.");
+      setIsUploading(false);
     }
 
     try {
@@ -81,16 +130,19 @@ const MangaFormPage = () => {
         formData
       );
 
+      console.log("RESPONSE: ", response);
+      const itemId = response.data.data._id;
+
       if (response.status === 201) {
-        console.log("Title added successfully");
-        setIsSuccess(true);
+        navigate(`/details/${itemId}/manga/`);
+        console.log("Manga created successfully");
         setIsUploading(false);
       } else {
-        console.error("Failed to add title:", response.statusText);
+        console.error("Failed to create manga:", response.statusText);
         setIsUploading(false);
       }
     } catch (err) {
-      console.error("Error adding title: ", err);
+      console.error("Error creating manga: ", err);
     }
 
     console.log("FormData sent: ", formData);
@@ -103,9 +155,9 @@ const MangaFormPage = () => {
       chapters: "",
       publishedBy: "",
       genre: [],
+      type: "",
       demographic: "",
       status: "",
-      type: "",
       alternativeName: "",
       author: "",
       cover: "",
@@ -152,7 +204,6 @@ const MangaFormPage = () => {
 
   return (
     <div className={classes.container}>
-      {isSuccess && <div className={classes.successPrompt}>Title created!</div>}
       <div className={classes.secondContainer}>
         <h2>Add a New Manga</h2>
         <form className={classes.theForm} onSubmit={handleSubmit}>
@@ -202,7 +253,7 @@ const MangaFormPage = () => {
             <FormInput
               label="Alternative Name"
               type="text"
-              name="alternateName"
+              name="alternativeName"
               value={formData.alternativeName}
               onChange={handleChange}
               required={false}
@@ -299,13 +350,8 @@ const MangaFormPage = () => {
               </div>
             </div>
           </div>
-          <ImageUploader onSelectImage={setImageSelected} />
-        </form>
-        <div className={classes.secondHalf}>
-          <div className={classes.coversUpload}>
-            <MultipleImagesUploader />
-          </div>
-
+          <ImageUploader onSelectImage={setCoverSelected} />
+          <AuthorSearchbar onSelectAuthor={setAuthorSelected} />
           <button
             type="submit"
             disabled={isUploading}
@@ -313,6 +359,14 @@ const MangaFormPage = () => {
           >
             {isUploading ? "Uploading..." : "Submit"}
           </button>
+        </form>
+        <div className={classes.secondHalf}>
+          <div className={classes.coversUpload}>
+            <MultipleImagesUploader
+              onSelectImages={setOtherCoversSelected}
+              headline={"Other cover"}
+            />
+          </div>
         </div>
       </div>
     </div>
