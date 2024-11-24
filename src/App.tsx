@@ -18,11 +18,11 @@ import AboutPage from "./pages/about/AboutPage.js";
 import AdminRoute from "./components/admin-route/AdminRoute.js";
 import ContactPage from "./pages/contact/ContactPage.js";
 import CreateItemPage from "./pages/create-items/ChooseCreateItemPage.js";
-import MangaForm from "./pages/create-items/forms/create-manga/MangaForm.js";
+import MangaForm from "./pages/create-items/forms/manga/MangaForm.js";
 import AuthorSearchBar from "./pages/create-items/forms/components/author-search/AuthorSearchbar.js";
 import AuthorSection from "./pages/details/components/author-section/AuthorSection.js";
-import BookForm from "./pages/create-items/forms/create-book/BookForm.js";
-import AuthorForm from "./pages/create-items/forms/create-author/AuthorForm.js";
+import BookForm from "./pages/create-items/forms/book/BookForm.js";
+import AuthorForm from "./pages/create-items/forms/author/AuthorForm.js";
 
 function App() {
   return (

@@ -3,9 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 import FormInput from "./components/form-input/FormInput";
 import ImageUploader from "./../components/image-uploader/ImageUploader";
-import MultipleImagesUploader from "./components/multiple-images-uploader/MultipleImagesUpload";
-import AuthorSearchbar from "./../components/author-search/AuthorSearchbar";
+import MultipleImagesUploader from "../components/multiple-images-uploader/MultipleImagesUpload";
+import AuthorSearchbar from "../components/author-search/AuthorSearchbar";
 import { useNavigate } from "react-router-dom";
+import Header from "../../../../components/header/Header";
 
 const BookForm = () => {
   const [formData, setFormData] = useState({
@@ -185,142 +186,146 @@ const BookForm = () => {
   ];
 
   return (
-    <div className={classes.container}>
-      <div className={classes.secondContainer}>
-        <h2>Create a New Book</h2>
-        <form className={classes.theForm} onSubmit={handleSubmit}>
-          <div className={classes.firstHalf}>
-            <FormInput
-              label="Name"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required={true}
-            />
-            <FormInput
-              label="Author Name"
-              type="text"
-              name="authorName"
-              value={formData.authorName}
-              onChange={handleChange}
-              required={true}
-            />
-            <FormInput
-              label="Release Year"
-              type="number"
-              name="releaseYear"
-              value={formData.releaseYear}
-              onChange={handleChange}
-              required={true}
-            />
+    <>
+      <Header />
 
-            <FormInput
-              label="Pages"
-              type="number"
-              name="pages"
-              value={formData.pages}
-              onChange={handleChange}
-              required={true}
-            />
-            <FormInput
-              label="Published By"
-              type="text"
-              name="publishedBy"
-              value={formData.publishedBy}
-              onChange={handleChange}
-              required={false}
-            />
-
-            <div>
-              <p>Description</p>
-              <textarea
-                name="description"
-                value={formData.description}
+      <div className={classes.container}>
+        <div className={classes.secondContainer}>
+          <h2>Create a New Book</h2>
+          <form className={classes.theForm} onSubmit={handleSubmit}>
+            <div className={classes.firstHalf}>
+              <FormInput
+                label="Name"
+                type="text"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
-                required
-                className={classes.description}
+                required={true}
+              />
+              <FormInput
+                label="Author Name"
+                type="text"
+                name="authorName"
+                value={formData.authorName}
+                onChange={handleChange}
+                required={true}
+              />
+              <FormInput
+                label="Release Year"
+                type="number"
+                name="releaseYear"
+                value={formData.releaseYear}
+                onChange={handleChange}
+                required={true}
+              />
+
+              <FormInput
+                label="Pages"
+                type="number"
+                name="pages"
+                value={formData.pages}
+                onChange={handleChange}
+                required={true}
+              />
+              <FormInput
+                label="Published By"
+                type="text"
+                name="publishedBy"
+                value={formData.publishedBy}
+                onChange={handleChange}
+                required={false}
+              />
+
+              <div>
+                <p>Description</p>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  required
+                  className={classes.description}
+                />
+              </div>
+            </div>
+
+            <ImageUploader onSelectImage={setCoverSelected} headline="Cover" />
+            <AuthorSearchbar onSelectAuthor={setAuthorSelected} />
+            <button
+              type="submit"
+              disabled={isUploading}
+              className={classes.submitButton}
+            >
+              {isUploading ? "Uploading..." : "Submit"}
+            </button>
+          </form>
+          <div className={classes.secondHalf}>
+            <div className={classes.coversUpload}>
+              <MultipleImagesUploader
+                onSelectImages={setOtherCoversSelected}
+                headline={"Other covers"}
               />
             </div>
-          </div>
+            <div className={classes.genreContainer}>
+              <p>Genre</p>
+              <select
+                name="genre"
+                multiple
+                value={formData.genre}
+                onChange={(e) => {
+                  const selectedValues = Array.from(
+                    e.target.selectedOptions,
+                    (option) => option.value
+                  );
+                  const uniqueGenres = [
+                    ...new Set([...formData.genre, ...selectedValues]),
+                  ];
 
-          <div className={classes.genreContainer}>
-            <p>Genre</p>
-            <select
-              name="genre"
-              multiple
-              value={formData.genre}
-              onChange={(e) => {
-                const selectedValues = Array.from(
-                  e.target.selectedOptions,
-                  (option) => option.value
-                );
-                const uniqueGenres = [
-                  ...new Set([...formData.genre, ...selectedValues]),
-                ];
-
-                setFormData((prevData) => ({
-                  ...prevData,
-                  genre: uniqueGenres,
-                }));
-                console.log(formData.genre);
-              }}
-              className={classes.genreSelect}
-            >
-              {genreOptions.map((genre, index) => (
-                <option key={index} value={genre}>
-                  {genre}
-                </option>
-              ))}
-            </select>
-
-            <div className={classes.selectedGenres}>
-              {formData.genre.length > 0 && (
-                <p className={classes.message}>Selected Genres:</p>
-              )}
-              <div className={classes.blockContainer}>
-                {formData.genre.map((genre, index) => (
-                  <div className={classes.genreTagContainer}>
-                    <p key={index} className={classes.genreName}>
-                      {genre}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFormData((prevData) => ({
-                          ...prevData,
-                          genre: prevData.genre.filter((g) => g !== genre),
-                        }));
-                      }}
-                      className={classes.removeGenreButton}
-                    >
-                      &times;
-                    </button>
-                  </div>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    genre: uniqueGenres,
+                  }));
+                  console.log(formData.genre);
+                }}
+                className={classes.genreSelect}
+              >
+                {genreOptions.map((genre, index) => (
+                  <option key={index} value={genre}>
+                    {genre}
+                  </option>
                 ))}
+              </select>
+
+              <div className={classes.selectedGenres}>
+                {formData.genre.length > 0 && (
+                  <p className={classes.message}>Selected Genres:</p>
+                )}
+                <div className={classes.blockContainer}>
+                  {formData.genre.map((genre, index) => (
+                    <div className={classes.genreTagContainer}>
+                      <p key={index} className={classes.genreName}>
+                        {genre}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFormData((prevData) => ({
+                            ...prevData,
+                            genre: prevData.genre.filter((g) => g !== genre),
+                          }));
+                        }}
+                        className={classes.removeGenreButton}
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-          <ImageUploader onSelectImage={setCoverSelected} />
-          <AuthorSearchbar onSelectAuthor={setAuthorSelected} />
-          <button
-            type="submit"
-            disabled={isUploading}
-            className={classes.submitButton}
-          >
-            {isUploading ? "Uploading..." : "Submit"}
-          </button>
-        </form>
-        <div className={classes.secondHalf}>
-          <div className={classes.coversUpload}>
-            <MultipleImagesUploader
-              onSelectImages={setOtherCoversSelected}
-              headline={"Other covers"}
-            />
-          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -41,10 +41,10 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
 
       try {
         const [mangaResponse, bookResponse] = await Promise.all([
-          axios.get(`${import.meta.env.VITE_API_URL}/mangas/search/`, {
+          axios.get(`${import.meta.env.VITE_API_URL}/mangas/search/by-name/`, {
             params: { name: searchedName },
           }),
-          axios.get(`${import.meta.env.VITE_API_URL}/books/search/`, {
+          axios.get(`${import.meta.env.VITE_API_URL}/books/search/by-name/`, {
             params: { name: searchedName },
           }),
         ]);

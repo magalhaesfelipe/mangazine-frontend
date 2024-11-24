@@ -4,9 +4,9 @@ import axios from "axios";
 import FormInput from "./components/form-input/FormInput";
 import FormSelect from "./components/form-select/FormSelect";
 import ImageUploader from "./../components/image-uploader/ImageUploader";
-import MultipleImagesUploader from "./components/multiple-images-uploader/MultipleImagesUpload";
+import MultipleImagesUploader from "./../components/multiple-images-uploader/MultipleImagesUpload";
 import { useNavigate } from "react-router-dom";
-import AuthorSearchbar from "./../components/author-search/AuthorSearchbar";
+import AuthorSearchbar from "../components/author-search/AuthorSearchbar";
 
 const MangaFormPage = () => {
   const [formData, setFormData] = useState({
@@ -26,8 +26,8 @@ const MangaFormPage = () => {
     otherCovers: [],
   });
 
-  const [coverSelected, setCoverSelected] = useState(null); // STATE TO STORE SELECTED IMAGE
-  const [otherCoverSelected, setOtherCoversSelected] = useState([]);
+  const [imageSelected, setImageSelected] = useState(null); // STATE TO STORE SELECTED IMAGE
+  const [otherImagesSelected, setOtherImagesSelected] = useState([]);
   const [authorSelected, setAuthorSelected] = useState(null);
   const [isUploading, setIsUploading] = useState(false); // STATE TO TRACK IMAGE UPLOAD STATUS
   const navigate = useNavigate();
@@ -42,14 +42,14 @@ const MangaFormPage = () => {
 
   // UPLOAD ONE IMAGE
   const uploadImage = async () => {
-    if (!coverSelected) {
+    if (!imageSelected) {
       alert("Please select an image before submitting.");
       setIsUploading(false);
       return null;
     }
 
     const imageData = new FormData();
-    imageData.append("file", coverSelected);
+    imageData.append("file", imageSelected);
     imageData.append("upload_preset", uploadPreset);
 
     try {
@@ -57,7 +57,7 @@ const MangaFormPage = () => {
         `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
         imageData
       );
-      const imageUrl = response.data.secure_url; //
+      const imageUrl = response.data.secure_url;
       return imageUrl;
     } catch (error) {
       console.error("Error uploading image: ", error);
@@ -67,15 +67,15 @@ const MangaFormPage = () => {
 
   // UPLOAD MULTIPLE IMAGES
   const uploadMultipleImages = async () => {
-    if (!otherCoverSelected || otherCoverSelected.length === 0) {
+    if (!otherImagesSelected || otherImagesSelected.length === 0) {
       alert("Please select some images before submitting.");
       setIsUploading(false);
       return null;
     }
 
-    const uploadedUrls = [];
+    const imagesUrls = [];
 
-    for (const file of otherCoverSelected) {
+    for (const file of otherImagesSelected) {
       const oneImageData = new FormData();
       oneImageData.append("file", file);
       oneImageData.append("upload_preset", uploadPreset);
@@ -86,12 +86,12 @@ const MangaFormPage = () => {
           oneImageData
         );
 
-        uploadedUrls.push(response.data.secure_url);
+        imagesUrls.push(response.data.secure_url);
       } catch (error) {
         console.error("Error uploading multiple images: ", error);
       }
     }
-    return uploadedUrls;
+    return imagesUrls;
   };
 
   const handleSubmit = async (e: any) => {
@@ -99,6 +99,7 @@ const MangaFormPage = () => {
     setIsUploading(true); // SET TO TRUE BEFORE IMAGE UPLOAD STARTS
 
     const coverUrl = await uploadImage();
+
     if (coverUrl) {
       formData.cover = coverUrl;
     } else {
@@ -293,64 +294,7 @@ const MangaFormPage = () => {
             </div>
           </div>
 
-          <div className={classes.genreContainer}>
-            <p>Genre</p>
-            <select
-              name="genre"
-              multiple
-              value={formData.genre}
-              onChange={(e) => {
-                const selectedValues = Array.from(
-                  e.target.selectedOptions,
-                  (option) => option.value
-                );
-                const uniqueGenres = [
-                  ...new Set([...formData.genre, ...selectedValues]),
-                ];
-
-                setFormData((prevData) => ({
-                  ...prevData,
-                  genre: uniqueGenres,
-                }));
-                console.log(formData.genre);
-              }}
-              className={classes.genreSelect}
-            >
-              {genreOptions.map((genre, index) => (
-                <option key={index} value={genre}>
-                  {genre}
-                </option>
-              ))}
-            </select>
-
-            <div className={classes.selectedGenres}>
-              {formData.genre.length > 0 && (
-                <p className={classes.message}>Selected Genres:</p>
-              )}
-              <div className={classes.blockContainer}>
-                {formData.genre.map((genre, index) => (
-                  <div className={classes.genreTagContainer}>
-                    <p key={index} className={classes.genreName}>
-                      {genre}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFormData((prevData) => ({
-                          ...prevData,
-                          genre: prevData.genre.filter((g) => g !== genre),
-                        }));
-                      }}
-                      className={classes.removeGenreButton}
-                    >
-                      &times;
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <ImageUploader onSelectImage={setCoverSelected} />
+          <ImageUploader onSelectImage={setImageSelected} headline="Cover" />
           <AuthorSearchbar onSelectAuthor={setAuthorSelected} />
           <button
             type="submit"
@@ -361,15 +305,72 @@ const MangaFormPage = () => {
           </button>
         </form>
         <div className={classes.secondHalf}>
-          <div className={classes.coversUpload}>
-            <MultipleImagesUploader
-              onSelectImages={setOtherCoversSelected}
-              headline={"Other cover"}
-            />
+            <div className={classes.coversUpload}>
+              <MultipleImagesUploader
+                onSelectImages={setOtherImagesSelected}
+                headline={"Other cover"}
+              />
+            </div>
+            <div className={classes.genreContainer}>
+              <p>Genre</p>
+              <select
+                name="genre"
+                multiple
+                value={formData.genre}
+                onChange={(e) => {
+                  const selectedValues = Array.from(
+                    e.target.selectedOptions,
+                    (option) => option.value
+                  );
+                  const uniqueGenres = [
+                    ...new Set([...formData.genre, ...selectedValues]),
+                  ];
+
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    genre: uniqueGenres,
+                  }));
+                  console.log(formData.genre);
+                }}
+                className={classes.genreSelect}
+              >
+                {genreOptions.map((genre, index) => (
+                  <option key={index} value={genre}>
+                    {genre}
+                  </option>
+                ))}
+              </select>
+
+              <div className={classes.selectedGenres}>
+                {formData.genre.length > 0 && (
+                  <p className={classes.message}>Selected Genres:</p>
+                )}
+                <div className={classes.blockContainer}>
+                  {formData.genre.map((genre, index) => (
+                    <div className={classes.genreTagContainer}>
+                      <p key={index} className={classes.genreName}>
+                        {genre}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFormData((prevData) => ({
+                            ...prevData,
+                            genre: prevData.genre.filter((g) => g !== genre),
+                          }));
+                        }}
+                        className={classes.removeGenreButton}
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

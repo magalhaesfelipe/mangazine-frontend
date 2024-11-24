@@ -1,6 +1,6 @@
 import classes from "./FormInput.module.css"
 
-const FormInput = ({ label, type, name, value, onChange, required }) => (
+const FormInput = ({ label, type, name, value, onChange, required }: any) => (
   <div className={classes.container}>
     <p>{label}</p>
     <input

@@ -22,29 +22,30 @@ const AuthorSection = (props: any) => {
   };
 
   const fetchAuthorWorks = async () => {
-    if (!authorData || !authorData.works) {
+    if (!authorData) {
       console.error("❌ No author data or author works!!");
       return;
     }
 
-    const x = await axios.get()
+    const [mangaResponse, bookResponse] = await Promise.all([
+      axios.get(`${import.meta.env.VITE_API_URL}/mangas/search/by-author/`, {
+        params: { author: authorData._id },
+      }),
+      axios.get(`${import.meta.env.VITE_API_URL}/books/search/by-author/`, {
+        params: { author: authorData._id },
+      }),
+    ]);
 
-    const worksRequests = authorData.works
-      .filter((work: any) => work.titleId !== currentTitleId)
-      .map(async (work: any) => {
-        try {
-          const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/${work.type}s/${work.titleId}`
-          );
+    const mangaItems = mangaResponse.data.data;
+    const bookItems = bookResponse.data.data;
 
-          return response.data.data;
-        } catch (error) {
-          console.error(`Error fetching ${work.type} data: `, error);
-        }
-      });
+    const combinedItems = [...mangaItems, ...bookItems];
 
-    const works = await Promise.all(worksRequests);
-    setAuthorWorks(works);
+    console.log(mangaItems);
+    console.log(bookItems);
+    console.log(combinedItems);
+
+    setAuthorWorks(combinedItems);
   };
 
   const formatDate = (dateString: string) => {
@@ -57,13 +58,12 @@ const AuthorSection = (props: any) => {
   };
 
   const handleClick = (titleId: any, titleType: any) => {
-    console.log(
-      "This is the titleId: ",
-      titleId,
-      "And this is the title type: ",
-      titleType
-    );
-    navigate(`/details/${titleId}/${titleType}`);
+    console.log("This is the titleId: ", titleId);
+    console.log("And this is the title type: ", titleType);
+
+    if (titleType === "book") navigate(`details/${titleId}/book`);
+
+    navigate(`/details/${titleId}/manga`);
   };
 
   useEffect(() => {
@@ -135,8 +135,10 @@ const AuthorSection = (props: any) => {
                       onClick={() => handleClick(work._id, work.type)}
                     >
                       <img src={work.cover} />
-                      <p>{work.name}</p>
-                      <p>{work.releaseYear}</p>
+                      <div className={classes.itemInformation}>
+                        <p>{work.name}</p>
+                        <p>{work.releaseYear}</p>
+                      </div>
                     </li>
                   );
                 })}

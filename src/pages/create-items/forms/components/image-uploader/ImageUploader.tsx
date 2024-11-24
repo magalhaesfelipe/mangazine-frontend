@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import classes from "./ImageUploader.module.css";
 
-const ImageUploader = ({ onSelectImage }: any) => {
+const ImageUploader = ({ onSelectImage, headline }: any) => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -28,7 +28,7 @@ const ImageUploader = ({ onSelectImage }: any) => {
 
   return (
     <div className={classes.container}>
-      <p>Cover</p>
+      <p>{headline}</p>
       <div
         onClick={handleClick}
         className={`${classes.uploadArea} ${
@@ -45,14 +45,10 @@ const ImageUploader = ({ onSelectImage }: any) => {
           className={classes.fileInput}
           id="fileInput"
         />
-        {imagePreview && (
-          <img
-            src={imagePreview}
-            alt="Image Preview"
-            className={classes.image}
-          />
-        )}
       </div>
+      {imagePreview && (
+        <img src={imagePreview} alt="Image Preview" className={classes.image} />
+      )}
     </div>
   );
 };

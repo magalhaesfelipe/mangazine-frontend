@@ -11,8 +11,9 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   align-items: top;
+  padding-bottom: 200px;
 }
 
 .imageContainer {
@@ -56,9 +57,8 @@
   padding-top: 5px;
   padding-bottom: 2px;
   padding-left: 2px;
-  padding-right: 2px
+  padding-right: 2px;
 }
-
 
 .information2 {
   font-family: var(--font1);
@@ -69,8 +69,12 @@
 
 .otherWorks {
   margin-top: 40px;
-  width: 900px;
-  height: 300px;
+  width: 1000px;
+  height: 400px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .otherWorks h3 {
@@ -78,18 +82,23 @@
 }
 
 .allWorksContainer {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 96%;
   gap: 20px;
-  margin-left: 10px;
 }
 
 .itemContainer {
-  height: 240px;
-  width:  120px;
+  height: 280px;
+  width: 175px;
   display: flex;
   flex-direction: column;
-  border-radius: 3px;
+  border-radius: 6px;
   cursor: pointer;
+  justify-content: end;
+  position: relative;
 }
 
 .itemContainer:hover {
@@ -101,16 +110,31 @@
 
 .itemContainer img {
   width: 100%;
-  border-radius: 3px;
+  height: 220px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   margin-bottom: 7px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.itemContainer p {
-  font-size: 13px;
-  margin: 2px;
-  margin-bottom: 5px;
+.itemInformation {
+  display: flex;
+  height: 60px;
+  flex-direction: column;
+
+  gap: 10px;
+  justify-content: center;
+}
+
+.itemInformation p {
+  margin-top: 3px;
   margin-left: 4px;
+  font-size: 15px;
   font-family: var(--font1);
+  white-space: wrap;
+
 }
 
 .loading {
