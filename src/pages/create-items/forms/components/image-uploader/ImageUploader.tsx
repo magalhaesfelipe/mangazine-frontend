@@ -40,7 +40,7 @@ const ImageUploader = ({ onSelectImage, headline }: any) => {
         )}
         <input
           type="file"
-          accept="image/png, image/jpg, image/jpeg"
+          accept="image/png, image/jpg, image/jpeg, image/webp"
           onChange={handleImageChange}
           className={classes.fileInput}
           id="fileInput"

@@ -21,7 +21,7 @@ const MultipleImagesUploader = ({ onSelectImages, headline }: any) => {
       <p>{headline}</p>
       <input
         type="file"
-        accept="image/png, image/jpg, image/jpeg"
+        accept="image/png, image/jpg, image/jpeg, image/webp"
         multiple
         onChange={handleImageChange}
         className={classes.theInput}
