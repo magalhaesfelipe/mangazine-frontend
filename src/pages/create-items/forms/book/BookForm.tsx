@@ -183,6 +183,17 @@ const BookForm = () => {
     "Yuri",
     "Sports",
     "Biographical",
+    "Parody",
+    "Satire",
+    "Farce",
+    "Psychological Fiction",
+    "Novel",
+    "Magical Realism",
+    "Epic Fiction",
+    "Dystopian",
+    "Political",
+    "Fable",
+    "Urban Fiction"
   ];
 
   return (
