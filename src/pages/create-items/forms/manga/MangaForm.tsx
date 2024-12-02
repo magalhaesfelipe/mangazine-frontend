@@ -190,6 +190,8 @@ const MangaFormPage = () => {
     "Yuri",
     "Sports",
     "Biographical",
+    "Adult",
+    "Mature"
   ];
 
   const typeOptions = ["manga", "manhwa", "manhua", "comics"];
