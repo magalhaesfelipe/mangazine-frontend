@@ -9,13 +9,16 @@ import Footer from "../../components/footer/Footer";
 const Readlist = () => {
   const { isSignedIn, user } = useUser();
   const [readList, setReadList] = useState([]);
+  
+  const userId = user?.id;
+  console.log("This is the user id: ", userId);
 
   useEffect(() => {
     const fetchItems = async () => {
       if (user) {
         try {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/readlists/${user?.id}`
+            `${import.meta.env.VITE_API_URL}/readlists/${userId}`
           );
           console.log("😎THIS is the READ LIST PAGE response: ", response);
           setReadList(response.data.data);
@@ -38,8 +41,8 @@ const Readlist = () => {
       </div>
       <main className={classes.contentGrid}>
         {readList && readList.length > 0 ? (
-          readList.map((item, index) => (
-            <ElementCard key={index} item={item} />
+          readList.map((itemId, index) => (
+            <ElementCard key={index} item={itemId} />
           ))
         ) : (
           <div className={classes.noReadlistMessage}>NO READLIST</div>

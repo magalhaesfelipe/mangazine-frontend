@@ -6,16 +6,26 @@ import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
 import Tag from "./components/Tag";
 
-const ElementCard = (props: any) => {
-  const { item } = props;
+const ElementCard = ({ itemId }: any) => {
   const [showPrompt, setShowPrompt] = useState(false);
   const [averageRating, setAverageRating] = useState(null);
   const [userRating, setUserRating] = useState(null);
   const { user } = useUser();
   const navigate = useNavigate();
 
-  const itemId = item?._id;
   const userId = user?.id;
+
+  console.log("Those are the itemId and the userId", itemId, userId)
+
+  const fetchItem = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/ratings/item/${itemId}/average`)
+
+
+    } catch (error) {
+      console.error("Error fetching for Item", error)
+    }
+  }
 
   const fetchRatings = async () => {
     try {
@@ -24,6 +34,7 @@ const ElementCard = (props: any) => {
         `${import.meta.env.VITE_API_URL}/ratings/item/${itemId}/average`
       );
       setAverageRating(avgResponse.data.averageRating);
+      console.log("This is the average Rating: ", averageRating);
 
       // Fetch user rating
       try {
