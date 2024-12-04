@@ -1,8 +1,11 @@
-import classes from "./style.module.css";
+import classes from "./header.module.css";
 import { NavLink } from "react-router-dom";
 import { SignedIn, UserButton } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 
 const Header = () => {
+  const { isSignedIn, user } = useUser();
+
   return (
     <div className={classes.menu}>
       <NavLink to="/home" className={classes.titleLink}>
@@ -17,6 +20,15 @@ const Header = () => {
             <UserButton />
           </div>
         </SignedIn>
+        {!isSignedIn && (
+          <NavLink to="/auth" className={classes.link}>
+            <div className={classes.iconContainer}>
+            AUTH
+            <i className="fa-regular fa-user"></i>
+            </div>
+          </NavLink>
+        )}
+
         <NavLink to="/about" className={classes.link}>
           ABOUT
         </NavLink>

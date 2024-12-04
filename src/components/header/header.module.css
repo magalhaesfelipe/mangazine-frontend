@@ -78,3 +78,8 @@
 .userButton {
   margin-left: 20px;
 }
+
+.iconContainer i {
+  margin-left: 10px;
+  font-size: 20px;
+}

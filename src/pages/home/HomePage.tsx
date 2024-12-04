@@ -14,34 +14,37 @@ const Home = () => {
     if (user) {
       const checkAndCreateUser = async () => {
         try {
-          const checkUser = await axios.get(
-            `${import.meta.env.VITE_API_URL}/user/exists/${user.id}`
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_URL}/users/${user.id}`
           );
-          const checkData = checkUser.data;
 
-          // USER DOES NOT EXIST, CREATE NEW USER
-          if (!checkData.exists) {
+          console.log("User already exists: ", response.data);
+        } catch (error) {
+          if (error.response && error.response.status === 404) {
+            console.log("User does not exists, creating a new one...");
             const userData = {
               userId: user.id,
               email: user.emailAddresses[0].emailAddress,
-              userName: user.username,
+              name: user.username,
             };
 
-            const createUser = await axios.post(
-              `${import.meta.env.VITE_API_URL}/user/signup`,
-              userData
-            );
+            try {
+              const createUser = await axios.post(
+                `${import.meta.env.VITE_API_URL}/users/`,
+                userData
+              );
 
-            if (createUser.status === 200) {
-              console.log("User created successfully");
-            } else {
-              console.error("Failed to create user");
+              if (createUser.status === 201) {
+                console.log("User created successfully");
+              } else {
+                console.error("Failed to create user");
+              }
+            } catch (creationError) {
+              console.error("Error creating user: ", creationError);
             }
           } else {
-            console.log("User already exists");
+            console.error("Error checking user existence: ", error);
           }
-        } catch (err) {
-          console.error("Error checking or creating user", err);
         }
       };
 

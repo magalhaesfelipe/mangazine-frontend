@@ -1,4 +1,4 @@
-import classes from "./style.module.css";
+import classes from "./readlistPage.module.css";
 import Header from "../../components/header/Header";
 import ElementCard from "../../components/element-card/ElementCard";
 import { useEffect, useState } from "react";
@@ -15,10 +15,10 @@ const Readlist = () => {
       if (user) {
         try {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/user/readlist/${user.id}`
+            `${import.meta.env.VITE_API_URL}/readlists/${user.id}`
           );
           console.log("THIS is the response: ", response);
-          setReadList(response.data.readList);
+          setReadList(response.data.data);
         } catch (err) {
           console.error(`Failed to fetch Readlist. Error message: ${err}`);
         }
