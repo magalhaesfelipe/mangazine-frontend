@@ -1,4 +1,4 @@
-import classes from "./style.module.css";
+import classes from "./footer.module.css";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {

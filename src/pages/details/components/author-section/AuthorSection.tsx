@@ -7,6 +7,7 @@ const AuthorSection = (props: any) => {
   const [authorData, setAuthorData] = useState();
   const [authorWorks, setAuthorWorks] = useState<any[]>([]);
   const { authorId, currentTitleId } = props;
+  const authorPhotos = authorData?.otherPhotos || null;
   const navigate = useNavigate();
 
   const fetchAuthorData = async () => {
@@ -139,6 +140,24 @@ const AuthorSection = (props: any) => {
                         <p>{work.name}</p>
                         <p>{work.releaseYear}</p>
                       </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <p>No works found.</p>
+            )}
+          </div>
+
+          {/* Render author's photos */}
+          <div className={classes.otherPhotos}>
+            <h3>Other Works</h3>
+            {authorPhotos && authorPhotos.length > 0 ? (
+              <ul className={classes.allWorksContainer}>
+                {authorPhotos.map((photo, index) => {
+                  return (
+                    <li key={index} className={classes.photoContainer}>
+                      <img src={photo} />
                     </li>
                   );
                 })}

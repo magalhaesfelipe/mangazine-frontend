@@ -7,6 +7,7 @@ import Rating from "./components/rating/Rating";
 import AddButton from "./components/add-button/AddButton";
 import Header from "../../components/header/Header";
 import AuthorSection from "./components/author-section/AuthorSection";
+import Footer from "../../components/footer/Footer";
 
 const Details = () => {
   const { itemId, itemType } = useParams();
@@ -107,6 +108,7 @@ const Details = () => {
 
         <div className={classes.authorSection}>
           <AuthorSection authorId={authorId} currentTitleId={itemId} />
+          <Footer />
         </div>
       </div>
     </>
