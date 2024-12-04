@@ -16,10 +16,10 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
     try {
       console.log("Creating/updating rating...");
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/rating/create-update-rating`,
+        `${import.meta.env.VITE_API_URL}/ratings`,
         {
-          userId: user.id,
-          titleId: titleData._id,
+          userId: user?.id,
+          itemId: titleData._id,
           ratingValue: rating,
         }
       );

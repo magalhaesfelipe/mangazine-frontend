@@ -4,7 +4,7 @@ import classes from "./Rating.module.css";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
 
-const Rating = ({ titleData }) => {
+const Rating = ({ titleData }: any) => {
   const [showPrompt, setShowPrompt] = useState(false);
   const [userRating, setUserRating] = useState(null);
   const [averageRating, setAverageRating] = useState(null);
@@ -17,7 +17,7 @@ const Rating = ({ titleData }) => {
     if (!user) return;
     try {
       const averageResponse = await axios.get(
-        `${import.meta.env.VITE_API_URL}/rating/average-rating/${titleId}`
+        `${import.meta.env.VITE_API_URL}/ratings/item/${titleId}/average`
       );
       setAverageRating(averageResponse.data.averageRating);
     } catch (err) {
@@ -25,7 +25,7 @@ const Rating = ({ titleData }) => {
     }
     try {
       const userResponse = await axios.get(
-        `${import.meta.env.VITE_API_URL}/rating/${userId}/get-rating/${titleId}`
+        `${import.meta.env.VITE_API_URL}/ratings/user/${userId}/item/${titleId}`
       );
       setUserRating(userResponse.data.userRating.rating);
     } catch (err) {
