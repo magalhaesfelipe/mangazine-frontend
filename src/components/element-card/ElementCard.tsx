@@ -21,7 +21,7 @@ const ElementCard = (props: any) => {
     try {
       // Fetch average rating
       const avgResponse = await axios.get(
-        `${import.meta.env.VITE_API_URL}/rating/average-rating/${itemId}`
+        `${import.meta.env.VITE_API_URL}/ratings/item/${itemId}/average`
       );
       setAverageRating(avgResponse.data.averageRating);
 
@@ -30,7 +30,7 @@ const ElementCard = (props: any) => {
         const userResponse = await axios.get(
           `${
             import.meta.env.VITE_API_URL
-          }/rating/${userId}/get-rating/${itemId}`
+          }/ratings/user/${userId}/item/${itemId}`
         );
         setUserRating(userResponse.data.userRating.rating);
       } catch (userErr: any) {

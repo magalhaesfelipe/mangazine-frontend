@@ -15,9 +15,9 @@ const Readlist = () => {
       if (user) {
         try {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/readlists/${user.id}`
+            `${import.meta.env.VITE_API_URL}/readlists/${user?.id}`
           );
-          console.log("THIS is the response: ", response);
+          console.log("😎THIS is the READ LIST PAGE response: ", response);
           setReadList(response.data.data);
         } catch (err) {
           console.error(`Failed to fetch Readlist. Error message: ${err}`);
@@ -38,8 +38,8 @@ const Readlist = () => {
       </div>
       <main className={classes.contentGrid}>
         {readList && readList.length > 0 ? (
-          readList.map((element, index) => (
-            <ElementCard key={index} item={element} />
+          readList.map((item, index) => (
+            <ElementCard key={index} item={item} />
           ))
         ) : (
           <div className={classes.noReadlistMessage}>NO READLIST</div>
