@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 .superContainer {
+  width: 90%;
+  margin-left: 90px;
   flex-direction: column;
   margin-top: 12%;
   padding-bottom: 12%;
@@ -134,14 +136,6 @@
 }
 
 .authorSection {
-  width: 100%;
+  width: 90%;
   margin-top: 5%;
-  background-color: brown;
-}
-
-.footerContainer {
-  position: absolute;
-  left: 50%;
-  bottom: -200%;
-  padding-bottom: 200px;
 }
