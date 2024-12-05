@@ -8,9 +8,11 @@ import Footer from "../../components/footer/Footer";
 
 const Readlist = () => {
   const { isSignedIn, user } = useUser();
-  const [readList, setReadList] = useState([]);
+  const [readlist, setReadlist] = useState([]);
   
   const userId = user?.id;
+  const items = readlist?.items;
+  
   console.log("This is the user id: ", userId);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const Readlist = () => {
             `${import.meta.env.VITE_API_URL}/readlists/${userId}`
           );
           console.log("😎THIS is the READ LIST PAGE response: ", response);
-          setReadList(response.data.data);
+          setReadlist(response.data.data);
         } catch (err) {
           console.error(`Failed to fetch Readlist. Error message: ${err}`);
         }
@@ -40,9 +42,9 @@ const Readlist = () => {
         <p>READLIST</p>
       </div>
       <main className={classes.contentGrid}>
-        {readList && readList.length > 0 ? (
-          readList.map((itemId, index) => (
-            <ElementCard key={index} item={itemId} />
+        {items && items.length > 0 ? (
+          items.map((item: any, index: any) => (
+            <ElementCard key={index} item={item} />
           ))
         ) : (
           <div className={classes.noReadlistMessage}>NO READLIST</div>

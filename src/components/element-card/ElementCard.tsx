@@ -6,7 +6,7 @@ import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
 import Tag from "./components/Tag";
 
-const ElementCard = ({ itemId }: any) => {
+const ElementCard = ({ item }: any) => {
   const [showPrompt, setShowPrompt] = useState(false);
   const [averageRating, setAverageRating] = useState(null);
   const [userRating, setUserRating] = useState(null);
@@ -15,23 +15,13 @@ const ElementCard = ({ itemId }: any) => {
 
   const userId = user?.id;
 
-  console.log("Those are the itemId and the userId", itemId, userId)
-
-  const fetchItem = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/ratings/item/${itemId}/average`)
-
-
-    } catch (error) {
-      console.error("Error fetching for Item", error)
-    }
-  }
+  console.log("This is the item: ", item);
 
   const fetchRatings = async () => {
     try {
       // Fetch average rating
       const avgResponse = await axios.get(
-        `${import.meta.env.VITE_API_URL}/ratings/item/${itemId}/average`
+        `${import.meta.env.VITE_API_URL}/ratings/item/${item.itemId._id}/average`
       );
       setAverageRating(avgResponse.data.averageRating);
       console.log("This is the average Rating: ", averageRating);
@@ -39,9 +29,9 @@ const ElementCard = ({ itemId }: any) => {
       // Fetch user rating
       try {
         const userResponse = await axios.get(
-          `${
-            import.meta.env.VITE_API_URL
-          }/ratings/user/${userId}/item/${itemId}`
+          `${import.meta.env.VITE_API_URL}/ratings/user/${userId}/item/${
+            item.itemId._id
+          }`
         );
         setUserRating(userResponse.data.userRating.rating);
       } catch (userErr: any) {
@@ -60,14 +50,14 @@ const ElementCard = ({ itemId }: any) => {
     if (!user) return;
 
     fetchRatings();
-  }, [user, itemId, userId]);
+  }, [user, item, userId]);
 
   const handleRatingChange = () => {
     fetchRatings();
   };
 
-  const navigateToDetails = (itemId: any) => {
-    navigate(`/details/${itemId}`);
+  const navigateToDetails = (itemId: any, type: any) => {
+    navigate(`/details/${itemId}/${type}`);
   };
 
   const openPrompt = () => {
@@ -83,19 +73,19 @@ const ElementCard = ({ itemId }: any) => {
       <div className={classes.contentContainer}>
         <div
           className={classes.coverContainer}
-          onClick={() => navigateToDetails(item._id)}
+          onClick={() => navigateToDetails(item.itemId._id, item.itemModel)}
         >
-          <img src={item.cover} alt={item.name} />
+          <img src={item.itemId.cover} alt={item.itemId.name} />
         </div>
 
         <div className={classes.title}>
-          <p>{item.name}</p>
+          <p>{item.itemId.name}</p>
         </div>
 
         <div className={classes.info}>
           <div className={classes.authorDate}>
-            <p className={classes.author}>{item.author} </p>
-            <p className={classes.year}>{item.releaseYear}</p>
+            <p className={classes.author}>{item.itemId.authorName} </p>
+            <p className={classes.year}>{item.itemId.releaseYear}</p>
           </div>
 
           <div className={classes.rating}>
@@ -127,21 +117,21 @@ const ElementCard = ({ itemId }: any) => {
         <div className={classes.buttonContainer}>
           <div>
             <button
-              onClick={() => navigateToDetails(item._id)}
+              onClick={() => navigateToDetails(item.itemId._id)}
               className={classes.elementCardButton}
             >
               Details
             </button>
           </div>
           <div className={classes.tag}>
-            {userId && <Tag userId={userId} itemId={itemId} />}
+            {userId && <Tag userId={userId} itemId={item.itemId._id} />}
           </div>
         </div>
       </div>
       {showPrompt && (
         <RatingPrompt
           onClose={closePrompt}
-          titleData={item}
+          titleData={item.itemId}
           onRatingChange={handleRatingChange}
         />
       )}
