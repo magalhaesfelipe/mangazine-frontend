@@ -4,6 +4,7 @@ import classes from "./style.module.css";
 import Searchbar from "./components/searchbar/Searchbar";
 import axios from "axios";
 import Header from "../../components/header/Header";
+import { useNavigate } from "react-router-dom";
 
 const CreateList = () => {
   const { user } = useUser();
@@ -14,6 +15,7 @@ const CreateList = () => {
     name: "",
     titles: [],
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -35,16 +37,23 @@ const CreateList = () => {
 
     // Update formData with selected titles' IDs
     const titles = selectedItems.map((item) => item._id);
+    console.log(titles);
+
     const finalFormData = { ...formData, titles };
+    console.log(finalFormData);
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/lists/create-list`,
+        `${import.meta.env.VITE_API_URL}/lists`,
         finalFormData
       );
 
+      const listId = response.data.data._id;
+      console.log("This is the reponse data: ", response);
+      console.log(response.data);
       if (response.status === 201) {
         console.log("List created successfully");
+        navigate(`/list/${listId}`);
       } else {
         console.error("Failed to create list");
       }

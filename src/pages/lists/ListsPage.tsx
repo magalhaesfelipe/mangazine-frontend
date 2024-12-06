@@ -20,9 +20,11 @@ const AllListsPage = () => {
 
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/lists/get-all-lists/${user.id}`
+          `${import.meta.env.VITE_API_URL}/lists/user/${user.id}`
         );
-        setLists(response.data.lists);
+
+        console.log('THIS IS THE RESPONSE FETCHING ALL LISTS: ', response)
+        setLists(response.data.data);
       } catch (err) {
         console.error("Error fetching lists: ", err);
       }
@@ -38,7 +40,7 @@ const AllListsPage = () => {
   const deleteList = async (listId: any) => {
     try {
       await axios.delete(
-        `${import.meta.env.VITE_API_URL}/lists/delete-list/${listId}`
+        `${import.meta.env.VITE_API_URL}/lists/${listId}`
       );
 
       // Update the lists state by removing the deleted list
@@ -61,7 +63,7 @@ const AllListsPage = () => {
         {lists.map((list, index) => (
           <div className={classes.box} onClick={() => goToList(list._id)}>
             <h3 className={classes.name}>{list.name}</h3>
-            <p>{list.titles.length} title(s) </p>
+            <p>{list.items.length} Item(s) </p>
             <div className={classes.iconContainer}>
               <i
                 className="fa-solid fa-trash"

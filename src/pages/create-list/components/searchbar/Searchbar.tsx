@@ -4,6 +4,26 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import HorizontalScrollbar from "../horizontal-scrollbar/HorizontalScrollbar";
 
+interface MangaItem {
+  _id: string;
+  name: string;
+  authorName: string;
+  releaseYear?: string;
+  cover?: string;
+  type: string;
+}
+
+interface BookItem {
+  _id: string;
+  name: string;
+  authorName: string;
+  releaseYear?: string;
+  cover?: string;
+  type: string;
+}
+
+type SearchItem = MangaItem | BookItem;
+
 interface SearchbarProps {
   placeholder: string;
   setSelectedItems: (items: any[]) => void;
@@ -21,7 +41,7 @@ const Searchbar: React.FC<SearchbarProps> = ({
   placeholder,
   setSelectedItems,
 }) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<SearchItem[]>([]);
   const [localSelectedItems, setLocalSelectedItems] = useState<Item[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -33,12 +53,23 @@ const Searchbar: React.FC<SearchbarProps> = ({
       setLoading(true);
 
       try {
-        console.log(searchedName);
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/titles/search/${searchedName}`
-        );
-        const titles = response.data.titles;
-        setItems(titles);
+        const [mangaResponse, bookResponse] = await Promise.all([
+          axios.get(`${import.meta.env.VITE_API_URL}/mangas/search/by-name/`, {
+            params: { name: searchedName },
+          }),
+          axios.get(`${import.meta.env.VITE_API_URL}/books/search/by-name/`, {
+            params: { name: searchedName },
+          }),
+        ]);
+
+        const mangaItems = mangaResponse.data.items;
+        const bookItems = bookResponse.data.items;
+
+        const combinedItems = [...mangaItems, ...bookItems];
+
+        console.log(mangaItems, bookItems, combinedItems);
+
+        setItems(combinedItems);
         setShowResults(true);
       } catch (err) {
         console.log(err);
@@ -62,7 +93,9 @@ const Searchbar: React.FC<SearchbarProps> = ({
 
   const handleClick = (item: Item) => {
     setLocalSelectedItems((prevSelectedItems) => {
-      if (!prevSelectedItems.some((selectedItem) => selectedItem._id === item._id)) {
+      if (
+        !prevSelectedItems.some((selectedItem) => selectedItem._id === item._id)
+      ) {
         const updatedSelectedItems = [...prevSelectedItems, item];
 
         // Update both local and parent state
@@ -112,7 +145,7 @@ const Searchbar: React.FC<SearchbarProps> = ({
                   <div className={classes.informationContainer}>
                     <p className={classes.name}>{item.name}</p>
                     <div className={classes.box2}>
-                      <p className={classes.author}>{item.author} </p>
+                      <p className={classes.author}>{item.authorName} </p>
                       <p className={classes.releaseYear}> {item.releaseYear}</p>
                     </div>
                   </div>

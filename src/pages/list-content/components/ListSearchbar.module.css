@@ -1,0 +1,131 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.superContainer {
+  position: relative;
+  display: block;
+  justify-content: center;
+  width: 700px;
+}
+
+.searchbar {
+  color: rgb(246, 246, 246);
+  font-size: 17px;
+  font-family: Kanit;
+  width: 300px;
+  height: 40px;
+  padding-left: 30px;
+  border-radius: 20px;
+  border: 0;
+  background-color: transparent;
+  border: solid 2.5px var(--main-color);
+  outline: none;
+}
+.searchbar::placeholder {
+  color: rgb(149, 148, 148);
+}
+
+.gridContainer {
+  position: absolute;
+  left: -20px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: auto;
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  background-color: rgba(130, 130, 130, 0.281);
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0px;
+  border-radius: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+.gridItem {
+  margin-top: 20px;
+  height: 130px;
+  width: 300px;
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  padding-right: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.gridItem:hover {
+  background-color: rgb(229, 227, 227);
+}
+
+.imgContainer {
+  height: 100%;
+  width: 90px;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.informationContainer {
+  margin-left: 20px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  display: -webkit-box;
+  display: box; /* Standard property (future-proofing) */
+  -webkit-box-orient: vertical;
+  box-orient: vertical; /* Standard property */
+  -webkit-line-clamp: 2; /* Vendor-prefixed for WebKit-based browsers */
+  line-clamp: 2; /* Standard property (not fully supported yet) */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 20px;
+  line-height: 1.1; /* Adjust line-height for a better fit */
+  color: rgb(0, 0, 0);
+  margin-bottom: 13px;
+}
+
+.box2 {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: rgba(39, 39, 39, 0.841);
+}
+
+.author {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  line-height: 15px;
+}
+
+.loading {
+  margin-top: 30px;
+  font-size: 19px;
+  color: white;
+}
+.error {
+  margin-top: 30px;
+  font-size: 19px;
+  color: white;
+}

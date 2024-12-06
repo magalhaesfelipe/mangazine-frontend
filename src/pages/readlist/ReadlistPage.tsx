@@ -22,7 +22,7 @@ const Readlist = () => {
           const response = await axios.get(
             `${import.meta.env.VITE_API_URL}/readlists/${userId}`
           );
-          console.log("😎THIS is the READ LIST PAGE response: ", response);
+          console.log("😎THIS is the READLIST PAGE response: ", response);
           setReadlist(response.data.data);
         } catch (err) {
           console.error(`Failed to fetch Readlist. Error message: ${err}`);
@@ -47,7 +47,7 @@ const Readlist = () => {
             <ElementCard key={index} item={item} />
           ))
         ) : (
-          <div className={classes.noReadlistMessage}>NO READLIST</div>
+          <div className={classes.noItemsMessage}>NO ITEMS IN THE READLIST</div>
         )}
       </main>
       <div className={classes.footerContainer}>

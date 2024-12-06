@@ -15,7 +15,6 @@ const ElementCard = ({ item }: any) => {
 
   const userId = user?.id;
 
-  console.log("This is the item: ", item);
 
   const fetchRatings = async () => {
     try {
