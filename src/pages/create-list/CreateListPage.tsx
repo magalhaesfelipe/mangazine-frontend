@@ -13,7 +13,7 @@ const CreateList = () => {
   const [formData, setFormData] = useState({
     userId: user?.id ?? "",
     name: "",
-    titles: [],
+    items: [],
   });
   const navigate = useNavigate();
 
@@ -36,11 +36,14 @@ const CreateList = () => {
     setIsUploading(true);
 
     // Update formData with selected titles' IDs
-    const titles = selectedItems.map((item) => item._id);
-    console.log(titles);
+    const items = selectedItems.map((item) => ({
+      itemId: item._id,
+      itemModel: item.type,
+    }));
+    console.log("Selected items: ", items);
 
-    const finalFormData = { ...formData, titles };
-    console.log(finalFormData);
+    const finalFormData = { ...formData, items };
+    console.log("Form data to send: ", finalFormData);
 
     try {
       const response = await axios.post(
@@ -67,7 +70,7 @@ const CreateList = () => {
       setFormData({
         userId: user.id,
         name: "",
-        titles: [],
+        items: [],
       });
 
     setSelectedItems([]); // Clear selected items
@@ -99,7 +102,7 @@ const CreateList = () => {
             <div className={classes.searchBarContainer}>
               <Searchbar
                 setSelectedItems={setSelectedItems}
-                placeholder="Search titles to add"
+                placeholder="Search Titles to add to the List"
               />
             </div>
           </form>

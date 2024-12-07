@@ -67,7 +67,7 @@ const Searchbar: React.FC<SearchbarProps> = ({
 
         const combinedItems = [...mangaItems, ...bookItems];
 
-        console.log(mangaItems, bookItems, combinedItems);
+        console.log("Those are the combined items: ", combinedItems);
 
         setItems(combinedItems);
         setShowResults(true);
@@ -91,7 +91,7 @@ const Searchbar: React.FC<SearchbarProps> = ({
 
   const debouncedHandleSearch = debounce(handleSearch, 300);
 
-  const handleClick = (item: Item) => {
+  const handleClick = (item: any) => {
     setLocalSelectedItems((prevSelectedItems) => {
       if (
         !prevSelectedItems.some((selectedItem) => selectedItem._id === item._id)
@@ -108,7 +108,6 @@ const Searchbar: React.FC<SearchbarProps> = ({
 
   return (
     <>
-      {}
       {localSelectedItems.length > 0 && (
         <div className={classes.scrollbarContainer}>
           <div className={classes.headline}>
