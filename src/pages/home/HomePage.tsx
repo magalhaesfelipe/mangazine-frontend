@@ -56,6 +56,7 @@ const Home = () => {
     <div>
       <Header />
       <main>
+      <div className="">TEST</div>
         <h1 className={classes.name}>MANGAZINE</h1>
         <h2>Your favorite reads in one place</h2>
         <div className={classes.searchBarContainer}>
