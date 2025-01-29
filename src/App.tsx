@@ -10,7 +10,6 @@ import ListsPage from "./pages/lists/ListsPage.js";
 import HomePage from "./pages/home/HomePage.js";
 import DetailsPage from "./pages/details/DetailsPage.js";
 import CreateListPage from "./pages/create-list/CreateListPage.js";
-import "./general.css";
 import ReadlistPage from "./pages/readlist/ReadlistPage.js";
 import RatingPrompt from "./components/rating-prompt/RatingPrompt.js";
 import ProtectedRoute from "./components/protected-route/ProtectedRoute.js";
@@ -23,6 +22,7 @@ import AuthorSearchBar from "./pages/create-items/forms/components/author-search
 import AuthorSection from "./pages/details/components/author-section/AuthorSection.js";
 import BookForm from "./pages/create-items/forms/book/BookForm.js";
 import AuthorForm from "./pages/create-items/forms/author/AuthorForm.js";
+import "./App.css";
 
 function App() {
   return (

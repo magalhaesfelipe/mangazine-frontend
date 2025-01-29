@@ -1,4 +1,3 @@
-import classes from "./style.module.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SignedIn, UserButton, useUser } from "@clerk/clerk-react";
@@ -56,13 +55,13 @@ const Home = () => {
     <div>
       <Header />
       <main>
-        <h1 className={classes.name}>MANGAZINE</h1>
+        <h1 className="text-7xl m-0 p-0">Welcome to Mangazine</h1>
         <h2>Your favorite reads in one place</h2>
-        <div className={classes.searchBarContainer}>
+        <div className="mt-[50px] w-[600px]">
           <Searchbar placeholder="Search" />
         </div>
       </main>
-      <div className={classes.footerContainer}>
+      <div className="mt-[30%] mb-[3%]">
         <Footer />
       </div>
     </div>
