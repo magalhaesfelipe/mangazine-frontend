@@ -21,14 +21,6 @@
   margin-left: 5%;
 }
 
-.logoContainer {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background-color: yellowgreen;
-  height: 100%;
-}
-
 .title {
   font-size: 35px;
   color: var(--main-color);

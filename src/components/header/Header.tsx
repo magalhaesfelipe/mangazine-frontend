@@ -8,9 +8,11 @@ const Header = () => {
 
   return (
     <div className={classes.menu}>
-      <NavLink to="/home" className={classes.titleLink}>
-        <div className={classes.logoContainer}>
-          <h1 className={classes.title}>MANGAZINE</h1>
+      <NavLink to="/home" className="no-underline ml-[5%]">
+        <div className="flex flex-col relative bg-yellowgreen h-full">
+          <h1 className="text-[35px] text-[var(--main-color)] font-fantasy font-light no-underlinel absolute top-[-35px]">
+            MANGAZINE
+          </h1>
           <h1 className={classes.symbol}>「心」が大事</h1>
         </div>
       </NavLink>
@@ -23,8 +25,8 @@ const Header = () => {
         {!isSignedIn && (
           <NavLink to="/auth" className={classes.link}>
             <div className={classes.iconContainer}>
-            AUTH
-            <i className="fa-regular fa-user"></i>
+              AUTH
+              <i className="fa-regular fa-user"></i>
             </div>
           </NavLink>
         )}
