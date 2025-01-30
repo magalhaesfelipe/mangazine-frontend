@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SignedIn, UserButton, useUser } from "@clerk/clerk-react";
-import Searchbar from "./components/searchbar/Searchbar";
+import Searchbar from "./components/Searchbar";
 import axios from "axios";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";

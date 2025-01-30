@@ -1,4 +1,3 @@
-import classes from "./readlistPage.module.css";
 import Header from "../../components/Header";
 import ElementCard from "../../components/element-card/ElementCard";
 import { useEffect, useState } from "react";
@@ -9,10 +8,10 @@ import Footer from "../../components/Footer";
 const Readlist = () => {
   const { isSignedIn, user } = useUser();
   const [readlist, setReadlist] = useState([]);
-  
+
   const userId = user?.id;
   const items = readlist?.items;
-  
+
   console.log("This is the user id: ", userId);
 
   useEffect(() => {
@@ -36,21 +35,28 @@ const Readlist = () => {
   }, [user]);
 
   return (
-    <div className={classes.container}>
+    <div className="flex flex-col items-center">
       <Header />
-      <div className={classes.headline}>
-        <p>READLIST</p>
+      <div className="flex justify-center mt-[15%] mb-0">
+        {" "}
+        {/* headline */}
+        <p className="text-[50px] inline text-white font-audiowide">
+          READLIST
+        </p>{" "}
+        {/* Font added */}
       </div>
-      <main className={classes.contentGrid}>
+      <main className="mt-[5%] bg-black w-[90%] grid grid-cols-4 gap-y-10 gap-x-20 justify-center">
+        {" "}
+        {/* contentGrid */}
         {items && items.length > 0 ? (
-          items.map((item: any, index: any) => (
-            <ElementCard key={index} item={item} />
-          ))
+          items.map((item, index) => <ElementCard key={index} item={item} />)
         ) : (
-          <div className={classes.noItemsMessage}>NO ITEMS IN THE READLIST</div>
+          <div className="text-white">NO ITEMS IN THE READLIST</div>
         )}
       </main>
-      <div className={classes.footerContainer}>
+      <div className="mt-[10%] mb-[3%]">
+        {" "}
+        {/* footerContainer */}
         <Footer />
       </div>
     </div>

@@ -1,9 +1,8 @@
-import classes from "./style.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
-import CreateListButton from "./components/create-button/CreateListButton";
+import CreateListButton from "./components/CreateListButton";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -23,7 +22,7 @@ const AllListsPage = () => {
           `${import.meta.env.VITE_API_URL}/lists/user/${user.id}`
         );
 
-        console.log('THIS IS THE RESPONSE FETCHING ALL LISTS: ', response)
+        console.log("THIS IS THE RESPONSE FETCHING ALL LISTS: ", response);
         setLists(response.data.data);
       } catch (err) {
         console.error("Error fetching lists: ", err);
@@ -39,9 +38,7 @@ const AllListsPage = () => {
 
   const deleteList = async (listId: any) => {
     try {
-      await axios.delete(
-        `${import.meta.env.VITE_API_URL}/lists/${listId}`
-      );
+      await axios.delete(`${import.meta.env.VITE_API_URL}/lists/${listId}`);
 
       // Update the lists state by removing the deleted list
       setLists((prevLists) => prevLists.filter((list) => list._id !== listId));
@@ -51,24 +48,38 @@ const AllListsPage = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className="flex flex-col">
       <Header />
-      <div className={classes.headline}>
-        <h1>Your Lists</h1>
+      <div className="mt-[10%] h-[100px] bg-main-color flex items-center mb-10">
+        {" "}
+        {/* headline */}
+        <h1 className="ml-[8%] text-[55px] bg-white text-black">Your Lists</h1>
       </div>
-      <div className={classes.buttonContainer}>
+      <div className="flex justify-end mr-[5%]">
+        {" "}
+        {/* buttonContainer */}
         <CreateListButton />
       </div>
-      <div className={classes.grid}>
+      <div className="grid grid-cols-3 gap-5 w-[650px] ml-[5%] mt-3 pt-5 pb-5 pr-5 pl-5">
+        {" "}
+        {/* grid */}
         {lists.map((list, index) => (
-          <div className={classes.box} onClick={() => goToList(list._id)}>
-            <h3 className={classes.name}>{list.name}</h3>
-            <p>{list.items.length} Item(s) </p>
-            <div className={classes.iconContainer}>
+          <div
+            key={index}
+            onClick={() => goToList(list._id)}
+            className="flex flex-col justify-center items-center rounded-md gap-2 bg-white p-2 cursor-pointer border-solid border-3 border-transparent hover:border-white hover:bg-zinc-800 transition-all duration-100"
+          >
+            <h3 className="font-bold line-clamp-2 overflow-hidden text-ellipsis text-sm pb-2">
+              {list.name}
+            </h3>
+            <p className="text-xs">{list.items.length} Item(s)</p>
+            <div className="flex items-center">
+              {" "}
+              {/* iconContainer - flex added */}
               <i
-                className="fa-solid fa-trash"
+                className="fa-solid fa-trash text-base border-solid border-2 border-transparent p-1 mt-1 hover:border-white"
                 onClick={(e) => {
-                  e.stopPropagation(); // Prevents triggering the parent onClick event
+                  e.stopPropagation();
                   deleteList(list._id);
                 }}
               ></i>
@@ -76,7 +87,9 @@ const AllListsPage = () => {
           </div>
         ))}
       </div>
-      <div className={classes.footerContainer}>
+      <div className="mt-[10%] mb-[3%]">
+        {" "}
+        {/* footerContainer */}
         <Footer />
       </div>
     </div>
