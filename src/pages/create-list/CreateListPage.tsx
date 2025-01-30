@@ -3,7 +3,7 @@ import { useUser } from "@clerk/clerk-react";
 import classes from "./style.module.css";
 import Searchbar from "./components/searchbar/Searchbar";
 import axios from "axios";
-import Header from "../../components/header/Header";
+import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
 
 const CreateList = () => {

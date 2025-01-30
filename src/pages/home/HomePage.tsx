@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { SignedIn, UserButton, useUser } from "@clerk/clerk-react";
 import Searchbar from "./components/searchbar/Searchbar";
 import axios from "axios";
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   const { user } = useUser();

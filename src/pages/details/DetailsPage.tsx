@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 import AdditionalInformation from "./components/additional-information/AdditionalInformation";
 import Rating from "./components/rating/Rating";
 import AddButton from "./components/add-button/AddButton";
-import Header from "../../components/header/Header";
+import Header from "../../components/Header";
 import AuthorSection from "./components/author-section/AuthorSection";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/Footer";
 
 const Details = () => {
   const { itemId, itemType } = useParams();

@@ -6,7 +6,7 @@ import ImageUploader from "./../components/image-uploader/ImageUploader";
 import MultipleImagesUploader from "../components/multiple-images-uploader/MultipleImagesUpload";
 import AuthorSearchbar from "../components/author-search/AuthorSearchbar";
 import { useNavigate } from "react-router-dom";
-import Header from "../../../../components/header/Header";
+import Header from "../../../../components/Header";
 
 const BookForm = () => {
   const [formData, setFormData] = useState({

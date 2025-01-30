@@ -4,7 +4,7 @@ import axios from "axios";
 import FormInput from "./components/form-input/FormInput";
 import ImageUploader from "../components/image-uploader/ImageUploader";
 import MultipleImagesUploader from "../components/multiple-images-uploader/MultipleImagesUpload";
-import Header from "../../../../components/header/Header";
+import Header from "../../../../components/Header";
 
 const AuthorForm = () => {
   const [formData, setFormData] = useState({

@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import CreateListButton from "./components/create-button/CreateListButton";
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const AllListsPage = () => {
   const { user } = useUser();

@@ -1,10 +1,10 @@
 import classes from "./readlistPage.module.css";
-import Header from "../../components/header/Header";
+import Header from "../../components/Header";
 import ElementCard from "../../components/element-card/ElementCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/Footer";
 
 const Readlist = () => {
   const { isSignedIn, user } = useUser();
