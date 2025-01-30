@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import classes from "./style.module.css";
-import Searchbar from "./components/searchbar/Searchbar";
+import Searchbar from "./components/Searchbar";
 import axios from "axios";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
@@ -80,12 +80,26 @@ const CreateList = () => {
   return (
     <>
       <Header />
-      <div className={classes.superContainer}>
-        <div className={classes.container}>
-          <div className={classes.title}>CREATE A NEW LIST</div>
-          <form onSubmit={handleSubmit} className={classes.form}>
-            <div className={classes.field}>
-              <label htmlFor="" className={classes.nameLabel}>
+      <div className="flex flex-col items-start justify-start h-[1200px]">
+        {" "}
+        {/* superContainer */}
+        <div className="text-white w-full h-full flex pt-[16%] flex-col items-center justify-start">
+          {" "}
+          {/* container */}
+          <div className="text-2xl font-primary">CREATE A NEW LIST</div>{" "}
+          {/* title */}
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center justify-center"
+          >
+            {" "}
+            {/* form */}
+            <div className="mt-10 font-secondary mb-2 flex flex-col items-center">
+              {" "}
+              {/* field */}
+              <label htmlFor="" className="mb-5">
+                {" "}
+                {/* nameLabel */}
                 NAME
               </label>
               <input
@@ -94,12 +108,18 @@ const CreateList = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                className="ml-2 font-secondary w-[350px] h-8 bg-white border-solid border-2 border-white rounded-md text-black outline-none" // input
               />
             </div>
-            <button type="submit" className={classes.submitButton}>
+            <button
+              type="submit"
+              className="font-secondary text-black bg-white border-solid border-2 border-black rounded-md pt-2 pb-2 pr-14 pl-14 cursor-pointer mt-5 mb-5 hover:text-white hover:border-white hover:bg-black transition-all duration-100" // submitButton
+            >
               {isUploading ? "Creating List..." : "CREATE LIST"}
             </button>
-            <div className={classes.searchBarContainer}>
+            <div className="w-full">
+              {" "}
+              {/* searchBarContainer */}
               <Searchbar
                 setSelectedItems={setSelectedItems}
                 placeholder="Search Titles to add to the List"

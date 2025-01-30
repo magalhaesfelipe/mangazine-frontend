@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 const About = () => {
   return (
     <>
-      <div className="flex items-center justify-center bg-[#5a2121]">
+      <div className="flex items-center justify-center bg-[#0c0c0c]">
         {" "}
         {/* container */}
         <Header />
