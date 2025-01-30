@@ -1,4 +1,3 @@
-import classes from "./style.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ElementCard from "../../components/element-card/ElementCard";
@@ -65,42 +64,62 @@ const ListContent = () => {
   return (
     <>
       <Header />
-      <div className={classes.container}>
+      <div className="flex flex-col items-center justify-center">
+        {" "}
+        {/* container */}
         <div
-          className={classes.headlineContainer}
+          className="h-[700px] max-h-[700px] w-full flex flex-col bg-contain items-center" // headlineContainer
           style={{
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(${
               covers[currentCoverIndex] || "./01.png"
             })`,
           }}
         >
-          <div className={classes.listName}>{list.name}</div>
-          <div className={classes.searchBarContainer}>
-            <div className={classes.textContainer}>
+          <div className="flex text-center text-white text-[60px] font-audiowide mt-[300px] w-[90%] justify-center">
+            {" "}
+            {/* listName */}
+            {list.name}
+          </div>
+          <div className="flex flex-col items-center justify-center mt-[5%] mb-10">
+            {" "}
+            {/* searchBarContainer */}
+            <div className="text-lg text-gray-400">
+              {" "}
+              {/* textContainer */}
               <p>Add a new item to your list</p>
             </div>
-            <ListSearchbar
-              placeholder="Search to add a new item"
-              onItemAdded={fetchItems}
-              listId={listId}
-            />
+            <div className="mt-10 mb-10">
+              {" "}
+              {/* Input wrapper for margin */}
+              <ListSearchbar
+                placeholder="Search to add a new item"
+                onItemAdded={fetchItems}
+                listId={listId}
+              />
+            </div>
           </div>
         </div>
         {items.length > 0 && (
-          <main className={classes.contentGrid}>
+          <main className="mt-10 w-[76%] grid grid-cols-5 gap-x-6">
+            {" "}
+            {/* contentGrid */}
             {items && items.length > 0 ? (
               items.map((item, index) => (
                 <ElementCard key={index} item={item} />
               ))
             ) : (
-              <div className={classes.noItemsMessage}>
+              <div className="text-white text-lg mb-[70%]">
+                {" "}
+                {/* noItemsMessage */}
                 NO ITEMS IN THIS LIST
               </div>
             )}
           </main>
         )}
       </div>
-      <div className={classes.footerContainer}>
+      <div className="mt-[10%] mb-[5%]">
+        {" "}
+        {/* footerContainer */}
         <Footer />
       </div>
     </>

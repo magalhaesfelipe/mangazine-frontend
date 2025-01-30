@@ -1,4 +1,3 @@
-import classes from "./ListSearchbar.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -112,35 +111,44 @@ const Searchbar: React.FC<SearchbarProps> = ({
   };
 
   return (
-    <div className={classes.container}>
+    <div className="flex flex-col items-center justify-center">
       <input
         type="text"
         placeholder={placeholder}
         onChange={debouncedHandleSearch}
-        className={classes.searchbar}
+        className="text-gray-200 text-base font-kanit w-[300px] h-10 pl-8 rounded-lg border-0 bg-transparent border-[2.5px] border-main-color outline-none placeholder:text-gray-500"
       />
-      {loading && <div className={classes.loading}> Loading...</div>}
+      {loading && <div className="mt-8 text-lg text-white">Loading...</div>}
       {showResults && !loading && (
-        <div className={classes.superContainer}>
+        <div className="relative block justify-center w-[700px]">
           <div
-            className={`${classes.gridContainer} ${
-              showResults ? "" : classes.hidden
+            className={`absolute left-[-20px] grid items-center justify-center content-center w-auto h-auto mt-8 mb-8 pt-2 pb-10 bg-white/28 grid-cols-2 gap-0 rounded-md pr-5 pl-5 ${
+              showResults ? "" : "hidden"
             }`}
           >
             {items.map((item) => (
               <div
                 key={item._id}
                 onClick={() => handleClick(item._id, item.type)}
-                className={classes.gridItem}
+                className="mt-5 h-[130px] w-[300px] flex p-2 rounded-lg pr-8 mr-2 ml-2 bg-white text-black cursor-pointer hover:bg-gray-200"
               >
-                <div className={classes.imgContainer}>
-                  <img src={item.cover} className={classes.cover} />
+                <div className="h-full w-[90px]">
+                  <img
+                    src={item.cover}
+                    className="w-full h-full rounded-md border border-transparent"
+                    alt={item.name}
+                  />{" "}
+                  {/* Added alt attribute */}
                 </div>
-                <div className={classes.informationContainer}>
-                  <p className={classes.name}>{item.name}</p>
-                  <div className={classes.box2}>
-                    <p className={classes.author}>{item.authorName} </p>
-                    <p className={classes.year}> {item.releaseYear}</p>
+                <div className="ml-5 w-[200px] flex flex-col">
+                  <p className="line-clamp-2 overflow-hidden text-ellipsis text-lg leading-[1.1] text-black mb-3">
+                    {item.name}
+                  </p>
+                  <div className="flex flex-col text-sm text-gray-600">
+                    <p className="mt-4 mb-5 w-full leading-[15px]">
+                      {item.authorName}
+                    </p>
+                    <p className="mb-5 whitespace-nowrap">{item.releaseYear}</p>
                   </div>
                 </div>
               </div>
