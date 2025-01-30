@@ -5,6 +5,7 @@ import Searchbar from "./components/Searchbar";
 import axios from "axios";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import image from '../../assets/img.png';
 
 const Home = () => {
   const { user } = useUser();
@@ -54,11 +55,11 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <main>
-        <h1 className="text-7xl m-0 p-0">Welcome to Mangazine</h1>
+      <main className={`bg-[url('${image}')] bg-cover bg-no-repeat min-h-[calc(100vh-100px)]`}>
+        <h1 className="text-7xl m-0 p-0 ">Welcome to Mangazine</h1>
         <h2>Your favorite reads in one place</h2>
-        <div className="mt-[50px] w-[600px]">
-          <Searchbar placeholder="Search" />
+        <div className="mt-[50px] w-[600px]">x``
+          <Searchbar placeholder="Search a title here" />
         </div>
       </main>
       <div className="mt-[30%] mb-[3%]">
