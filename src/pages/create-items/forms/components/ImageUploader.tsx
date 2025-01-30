@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import classes from "./ImageUploader.module.css";
 
 const ImageUploader = ({ onSelectImage, headline }: any) => {
   const [image, setImage] = useState(null);
@@ -27,27 +26,35 @@ const ImageUploader = ({ onSelectImage, headline }: any) => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className="w-[140px] relative flex flex-col ml-10">
+      {" "}
+      {/* container */}
       <p>{headline}</p>
       <div
         onClick={handleClick}
-        className={`${classes.uploadArea} ${
-          imagePreview ? classes.transparentBorder : ""
-        }`}
+        className={`w-[135px] h-[200px] border-2 border-dashed rounded-md cursor-pointer relative mt-2 ${
+          imagePreview ? "border-transparent" : ""
+        }`} // uploadArea with conditional class
       >
         {!imagePreview && (
-          <span className={classes.placeholder}>Click to upload</span>
+          <span className="text-sm text-center absolute top-[45%] left-[3%] whitespace-nowrap">
+            Click to upload
+          </span> // placeholder
         )}
         <input
           type="file"
           accept="image/png, image/jpg, image/jpeg, image/webp"
           onChange={handleImageChange}
-          className={classes.fileInput}
+          className="hidden" // fileInput
           id="fileInput"
         />
       </div>
       {imagePreview && (
-        <img src={imagePreview} alt="Image Preview" className={classes.image} />
+        <img
+          src={imagePreview}
+          alt="Image Preview"
+          className="w-full h-full rounded-md absolute" // image
+        />
       )}
     </div>
   );

@@ -1,9 +1,8 @@
-import classes from "./AuthorForm.module.css";
 import { useState } from "react";
 import axios from "axios";
-import FormInput from "./components/form-input/FormInput";
-import ImageUploader from "../components/image-uploader/ImageUploader";
-import MultipleImagesUploader from "../components/multiple-images-uploader/MultipleImagesUpload";
+import FormInput from "./components/FormInput";
+import ImageUploader from "../components/ImageUploader";
+import MultipleImagesUploader from "../components/MultipleImagesUpload";
 import Header from "../../../../components/Header";
 
 const AuthorForm = () => {
@@ -170,83 +169,82 @@ const AuthorForm = () => {
     });
   };
 
-  if (isSuccess) {
-    return (
+  {
+    isSuccess ? (
       <>
         <Header />
-        <div className={classes.isSuccess}>Author created!</div>
+        <div className="text-white text-4xl absolute top-[300px] left-[600px]">
+          Author created!
+        </div>
       </>
-    );
-  }
-
-  return (
-    <>
-      <Header />
-      <div className={classes.container}>
-        <div className={classes.secondContainer}>
-          <h2>Create a new Author</h2>
-          <form className={classes.theForm} onSubmit={handleSubmit}>
-            <div className={classes.firstHalf}>
-              <FormInput
-                label="Name"
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required={true}
-              />
-
-              <FormInput
-                label="Date of Birth"
-                type="text"
-                name="dateOfBirth"
-                value={formData.dateOfBirth}
-                onChange={handleChange}
-                required={true}
-              />
-
-              <FormInput
-                label="Place of Birth"
-                type="text"
-                name="placeOfBirth"
-                value={formData.placeOfBirth}
-                onChange={handleChange}
-                required={true}
-              />
-
-              <div>
-                <p>Bio</p>
-                <textarea
-                  name="bio"
-                  value={formData.bio}
+    ) : (
+      <>
+        <Header />
+        <div className="text-white flex flex-col items-center mt-[170px]">
+          <div className="secondContainer">
+            <h2 className="mb-20 text-3xl">Create a new Author</h2>
+            <form className="flex items-end" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-5 gap-x-5 mb-4">
+                <FormInput
+                  label="Name"
+                  type="text"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
-                  required
-                  className={classes.description}
+                  required={true}
+                />
+                <FormInput
+                  label="Date of Birth"
+                  type="text"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
+                  onChange={handleChange}
+                  required={true}
+                />
+                <FormInput
+                  label="Place of Birth"
+                  type="text"
+                  name="placeOfBirth"
+                  value={formData.placeOfBirth}
+                  onChange={handleChange}
+                  required={true}
+                />
+                <div className="col-span-2">
+                  <p>Bio</p>
+                  <textarea
+                    name="bio"
+                    value={formData.bio}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-2 border border-gray-300 rounded-md bg-white text-black"
+                  />
+                </div>
+              </div>
+              <ImageUploader
+                onSelectImage={setImageSelected}
+                headline="Photo"
+              />
+              <button
+                type="submit"
+                disabled={isUploading}
+                className="bg-green-500 flex items-center justify-center text-white px-6 py-3 m-5 ml-10 rounded-lg border border-transparent font-bold cursor-pointer hover:bg-green-700 transition-all duration-100"
+              >
+                {isUploading ? "Uploading..." : "Submit"}
+              </button>
+            </form>
+            <div className="relative mt-10 h-[200px] w-full flex justify-center items-center">
+              <div className="w-[500px] h-[280px] ml-20">
+                <MultipleImagesUploader
+                  onSelectImages={setOtherImagesSelected}
+                  headline="Other Photos"
                 />
               </div>
             </div>
-
-            <ImageUploader onSelectImage={setImageSelected} headline="Photo" />
-            <button
-              type="submit"
-              disabled={isUploading}
-              className={classes.submitButton}
-            >
-              {isUploading ? "Uploading..." : "Submit"}
-            </button>
-          </form>
-          <div className={classes.secondHalf}>
-            <div className={classes.coversUpload}>
-              <MultipleImagesUploader
-                onSelectImages={setOtherImagesSelected}
-                headline="Other Photos"
-              />
-            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default AuthorForm;

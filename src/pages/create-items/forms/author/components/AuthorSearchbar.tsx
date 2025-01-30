@@ -1,5 +1,4 @@
 import { useState } from "react";
-import classes from "./AuthorSearchbar.module.css";
 import axios from "axios";
 
 const AuthorSearchbar = () => {
@@ -40,32 +39,42 @@ const AuthorSearchbar = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className="text-white flex flex-col items-center justify-start gap-2 w-[300px] h-[200px] mt-5 ml-10">
+      {" "}
+      {/* container */}
       <p>Author</p>
-      <div className="">
+      <div>
         <input
           type="text"
           placeholder="Search author"
-          className={classes.searchbar}
+          className="w-[180px] p-2 border-none outline-none shadow-none appearance-none font-['var(--font1)'] border-b border-gray-500 text-base" // searchbar
           onChange={handleSearch}
         />
-        {loading && <div className={classes.loading}> Loading...</div>}
+        {loading && <div className="text-white">Loading...</div>}{" "}
+        {/* loading */}
         {showResults && !loading && (
-          <div className={classes.grid}>
-            {authors.map((author: any) => (
-              <div key={author._id} className={classes.gridItem}>
+          <div className="bg-white text-black pt-2">
+            {" "}
+            {/* grid */}
+            {authors.map((author) => (
+              <div
+                key={author._id}
+                className="p-1 mb-2 hover:bg-black hover:text-white cursor-pointer"
+              >
+                {" "}
+                {/* gridItem */}
                 <p>{author.name}</p>
               </div>
             ))}
           </div>
         )}
-        { 
-          showResults && authors.length === 0 && (
-            <p className={classes.noResults}>No Results</p>
-          )  
-        }
+        {showResults && authors.length === 0 && (
+          <p className="bg-white text-black text-sm">No Results</p> // noResults
+        )}
       </div>
-      <button>Create new author</button>
+      <button className="mt-5 p-2 rounded-md border-0 cursor-pointer font-['var(--font1)'] font-bold">
+        Create new author
+      </button>
     </div>
   );
 };

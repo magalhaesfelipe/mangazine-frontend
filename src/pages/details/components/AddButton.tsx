@@ -1,8 +1,7 @@
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
-import classess from "./AddButton.module.css";
 import { useEffect, useState } from "react";
-import Prompt from "../prompt/Prompt";
+import Prompt from "./prompt/Prompt";
 import { useNavigate } from "react-router-dom";
 
 const AddButton = ({ titleData }) => {
@@ -19,9 +18,7 @@ const AddButton = ({ titleData }) => {
     if (!userId || !titleId) return;
     try {
       const response = await axios.get(
-        `${
-          import.meta.env.VITE_API_URL
-        }/readlists/${userId}/item/${titleId}`
+        `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`
       );
       console.log(response);
       setTitleExists(response.data.exists);
@@ -40,9 +37,7 @@ const AddButton = ({ titleData }) => {
     if (titleExists) {
       try {
         const response = await axios.delete(
-          `${
-            import.meta.env.VITE_API_URL
-          }/readlists/${userId}/item/${titleId}`
+          `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`
         );
         console.log(
           "This is the response of removing item from the readlist",
@@ -55,9 +50,7 @@ const AddButton = ({ titleData }) => {
     } else {
       try {
         const response = await axios.patch(
-          `${
-            import.meta.env.VITE_API_URL
-          }/readlists/${userId}/item/${titleId}`
+          `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`
         );
         console.log(response);
         // After adding/removing the item, re-check if it exists in the readlist
@@ -80,33 +73,44 @@ const AddButton = ({ titleData }) => {
     checkItemExistsInReadlist();
   }, [userId, titleId]);
 
-  if (userId && !titleExists) {
-    <div> ...Loading </div>;
+  {
+    userId && !titleExists && <div>Loading...</div>;
+  }
+  {
+    /* Loading condition */
   }
 
-  return (
-    <div className={classess.container}>
-      <button onClick={handleAddOrRemove} className={classess.button1}>
-        {titleExists ? (
-          <div>
-            <i className="fa-solid fa-check"></i>
-            In Readlist
-          </div>
-        ) : (
-          <div>
-            <i className="fa-solid fa-plus"></i>
-            Add to Readlist
-          </div>
-        )}
-      </button>
-      <button onClick={handleButton2Click} className={classess.button2}>
-        <div>
-          <i className="fa-solid fa-angle-down"></i>
+  <div className="flex justify-end">
+    {" "}
+    {/* container */}
+    <button
+      onClick={handleAddOrRemove}
+      className="pl-4 pr-5 py-2 text-lg rounded-l-[25px] bg-main-color text-black font-impact border-0 border-r-4 border-black whitespace-nowrap hover:bg-black hover:text-white hover:border hover:border-white transition-all duration-200" // button1
+    >
+      {titleExists ? (
+        <div className="flex items-center">
+          {" "}
+          {/* Added flex for icon and text alignment */}
+          <i className="fa-solid fa-check mr-4"></i> {/* Added margin-right */}
+          In Readlist
         </div>
-      </button>
-      {showPrompt && <Prompt onClose={handleClose} titleData={titleData} />}
-    </div>
-  );
+      ) : (
+        <div className="flex items-center">
+          {" "}
+          {/* Added flex for icon and text alignment */}
+          <i className="fa-solid fa-plus mr-4"></i> {/* Added margin-right */}
+          Add to Readlist
+        </div>
+      )}
+    </button>
+    <button
+      onClick={handleButton2Click}
+      className="pl-3 pr-3 ml-0 text-lg rounded-r-[25px] bg-main-color text-black font-impact border-0 hover:bg-black hover:text-white hover:border hover:border-white transition-all duration-200" // button2
+    >
+      <i className="fa-solid fa-angle-down"></i>
+    </button>
+    {showPrompt && <Prompt onClose={handleClose} titleData={titleData} />}
+  </div>;
 };
 
 export default AddButton;

@@ -1,10 +1,9 @@
-import classes from "./BookForm.module.css";
 import { useState } from "react";
 import axios from "axios";
-import FormInput from "./components/form-input/FormInput";
-import ImageUploader from "./../components/image-uploader/ImageUploader";
-import MultipleImagesUploader from "../components/multiple-images-uploader/MultipleImagesUpload";
-import AuthorSearchbar from "../components/author-search/AuthorSearchbar";
+import FormInput from "./components/FormInput";
+import ImageUploader from "../components/ImageUploader";
+import MultipleImagesUploader from "../components/MultipleImagesUpload";
+import AuthorSearchbar from "../components/AuthorSearchbar";
 import { useNavigate } from "react-router-dom";
 import Header from "../../../../components/Header";
 
@@ -193,18 +192,26 @@ const BookForm = () => {
     "Dystopian",
     "Political",
     "Fable",
-    "Urban Fiction"
+    "Urban Fiction",
   ];
 
   return (
     <>
       <Header />
-
-      <div className={classes.container}>
-        <div className={classes.secondContainer}>
-          <h2>Create a New Book</h2>
-          <form className={classes.theForm} onSubmit={handleSubmit}>
-            <div className={classes.firstHalf}>
+      <div className="text-white flex flex-col items-center ml-5 mr-5">
+        {" "}
+        {/* container */}
+        <div className="secondContainer">
+          <h2 className="mb-16 mt-20 text-3xl font-secondary">
+            Create a New Book
+          </h2>{" "}
+          {/* h2 */}
+          <form className="flex items-baseline" onSubmit={handleSubmit}>
+            {" "}
+            {/* theForm */}
+            <div className="grid grid-cols-5 gap-x-5 mb-4">
+              {" "}
+              {/* firstHalf */}
               <FormInput
                 label="Name"
                 type="text"
@@ -229,7 +236,6 @@ const BookForm = () => {
                 onChange={handleChange}
                 required={true}
               />
-
               <FormInput
                 label="Pages"
                 type="number"
@@ -246,38 +252,44 @@ const BookForm = () => {
                 onChange={handleChange}
                 required={false}
               />
-
-              <div>
+              <div className="col-span-2">
+                {" "}
+                {/* Description */}
                 <p>Description</p>
                 <textarea
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   required
-                  className={classes.description}
+                  className="w-full p-2 border border-gray-300 rounded-md bg-white text-black" // description
                 />
               </div>
             </div>
-
             <ImageUploader onSelectImage={setCoverSelected} headline="Cover" />
             <AuthorSearchbar onSelectAuthor={setAuthorSelected} />
             <button
               type="submit"
               disabled={isUploading}
-              className={classes.submitButton}
+              className="bg-green-500 flex items-center justify-center text-white px-6 py-3 ml-10 rounded-lg border border-transparent font-bold cursor-pointer hover:bg-green-700 transition-all duration-100" // submitButton
             >
               {isUploading ? "Uploading..." : "Submit"}
             </button>
           </form>
-          <div className={classes.secondHalf}>
-            <div className={classes.coversUpload}>
+          <div className="relative mt-24 h-[350px] w-full flex flex-row items-start justify-center pb-[200px]">
+            {" "}
+            {/* secondHalf */}
+            <div className="w-[500px] h-[280px] ml-2">
+              {" "}
+              {/* coversUpload */}
               <MultipleImagesUploader
                 onSelectImages={setOtherCoversSelected}
                 headline={"Other covers"}
               />
             </div>
-            <div className={classes.genreContainer}>
-              <p>Genre</p>
+            <div className="ml-[300px] mr-5">
+              {" "}
+              {/* genreContainer */}
+              <p className="mb-2">Genre</p>
               <select
                 name="genre"
                 multiple
@@ -295,9 +307,8 @@ const BookForm = () => {
                     ...prevData,
                     genre: uniqueGenres,
                   }));
-                  console.log(formData.genre);
                 }}
-                className={classes.genreSelect}
+                className="w-full p-2 border border-gray-300 rounded-md bg-white text-black" // genreSelect
               >
                 {genreOptions.map((genre, index) => (
                   <option key={index} value={genre}>
@@ -305,29 +316,38 @@ const BookForm = () => {
                   </option>
                 ))}
               </select>
-
-              <div className={classes.selectedGenres}>
+              <div className="mt-4">
+                {" "}
+                {/* selectedGenres */}
                 {formData.genre.length > 0 && (
-                  <p className={classes.message}>Selected Genres:</p>
+                  <p className="mb-2">Selected Genres:</p>
                 )}
-                <div className={classes.blockContainer}>
+                <div className="grid grid-cols-2 gap-x-4">
+                  {" "}
+                  {/* blockContainer */}
                   {formData.genre.map((genre, index) => (
-                    <div className={classes.genreTagContainer}>
-                      <p key={index} className={classes.genreName}>
-                        {genre}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setFormData((prevData) => ({
-                            ...prevData,
-                            genre: prevData.genre.filter((g) => g !== genre),
-                          }));
-                        }}
-                        className={classes.removeGenreButton}
-                      >
-                        &times;
-                      </button>
+                    <div key={index} className="flex flex-col">
+                      {" "}
+                      {/* genreTagContainer */}
+                      <div className="flex items-center">
+                        {" "}
+                        {/* Use flexbox for alignment */}
+                        <p className="border border-gray-300 rounded-md px-2 py-1 mr-2 text-sm">
+                          {genre} {/* genreName */}
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setFormData((prevData) => ({
+                              ...prevData,
+                              genre: prevData.genre.filter((g) => g !== genre),
+                            }));
+                          }}
+                          className="text-white bg-black rounded-full h-4 w-4 flex items-center justify-center cursor-pointer" // removeGenreButton
+                        >
+                          &times;
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>

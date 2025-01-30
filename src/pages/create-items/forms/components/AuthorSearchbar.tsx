@@ -1,5 +1,4 @@
 import { useState } from "react";
-import classes from "./AuthorSearchbar.module.css";
 import axios from "axios";
 
 const AuthorSearchbar = ({ onSelectAuthor }: any) => {
@@ -58,39 +57,47 @@ const AuthorSearchbar = ({ onSelectAuthor }: any) => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className="text-white flex flex-col items-center gap-2 w-full ml-5">
+      {" "}
+      {/* container */}
       <p>Author</p>
       <input
         type="text"
         placeholder="Search author"
-        className={classes.searchbar}
+        className="w-[200px] p-2 rounded-md box-border border-none outline-none shadow-none appearance-none font-['var(--font1)'] border-b border-gray-500 text-base" // searchbar
         value={searchQuery}
         onChange={handleSearch}
       />
-      {loading && <div className={classes.loading}> Loading...</div>}
+      {loading && <div className="text-white">Loading...</div>} {/* loading */}
       {showResults && authors && (
-        <div className={classes.grid}>
+        <div className="bg-white text-black pt-2">
+          {" "}
+          {/* grid */}
           {authors.length > 0 ? (
             authors.map((author) => (
               <div
                 key={author._id}
-                className={classes.gridItem}
+                className="p-1 mb-2 hover:bg-black hover:text-white cursor-pointer" // gridItem
                 onClick={() => handleClick(author._id, author.name)}
               >
                 <p>{author.name}</p>
               </div>
             ))
           ) : (
-            <p className={classes.noResults}>No Results</p>
+            <p className="text-sm">No Results</p> // noResults
           )}
         </div>
       )}
       {authorSelected && (
-        <div className={classes.authorSelected}>
+        <div className="p-4 bg-black border-solid border-4 border-white rounded-lg mt-2 font-['var(--font1)']">
+          {" "}
+          {/* authorSelected */}
           <p>{authorSelected}</p>
         </div>
       )}
-      <button>Create new author</button>
+      <button className="mt-5 p-2 rounded-md border-2 border-transparent cursor-pointer font-['var(--font1)'] font-bold hover:bg-black hover:text-white hover:border-white transition-all duration-200">
+        Create new author
+      </button>
     </div>
   );
 };

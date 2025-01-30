@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import RatingPrompt from "../../../../components/RatingPrompt";
-import classes from "./Rating.module.css";
+import RatingPrompt from "../../../components/RatingPrompt";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
 
@@ -53,27 +52,40 @@ const Rating = ({ titleData }: any) => {
 
   return (
     <>
-      <div className={classes.rating}>
-        <p className={classes.type}>OVERALL RATING</p>
-        <div className={classes.score}>
-          <i className={`fa-solid fa-star ${classes.fullStar}`}></i>
-          <p>{averageRating ? averageRating.toFixed(1) : "N/A"}/10</p>
+      <div className="flex flex-col mr-5 items-center whitespace-nowrap">
+        {" "}
+        {/* rating */}
+        <p className="text-sm font-bold text-white mb-2">OVERALL RATING</p>{" "}
+        {/* type */}
+        <div className="flex items-baseline">
+          {" "}
+          {/* score */}
+          <i className="fa-solid fa-star text-2xl text-yellow-400 mr-1"></i>{" "}
+          {/* fullStar */}
+          <p className="font-bebas-neue text-2xl">
+            {averageRating ? averageRating.toFixed(1) : "N/A"}/10
+          </p>
         </div>
       </div>
-      <div>
-        <div className={classes.rating}>
-          <p className={classes.type}>YOUR RATING</p>
-          <div className={classes.score}>
-            <i
-              className={
-                userRating
-                  ? `fa-solid fa-star ${classes.userStar}`
-                  : `fa-regular fa-star ${classes.userStar}`
-              }
-              onClick={openPrompt}
-            ></i>
-            <p>{userRating ? `${Math.round(userRating)}/10` : "Rate"}</p>
-          </div>
+      <div className="flex flex-col mr-5 items-center whitespace-nowrap">
+        {" "}
+        {/* rating */}
+        <p className="text-sm font-bold text-white mb-2">YOUR RATING</p>{" "}
+        {/* type */}
+        <div className="flex items-baseline">
+          {" "}
+          {/* score */}
+          <i
+            className={`fa-solid fa-star text-2xl ${
+              userRating
+                ? "text-main-color cursor-pointer"
+                : "text-gray-500 cursor-pointer"
+            }`} // userStar with conditional class
+            onClick={openPrompt}
+          ></i>
+          <p className="font-bebas-neue text-2xl">
+            {userRating ? `${Math.round(userRating)}/10` : "Rate"}
+          </p>
         </div>
         {showPrompt && (
           <RatingPrompt

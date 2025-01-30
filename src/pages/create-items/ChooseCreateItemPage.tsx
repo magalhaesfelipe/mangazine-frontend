@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import classes from "./ChooseCreateItemPage.module.css";
 
 const CreateItemPage = () => {
   const navigate = useNavigate();
@@ -21,16 +20,28 @@ const CreateItemPage = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-[70%] flex flex-col items-center">
+      {" "}
+      {/* container */}
       <div>
-        <h2 className={classes.title}>Select what to create:</h2>
-        <div className={classes.item} onClick={() => handleClick("manga")}>
+        <h2 className="text-white mb-12 text-2xl">Select what to create:</h2>{" "}
+        {/* title */}
+        <div
+          className="bg-black text-white m-5 p-3 border-solid border-2 border-white hover:bg-white hover:text-black cursor-pointer transition-all duration-100" // item
+          onClick={() => handleClick("manga")}
+        >
           Manga
         </div>
-        <div className={classes.item} onClick={() => handleClick("book")}>
+        <div
+          className="bg-black text-white m-5 p-3 border-solid border-2 border-white hover:bg-white hover:text-black cursor-pointer transition-all duration-100" // item
+          onClick={() => handleClick("book")}
+        >
           Book
         </div>
-        <div className={classes.item} onClick={() => handleClick("author")}>
+        <div
+          className="bg-black text-white m-5 p-3 border-solid border-2 border-white hover:bg-white hover:text-black cursor-pointer transition-all duration-100" // item
+          onClick={() => handleClick("author")}
+        >
           Author
         </div>
       </div>
