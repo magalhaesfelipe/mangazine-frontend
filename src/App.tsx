@@ -11,7 +11,7 @@ import HomePage from "./pages/home/HomePage.js";
 import DetailsPage from "./pages/details/DetailsPage.js";
 import CreateListPage from "./pages/create-list/CreateListPage.js";
 import ReadlistPage from "./pages/readlist/ReadlistPage.js";
-import RatingPrompt from "./components/rating-prompt/RatingPrompt.js";
+import RatingPrompt from "./components/RatingPrompt.js";
 import ProtectedRoute from "./components/ProtectedRoute.js";
 import AboutPage from "./pages/about/AboutPage.js";
 import AdminRoute from "./components/AdminRoute.js";

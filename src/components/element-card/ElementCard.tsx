@@ -1,7 +1,7 @@
 import classes from "./style.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RatingPrompt from "../rating-prompt/RatingPrompt";
+import RatingPrompt from "../RatingPrompt";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
 import Tag from "./components/Tag";

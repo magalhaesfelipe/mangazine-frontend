@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RatingPrompt from "../../../../components/rating-prompt/RatingPrompt";
+import RatingPrompt from "../../../../components/RatingPrompt";
 import classes from "./Rating.module.css";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
