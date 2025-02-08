@@ -17,11 +17,11 @@ export const Auth = () => {
         <Header />
         <SignedOut>
           <div className="absolute top-90 flex items-center justify-center flex-col">
-            <div className="cursor-pointer p-2 border-2 flex flex-col items-center justify-center text-white m-2 w-[250px]">
-              <SignInButton mode="modal" />
+            <div className="cursor-pointer p-2  border-1 flex flex-col items-center justify-center text-white m-2 w-[250px]">
+              <SignInButton mode="modal" className="cursor-pointer" />
             </div>
-            <div className="cursor-pointer p-2 border-2 flex flex-col items-center justify-center text-white m-2 w-[250px]">
-              <SignUpButton mode="modal" />
+            <div className="cursor-pointer p-2 border-1 flex flex-col items-center justify-center text-white m-2 w-[250px]">
+              <SignUpButton mode="modal" className="cursor-pointer" />
             </div>
           </div>
         </SignedOut>
