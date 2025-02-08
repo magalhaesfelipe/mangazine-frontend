@@ -4,11 +4,11 @@ import Header from "../../components/Header";
 const About = () => {
   return (
     <>
-      <div className="flex items-center justify-center bg-[#0c0c0c]">
+      <Header />
+      <div className="flex items-center justify-center">
         {" "}
         {/* container */}
-        <Header />
-        <div className="container2">
+        <div>
           {" "}
           {/* No Tailwind class for container2, might be unnecessary */}
           <main className="mt-[180px] w-[676px] text-gray-300 leading-[1.5] flex flex-col">
@@ -16,7 +16,7 @@ const About = () => {
             {/* text */}
             <h1 className="mb-10 text-4xl font-bold">ABOUT MANGAZINE</h1>{" "}
             {/* headline */}
-            <p className="font-['var(--font1)'] text-lg font-normal">
+            <p className="font-sans text-lg font-light">
               {" "}
               {/* text p */}
               Welcome to <strong className="font-bold">MANGAZINE</strong>, your
@@ -35,7 +35,7 @@ const About = () => {
               {" "}
               {/* box */}
               <h2 className="mb-5 text-2xl font-bold">What We Offer</h2>
-              <p className="font-['var(--font1)'] text-lg font-normal">
+              <p className="font-sans text-lg font-light">
                 {" "}
                 {/* text p */}
                 <strong className="font-bold">
@@ -45,28 +45,28 @@ const About = () => {
                 materials including mangas, comics, manhwa, books, and
                 magazines.
               </p>
-              <p className="font-['var(--font1)'] text-lg font-normal mt-5">
+              <p className="font-sans text-lg font-light mt-5">
                 {" "}
                 {/* text p with margin */}
                 <strong className="font-bold">• Readlist:</strong> Keep track of
                 what you’re reading with our intuitive readlist feature. Never
                 lose your place in a story again.
               </p>
-              <p className="font-['var(--font1)'] text-lg font-normal mt-5">
+              <p className="  text-lg font-light mt-5">
                 {" "}
                 {/* text p with margin */}
                 <strong className="font-bold">• Custom Lists:</strong> Create
                 and manage your own lists based on your preferences. Organize
                 your reading journey the way you want.
               </p>
-              <p className="font-['var(--font1)'] text-lg font-normal mt-5">
+              <p className="font-sans text-lg font-light mt-5">
                 {" "}
                 {/* text p with margin */}
                 <strong className="font-bold">• Rating System:</strong> Rate the
                 titles you’ve read and see what others think. Your ratings help
                 others discover great reads.
               </p>
-              <p className="font-['var(--font1)'] text-lg font-normal mt-5">
+              <p className="font-sans text-lg font-light mt-5">
                 {" "}
                 {/* text p with margin */}
                 <strong className="font-bold">• Top Rankings:</strong> Check out
@@ -78,7 +78,7 @@ const About = () => {
               {" "}
               {/* box */}
               <h2 className="mb-5 text-2xl font-bold">Our Mission</h2>
-              <p className="font-['var(--font1)'] text-lg font-normal">
+              <p className="font-sans font-light text-lg ">
                 {" "}
                 {/* text p */}
                 At Mangazine, we believe in the power of stories to bring people
@@ -92,7 +92,7 @@ const About = () => {
             <div className="mt-10">
               {" "}
               {/* box */}
-              <p className="font-['var(--font1)'] text-lg font-normal">
+              <p className="font-light text-lg">
                 {" "}
                 {/* text p */}
                 Join us at Mangazine and embark on a journey through the
@@ -102,12 +102,9 @@ const About = () => {
             </div>
           </main>
         </div>
-        <div className="mt-7 mb-3">
-          {" "}
-          {/* footerContainer */}
-          <Footer />
-        </div>
+        <div className="mt-7 mb-3"> {/* footerContainer */}</div>
       </div>
+      <Footer />
     </>
   );
 };
