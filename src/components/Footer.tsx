@@ -9,7 +9,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="flex items-center justify-center hover:cursor-pointer">
+    <div className="mt-20 mb-10 flex items-center justify-center hover:cursor-pointer">
       <div>
         <p
           onClick={handleContactClick}

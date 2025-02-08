@@ -19,90 +19,58 @@ const About = () => {
             <p className="font-sans text-lg font-light">
               {" "}
               {/* text p */}
-              Welcome to <strong className="font-bold">MANGAZINE</strong>, your
-              ultimate destination for discovering and keeping track of
-              everything you love to read. Whether you’re into{" "}
-              <strong className="font-bold">mangas</strong>,{" "}
-              <strong className="font-bold">comics</strong>,{" "}
-              <strong className="font-bold">books</strong>,{" "}
-              <strong className="font-bold">manhwa</strong>, or{" "}
-              <strong className="font-bold">magazines</strong>, we’ve got you
-              covered. At Mangazine, our goal is to be a comprehensive source of
-              information, connect people through culture, and share amazing
-              works from diverse authors around the world.
+              <strong className="font-bold">MANGAZINE</strong> is a platform for
+              readers who would like to keep track of what they are reading.
+              from <strong className="font-bold">books</strong>, to{" "}
+              <strong className="font-bold">graphic novels</strong>,{" "}
+              <strong className="font-bold">manga</strong> and{" "}
+              <strong className="font-bold">comics</strong>. The whole app is
+              open source, you can check all the code on GitHub. It's a solo
+              project, and so far the focus has been on books. But soon there
+              will be content about other media such as manga and graphic
+              novels.
             </p>
             <div className="mt-10">
-              {" "}
-              {/* box */}
-              <h2 className="mb-5 text-2xl font-bold">What We Offer</h2>
+              <h2 className="mb-5 text-2xl font-bold">Features</h2>
               <p className="font-sans text-lg font-light">
-                {" "}
-                {/* text p */}
-                <strong className="font-bold">
-                  • Extensive Database:
-                </strong>{" "}
-                Explore detailed information about a wide range of reading
-                materials including mangas, comics, manhwa, books, and
-                magazines.
+                <strong className="font-bold">• Titles Search: </strong>
+                Quick search for reading material.
               </p>
               <p className="font-sans text-lg font-light mt-5">
-                {" "}
-                {/* text p with margin */}
-                <strong className="font-bold">• Readlist:</strong> Keep track of
-                what you’re reading with our intuitive readlist feature. Never
-                lose your place in a story again.
+                <strong className="font-bold">• Readlist:</strong> Quickly add
+                or remove titles from your readlist.
               </p>
               <p className="  text-lg font-light mt-5">
-                {" "}
-                {/* text p with margin */}
                 <strong className="font-bold">• Custom Lists:</strong> Create
-                and manage your own lists based on your preferences. Organize
-                your reading journey the way you want.
+                and manage personalized lists.
               </p>
               <p className="font-sans text-lg font-light mt-5">
-                {" "}
-                {/* text p with margin */}
-                <strong className="font-bold">• Rating System:</strong> Rate the
-                titles you’ve read and see what others think. Your ratings help
-                others discover great reads.
+                <strong className="font-bold">• Rating System: </strong>
+                Rate titles from 1 to 10 and also check their average rating.
               </p>
               <p className="font-sans text-lg font-light mt-5">
-                {" "}
-                {/* text p with margin */}
-                <strong className="font-bold">• Top Rankings:</strong> Check out
-                the top 100 best-ranked titles overall, or filter by category to
-                find the best mangas, books, comics, and more.
+                <strong className="font-bold">• Alternative Covers: </strong>A
+                section with alternative covers(if any) on the Details page.
+              </p>
+              <p className="font-sans text-lg font-light mt-5">
+                <strong className="font-bold">• Author Section: </strong>A
+                section with information about the Author, that also includes
+                photos of him/she(if any) on the Details page.
               </p>
             </div>
             <div className="mt-10">
-              {" "}
-              {/* box */}
-              <h2 className="mb-5 text-2xl font-bold">Our Mission</h2>
+              <h2 className="mb-5 text-2xl font-bold">
+                About the Platform so Far
+              </h2>
               <p className="font-sans font-light text-lg ">
-                {" "}
-                {/* text p */}
-                At Mangazine, we believe in the power of stories to bring people
-                together. Our mission is to be a trusted source of information,
-                fostering a community where readers can connect, share, and
-                celebrate the culture of reading. We strive to highlight and
-                share the incredible works of authors from various backgrounds,
-                giving them a platform to reach a wider audience.
-              </p>
-            </div>
-            <div className="mt-10">
-              {" "}
-              {/* box */}
-              <p className="font-light text-lg">
-                {" "}
-                {/* text p */}
-                Join us at Mangazine and embark on a journey through the
-                wonderful world of reading. Discover, track, and share your love
-                for stories with a community that celebrates art and writing.
+                Initially, the site was designed to have its own database
+                storing data about these reading media. However, as it is a solo
+                project, it would take a lot of time to manually add new titles
+                and make
               </p>
             </div>
           </main>
         </div>
-        <div className="mt-7 mb-3"> {/* footerContainer */}</div>
       </div>
       <Footer />
     </>
