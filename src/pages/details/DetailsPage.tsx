@@ -59,9 +59,9 @@ const Details = () => {
   return (
     <>
       <Header />
-      <div className="bg-amber-500 p-5 mt-40 pb-32 font-raleway text-white flex flex-col items-center relative z-10">
+      <div className="p-5 mt-40 pb-32 font-raleway text-white flex flex-col items-center relative z-10">
         <div className="w-[90%] flex bg-amber-900">
-          <div className="h-[350px] w-[300px] rounded-md flex-shrink-0">
+          <div className="h-[350px] w-[300px] rounded-md flex-shrink-0 mr-10">
             <img
               src={titleData.cover}
               alt={titleData.name}
@@ -69,15 +69,15 @@ const Details = () => {
             />
           </div>
           <div className="w-full pl-4 pr-4">
-            <div className="flex relative">
+            <div className="flex">
               <div>
                 <h1 className="text-5xl font-bold">{titleData.name}</h1>
               </div>
-              <div className="flex gap-10 absolute right-[12%]">
+              <div className="flex gap-10 ml-110">
                 <Rating titleData={titleData} />
               </div>
             </div>
-            <div className="mt-8">
+            <div className="mt-15">
               <p className="font-serif font-extralight leading-relaxed ">
                 {titleData.description}
               </p>
@@ -90,9 +90,7 @@ const Details = () => {
                   <h3 className="text-2xl">{titleData.authorName}</h3>
                 </div>
                 <div className="inline-flex">
-                  <h3 className="text-2xl text-gray-400 mr-2">
-                    Released
-                  </h3>
+                  <h3 className="text-2xl text-gray-400 mr-2">Released</h3>
                   <h3 className="text-2xl">{titleData.releaseYear}</h3>
                 </div>
               </div>

@@ -23,6 +23,7 @@ import AuthorSection from "./pages/details/components/AuthorSection.js";
 import BookForm from "./pages/create-items/forms/book/BookForm.js";
 import AuthorForm from "./pages/create-items/forms/author/AuthorForm.js";
 import "./App.css";
+import StarRate from "./components/StarRate.js";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
 
           <Route path="/search-author" element={<AuthorSearchBar />} />
           <Route path="/authorsec" element={<AuthorSection />} />
+          <Route path="star" element={<StarRate />} />
 
           <Route
             path="/readlist"
