@@ -5,7 +5,7 @@ import Searchbar from "./components/Searchbar";
 import axios from "axios";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import image from '../../assets/img.png';
+import image from "../../assets/img.png";
 
 const Home = () => {
   const { user } = useUser();
@@ -52,20 +52,38 @@ const Home = () => {
     }
   }, [user]);
 
+  /* 
+This sets a background image in the div element
+<div
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "",
+        backgroundRepeat: "no-repeat",
+        minHeight: "calc(100vh - 100px)",
+      }}
+    >
+*/
+
   return (
-    <div>
+    <>
       <Header />
-      <main className={`bg-[url('${image}')] bg-cover bg-no-repeat min-h-[calc(100vh-100px)]`}>
-        <h1 className="text-7xl m-0 p-0 ">Welcome to Mangazine</h1>
-        <h2>Your favorite reads in one place</h2>
-        <div className="mt-[50px] w-[600px]">x``
-          <Searchbar placeholder="Search a title here" />
-        </div>
-      </main>
-      <div className="mt-[30%] mb-[3%]">
+      <div className="flex justify-center items-center">
+        <main className="flex flex-col mt-10 justify-center items-center">
+          <h1 className="text-5xl mb-10 p-0 text-gray-400 font-sans font-light">
+            WELCOME
+          </h1>
+          <div className="">
+            <Searchbar placeholder="Search titles here" />
+          </div>
+        </main>
+        <div className="mt-[30%] mb-[3%]"></div>
+      </div>
+      <div className="flex flex-col mt-70">
+        {" "}
+        <div className="flex-grow"></div>
         <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

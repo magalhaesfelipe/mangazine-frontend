@@ -13,13 +13,6 @@ body {
   padding: 0;
 }
 
-.home-background {
-  background-image: url('./assets/img.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: calc(100vh - 100px);
-}
-
 /* General scrollbar styles for WebKit browsers */
 
 /* Width of the scrollbar */

@@ -86,7 +86,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center m-0 p-0">
       <input
         type="text"
         placeholder={placeholder}
