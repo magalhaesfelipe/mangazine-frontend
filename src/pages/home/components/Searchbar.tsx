@@ -105,9 +105,9 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
               <div
                 key={item._id}
                 onClick={() => handleClick(item._id, item.type)}
-                className="mt-5 h-[130px] w-[300px] flex p-2 rounded-lg pr-8 mr-2 ml-2 bg-white text-black cursor-pointer hover:bg-gray-200"
+                className="mt-5 w-96 flex p-2 rounded-lg pr-8 mr-2 ml-2 bg-white text-black cursor-pointer hover:bg-gray-200"
               >
-                <div className="h-full w-[90px]">
+                <div className="h-full w-30">
                   <img
                     src={item.cover}
                     className="w-full h-full rounded-md border border-transparent"
@@ -115,15 +115,15 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
                   />{" "}
                   {/* Added alt attribute */}
                 </div>
-                <div className="ml-5 w-[200px] flex flex-col">
-                  <p className="line-clamp-2 overflow-hidden text-ellipsis text-lg leading-[1.1] text-black mb-3">
+                <div className="ml-5 mr-4 w-[200px] flex flex-col">
+                  <p className="text-ellipsis text-lg font-bold  text-black mb-3">
                     {item.name}
                   </p>
                   <div className="flex flex-col text-sm text-gray-600">
-                    <p className="mt-4 mb-5 w-full leading-[15px]">
+                    <p className="mt-5 mb-2">
                       {item.authorName}
                     </p>
-                    <p className="mb-5 whitespace-nowrap">{item.releaseYear}</p>
+                    <p className="whitespace-nowrap">{item.releaseYear}</p>
                   </div>
                 </div>
               </div>
