@@ -42,7 +42,6 @@ const Details = () => {
           }
         );
         setTitleData(response.data.data);
-        console.log(response.data);
       } catch (err) {
         console.error("ERROR:", err);
       }
@@ -97,14 +96,27 @@ const Details = () => {
               <div className="absolute right-[10%] z-10">
                 <AddButton titleData={titleData} />
               </div>
+              
             </div>
+            <div className="pl-1">
+        <div className="flex mt-2 mb-4 items-center gap-2 font-impact font-light tracking-wide">
+          {titleData?.genre?.map((genre, index) => (
+            <p
+              key={index}
+              className="text-sm border-1 rounded-[18px] px-6 py-2 text-white"
+            >
+              {genre}
+            </p>
+          ))}
+        </div>
+      </div>
           </div>
         </div>
-        <div className="w-[90%] flex flex-col mt-8 mb-8">
+        <div className="w-[90%] flex flex-col mt-30 mb-8">
           <AdditionalInformation titleData={titleData} />
         </div>
         <div className="w-[90%]">
-          <div className="font-bold pb-2">Other covers</div> {/* sectionName */}
+          <div className=" text-3xl mb-4 bg-cyan-600 flex align-middle justify-center">Other covers</div> {/* sectionName */}
           <div className="flex overflow-x-auto items-center w-full h-[260px] whitespace-nowrap gap-4 pb-4">
             {titleData.otherCovers.map((cover, index) => (
               <img
