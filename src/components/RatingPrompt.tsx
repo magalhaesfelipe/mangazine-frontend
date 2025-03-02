@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
   const { user } = useUser();
@@ -52,13 +54,11 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
             src={titleData.cover}
             className="h-[180px] rounded-lg"
             alt="Cover"
-          />{" "}
-          {/* Added alt attribute */}
+          />
           <p className="text-white mt-[5%] mb-[10%]">RATE</p>
           <p className="text-2xl text-white font-['var(--font1)']">
             {titleData.title || "Berserk"}
-          </p>{" "}
-          {/* Dynamic title */}
+          </p>
         </div>
 
         <div className="translate-x-[-0%] translate-y-[-80%] rotate-y-180 flex rounded-md pl-2 pr-2">
@@ -78,9 +78,7 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
                   className="cursor-pointer w-[50px]"
                 >
                   <span className="content-['\\f005'] font-fontAwesome relative block text-[40px] text-gray-500"></span>{" "}
-                  {/* Span for before pseudo-element */}
                   <span className="content-['\\f005'] font-fontAwesome absolute block text-[40px] text-white top-0 opacity-0 transition-transform duration-500 text-shadow-[0_2px_5px_rgba(0,0,0,0.5)]"></span>{" "}
-                  {/* Span for after pseudo-element */}
                 </label>
               </React.Fragment>
             );
@@ -105,8 +103,7 @@ const RatingPrompt = ({ onClose, titleData, onRatingChange }) => {
           onClick={onClose}
           className="absolute flex items-center justify-center w-[50px] h-[50px] rounded-full p-5 text-white cursor-pointer top-[-16%] right-[1%] bg-transparent border-0 hover:bg-gray-600/40"
         >
-          <i className="fa-solid fa-xmark text-xl"></i>{" "}
-          {/* Added text-xl for icon size */}
+          <FontAwesomeIcon icon={faXmark} className="text-2xl" /> 
         </button>
       </div>
     </div>
