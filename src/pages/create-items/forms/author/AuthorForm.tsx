@@ -154,7 +154,7 @@ const AuthorForm = () => {
         setIsUploading(false);
       }
     } catch (err) {
-      console.error("Error creating author: ", err);
+      console.error("Error creating author test: ", err);
     }
 
     console.log("FormData sent: ", updatedFormData);
