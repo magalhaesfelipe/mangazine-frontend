@@ -70,7 +70,7 @@ This sets a background image in the div element
       <div className="flex justify-center items-center">
         <main className="flex flex-col mt-10 justify-center items-center">
           <h1 className="text-5xl mb-10 p-0 text-gray-400 font-sans font-light">
-            WELCOME
+            Welcome to Mangazine
           </h1>
           <div className="">
             <Searchbar placeholder="Search titles here" />
