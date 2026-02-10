@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SignedIn, UserButton, useUser } from "@clerk/clerk-react";
-import Searchbar from "./components/Searchbar";
 import axios from "axios";
+import image from "../../assets/img.png";
+import Searchbar from "./components/Searchbar";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import image from "../../assets/img.png";
 
 const Home = () => {
   const { user } = useUser();
@@ -14,9 +14,7 @@ const Home = () => {
     if (user) {
       const checkAndCreateUser = async () => {
         try {
-          const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/users/${user.id}`
-          );
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${user.id}`);
 
           console.log("User already exists: ", response.data);
         } catch (error) {
@@ -31,7 +29,7 @@ const Home = () => {
             try {
               const createUser = await axios.post(
                 `${import.meta.env.VITE_API_URL}/users/`,
-                userData
+                userData,
               );
 
               if (createUser.status === 201) {
@@ -51,18 +49,6 @@ const Home = () => {
       checkAndCreateUser();
     }
   }, [user]);
-
-  /* 
-This sets a background image in the div element
-<div
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: "",
-        backgroundRepeat: "no-repeat",
-        minHeight: "calc(100vh - 100px)",
-      }}
-    >
-*/
 
   return (
     <>
