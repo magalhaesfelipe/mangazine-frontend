@@ -50,7 +50,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center bg-zinc-950">
         <main className="flex flex-col mt-10 justify-center items-center">
           <h1 className="text-5xl mb-10 p-0 text-gray-400 font-sans font-light">
             Welcome to Mangazine
