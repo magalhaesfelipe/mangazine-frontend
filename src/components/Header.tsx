@@ -7,7 +7,7 @@ const Header = () => {
     <div className="absolute -top-0.5 w-full flex items-center justify-baseline mt-[6%]">
       <NavLink to="/home" className="no-underline ml-[5%]">
         <div className="flex flex-col relative bg-yellowgreen h-full">
-          <h1 className="text-[35px] text-[var(--main-color)] font-light no-underline absolute top-[-50px]">
+          <h1 className="text-[35px] font-['Impact'] text-white font-light no-underline absolute top-[-50px]">
             MANGAZINE
           </h1>
           <h1 className=" text-white text-2xl mr-2 absolute bottom-[-25px] right-[-195px] font-light">
