@@ -5,31 +5,28 @@ import axios from "axios";
 import Footer from "../../components/Footer";
 
 const Readlist = () => {
-  const { isSignedIn, user } = useUser();
   const [readlist, setReadlist] = useState([]);
 
-  const userId = user?.id;
+  // const userId = user?.id;
   const items = readlist?.items;
 
-  console.log("This is the user id: ", userId);
+  // useEffect(() => {
+  //   const fetchItems = async () => {
+  //     if (user) {
+  //       try {
+  //         const response = await axios.get(`${import.meta.env.VITE_API_URL}/readlists/${userId}`);
+  //         console.log("😎THIS is the READLIST PAGE response: ", response);
+  //         setReadlist(response.data.data);
+  //       } catch (err) {
+  //         console.error(`Failed to fetch Readlist. Error message: ${err}`);
+  //       }
+  //     } else {
+  //       console.log("USER NOT FOUND");
+  //     }
+  //   };
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      if (user) {
-        try {
-          const response = await axios.get(`${import.meta.env.VITE_API_URL}/readlists/${userId}`);
-          console.log("😎THIS is the READLIST PAGE response: ", response);
-          setReadlist(response.data.data);
-        } catch (err) {
-          console.error(`Failed to fetch Readlist. Error message: ${err}`);
-        }
-      } else {
-        console.log("USER NOT FOUND");
-      }
-    };
-
-    fetchItems();
-  }, [user]);
+  //   fetchItems();
+  // }, [user]);
 
   return (
     <div className="flex flex-col items-center">
