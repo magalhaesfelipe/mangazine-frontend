@@ -3,6 +3,7 @@
 :root {
   --color-black-darker: #09090b;
   --color-background: var(--color-black-darker);
+  --color-white: white;
 }
 
 html {
