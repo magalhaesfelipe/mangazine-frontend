@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+::root {
+  --color-black-darker: #161616;
+  --color-background: var(--color-black-darker);
+}
+
+body {
+  background-color: var(--color-background);
+}
+
+.test {
+  background-color: aqua;
+}
