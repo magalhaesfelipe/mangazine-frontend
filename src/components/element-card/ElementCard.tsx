@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RatingPrompt from "../RatingPrompt";
 import axios from "axios";
-import { useUser } from "@clerk/clerk-react";
 import Tag from "./components/Tag";
 
 const ElementCard = ({ item }: any) => {
   const [showPrompt, setShowPrompt] = useState(false);
   const [averageRating, setAverageRating] = useState(null);
   const [userRating, setUserRating] = useState(null);
-  const { user } = useUser();
   const navigate = useNavigate();
 
   const userId = user?.id;
@@ -18,9 +16,7 @@ const ElementCard = ({ item }: any) => {
     try {
       // Fetch average rating
       const avgResponse = await axios.get(
-        `${import.meta.env.VITE_API_URL}/ratings/item/${
-          item.itemId._id
-        }/average`
+        `${import.meta.env.VITE_API_URL}/ratings/item/${item.itemId._id}/average`,
       );
       setAverageRating(avgResponse.data.averageRating);
       console.log("This is the average Rating: ", averageRating);
@@ -28,9 +24,7 @@ const ElementCard = ({ item }: any) => {
       // Fetch user rating
       try {
         const userResponse = await axios.get(
-          `${import.meta.env.VITE_API_URL}/ratings/user/${userId}/item/${
-            item.itemId._id
-          }`
+          `${import.meta.env.VITE_API_URL}/ratings/user/${userId}/item/${item.itemId._id}`,
         );
         setUserRating(userResponse.data.userRating.rating);
       } catch (userErr: any) {

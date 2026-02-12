@@ -1,4 +1,3 @@
-import { useUser } from "@clerk/clerk-react";
 import { useLists } from "./hooks/useLists";
 import axios from "axios";
 import { useEffect } from "react";
@@ -8,15 +7,12 @@ const Prompt = ({ onClose, titleData }) => {
   const { user } = useUser();
   const navigate = useNavigate();
   const titleId = titleData._id;
-  const { lists, itemExistsArray, setItemExistsArray } = useLists(
-    user?.id,
-    titleId
-  );
+  const { lists, itemExistsArray, setItemExistsArray } = useLists(user?.id, titleId);
 
   const addToList = async (titleId: any, listId: any) => {
     try {
       const response = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/lists/${listId}/add-to-list/${titleId}`
+        `${import.meta.env.VITE_API_URL}/lists/${listId}/add-to-list/${titleId}`,
       );
 
       // Create a new object for titleExists to ensure re-render
@@ -33,9 +29,7 @@ const Prompt = ({ onClose, titleData }) => {
   const removeFromList = async (titleId: any, listId: any) => {
     try {
       const response = await axios.patch(
-        `${
-          import.meta.env.VITE_API_URL
-        }/lists/${listId}/remove-from-list/${titleId}`
+        `${import.meta.env.VITE_API_URL}/lists/${listId}/remove-from-list/${titleId}`,
       );
       setItemExistsArray((prevItemExists) => ({
         ...prevItemExists,

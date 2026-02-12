@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "@clerk/clerk-react";
 import CreateListButton from "./components/CreateListButton";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -18,9 +17,7 @@ const AllListsPage = () => {
       }
 
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/lists/user/${user.id}`
-        );
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/lists/user/${user.id}`);
 
         console.log("THIS IS THE RESPONSE FETCHING ALL LISTS: ", response);
         setLists(response.data.data);

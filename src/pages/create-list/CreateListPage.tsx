@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useUser } from "@clerk/clerk-react";
 import classes from "./style.module.css";
 import Searchbar from "./components/Searchbar";
 import axios from "axios";
@@ -46,10 +45,7 @@ const CreateList = () => {
     console.log("Form data to send: ", finalFormData);
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/lists`,
-        finalFormData
-      );
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/lists`, finalFormData);
 
       const listId = response.data.data._id;
       console.log("This is the reponse data: ", response);
@@ -86,12 +82,8 @@ const CreateList = () => {
         <div className="text-white w-full h-full flex pt-[16%] flex-col items-center justify-start">
           {" "}
           {/* container */}
-          <div className="text-2xl font-primary">CREATE A NEW LIST</div>{" "}
-          {/* title */}
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col items-center justify-center"
-          >
+          <div className="text-2xl font-primary">CREATE A NEW LIST</div> {/* title */}
+          <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center">
             {" "}
             {/* form */}
             <div className="mt-10 font-secondary mb-2 flex flex-col items-center">

@@ -2,7 +2,6 @@ import Header from "../../components/Header";
 import ElementCard from "../../components/element-card/ElementCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useUser } from "@clerk/clerk-react";
 import Footer from "../../components/Footer";
 
 const Readlist = () => {
@@ -18,9 +17,7 @@ const Readlist = () => {
     const fetchItems = async () => {
       if (user) {
         try {
-          const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/readlists/${userId}`
-          );
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/readlists/${userId}`);
           console.log("😎THIS is the READLIST PAGE response: ", response);
           setReadlist(response.data.data);
         } catch (err) {
@@ -40,10 +37,7 @@ const Readlist = () => {
       <div className="flex justify-center mt-[15%] mb-0">
         {" "}
         {/* headline */}
-        <p className="text-[50px] inline text-white font-audiowide">
-          READLIST
-        </p>{" "}
-        {/* Font added */}
+        <p className="text-[50px] inline text-white font-audiowide">READLIST</p> {/* Font added */}
       </div>
       <main className="mt-[5%] bg-black w-[90%] grid grid-cols-4 gap-y-10 gap-x-20 justify-center">
         {" "}

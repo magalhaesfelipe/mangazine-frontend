@@ -1,4 +1,3 @@
-import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Prompt from "./prompt/Prompt";
@@ -18,7 +17,7 @@ const AddButton = ({ titleData }) => {
     if (!userId || !titleId) return;
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`
+        `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`,
       );
       console.log(response);
       setTitleExists(response.data.exists);
@@ -37,12 +36,9 @@ const AddButton = ({ titleData }) => {
     if (titleExists) {
       try {
         const response = await axios.delete(
-          `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`
+          `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`,
         );
-        console.log(
-          "This is the response of removing item from the readlist",
-          response
-        );
+        console.log("This is the response of removing item from the readlist", response);
         checkItemExistsInReadlist();
       } catch (error) {
         console.error(error);
@@ -50,7 +46,7 @@ const AddButton = ({ titleData }) => {
     } else {
       try {
         const response = await axios.patch(
-          `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`
+          `${import.meta.env.VITE_API_URL}/readlists/${userId}/item/${titleId}`,
         );
         console.log(response);
         // After adding/removing the item, re-check if it exists in the readlist
