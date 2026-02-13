@@ -1,7 +1,3 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import image from "../../assets/img.png";
 import Searchbar from "./components/Searchbar";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -50,9 +46,9 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className="flex justify-center items-center">
-        <main className="flex flex-col mt-10 justify-center items-center">
-          <h1 className="text-5xl font-['Impact'] mb-10 p-0 text-zinc-200 font font-light">
+      <div className="flex items-center justify-center">
+        <main className="mt-10 flex flex-col items-center justify-center">
+          <h1 className="font mb-10 p-0 font-['Impact'] text-5xl font-light text-zinc-200">
             Welcome to Mangazine
           </h1>
           <div className="">
@@ -61,7 +57,7 @@ const Home = () => {
         </main>
         <div className="mt-[30%] mb-[3%]"></div>
       </div>
-      <div className="flex flex-col mt-70">
+      <div className="mt-70 flex flex-col">
         {" "}
         <div className="flex-grow"></div>
         <Footer />
