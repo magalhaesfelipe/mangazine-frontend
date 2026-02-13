@@ -59,7 +59,7 @@ const Home = () => {
       </div>
       <div className="mt-70 flex flex-col">
         {" "}
-        <div className="flex-grow"></div>
+        <div className="grow"></div>
         <Footer />
       </div>
     </>
