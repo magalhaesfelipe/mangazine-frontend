@@ -52,7 +52,7 @@ const Home = () => {
             Welcome to Mangazine
           </h1>
           <div className="">
-            <Searchbar placeholder="Search titles here" />
+            <Searchbar placeholder="Search for a title" />
           </div>
         </main>
         <div className="mt-[30%] mb-[3%]"></div>

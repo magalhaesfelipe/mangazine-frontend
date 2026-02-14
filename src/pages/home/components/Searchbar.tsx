@@ -91,7 +91,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
         type="text"
         placeholder={placeholder}
         onChange={debouncedHandleSearch}
-        className="text-gray-200 text-base font-kanit w-[300px] h-10 pl-8 rounded-lg border-0 bg-transparent border-[2.5px] border-main-color outline-none placeholder:text-gray-500"
+        className="text-gray-200 text-base font-kanit w-[300px] h-10 pl-8  border-0 bg-transparent border-[2.5px] border-main-color outline-none placeholder:text-gray-500"
       />
       {loading && <div className="mt-8 text-lg text-white">Loading...</div>}
       {showResults && !loading && (
