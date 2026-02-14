@@ -48,8 +48,9 @@ const Home = () => {
       <Header />
       <div className="flex items-center justify-center">
         <main className="mt-10 flex flex-col items-center justify-center">
-          <h1 className="font mb-10 p-0 font-['Impact'] text-5xl font-light text-zinc-200">
-            Welcome to Mangazine
+          <h1 className="font mb-10 flex flex-col items-center gap-y-2 p-0 font-['Impact'] text-5xl font-light text-zinc-200">
+            <span>Welcome to</span>
+            <span className="text-6xl">MANGAZINE</span>
           </h1>
           <div className="">
             <Searchbar placeholder="Search for a title" />
