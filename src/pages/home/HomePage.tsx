@@ -58,7 +58,6 @@ const Home = () => {
         <div className="mt-[30%] mb-[3%]"></div>
       </div>
       <div className="mt-70 flex flex-col">
-        {" "}
         <div className="grow"></div>
         <Footer />
       </div>
