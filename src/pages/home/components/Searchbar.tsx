@@ -66,7 +66,7 @@ const mangas = [
 ];
 
 const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
-  const [items, setItems] = useState<SearchItem[]>([]);
+  const [items, setItems] = useState<SearchItem[]>(mangas);
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
