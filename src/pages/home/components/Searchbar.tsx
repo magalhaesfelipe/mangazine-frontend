@@ -130,42 +130,40 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
         type="text"
         placeholder={placeholder}
         // onChange={debouncedHandleSearch}
-        className="font-kanit border-main-color h-10 w-[300px] border-0 border-[2.5px] bg-transparent pl-8 text-base text-gray-200 outline-none placeholder:text-gray-500"
+        className="font-kanit border-main-color mb-5 h-12 w-120 border-[2.5px] bg-transparent pl-6 text-base text-zinc-200 outline-none placeholder:text-gray-500"
       />
       {loading && <div className="mt-8 text-lg text-white">Loading...</div>}
       {showResults && !loading && (
-        <div className="relative block w-[700px] justify-center">
-          <div
-            className={`absolute left-[-20px] mt-8 mb-8 grid h-auto w-auto grid-cols-2 content-center items-center justify-center gap-0 rounded-md bg-white/28 pt-2 pr-5 pb-10 pl-5 ${
-              showResults ? "" : "hidden"
-            }`}
-          >
-            {items.map((item, i) => (
-              <div
-                key={i}
-                onClick={() => handleClick(item._id, item.type)}
-                className="mt-5 mr-2 ml-2 flex w-96 cursor-pointer rounded-lg bg-white p-2 pr-8 text-black hover:bg-gray-200"
-              >
-                <div className="h-full w-30">
-                  <img
-                    src={item.cover}
-                    className="h-full w-full rounded-md border border-transparent"
-                    alt={item.name}
-                  />{" "}
-                  {/* Added alt attribute */}
-                </div>
-                <div className="mr-4 ml-5 flex w-[200px] flex-col">
-                  <p className="mb-3 text-lg font-bold text-ellipsis text-black">
-                    {item.name}
-                  </p>
-                  <div className="flex flex-col text-sm text-gray-600">
-                    <p className="mt-5 mb-2">{item.authorName}</p>
-                    <p className="whitespace-nowrap">{item.releaseYear}</p>
-                  </div>
+        <div
+          className={`grid h-auto w-250 grid-cols-2 content-center items-center justify-center gap-5 rounded-sm bg-white/28 p-5 ${
+            showResults ? "" : "hidden"
+          }`}
+        >
+          {items.map((item, i) => (
+            <div
+              key={i}
+              onClick={() => handleClick(item._id, item.type)}
+              className="flex w-auto cursor-pointer bg-white p-2 pr-8 text-black hover:bg-gray-200"
+            >
+              <div className="h-full w-30">
+                <img
+                  src={item.cover}
+                  className="h-full w-full rounded-md border border-transparent"
+                  alt={item.name}
+                />{" "}
+                {/* Added alt attribute */}
+              </div>
+              <div className="mr-4 ml-5 flex w-[200px] flex-col">
+                <p className="mb-3 text-lg font-bold text-ellipsis text-black">
+                  {item.name}
+                </p>
+                <div className="flex flex-col text-sm text-gray-600">
+                  <p className="mt-5 mb-2">{item.authorName}</p>
+                  <p className="whitespace-nowrap">{item.releaseYear}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

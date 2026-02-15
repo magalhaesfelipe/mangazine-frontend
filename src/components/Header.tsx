@@ -4,16 +4,19 @@ import { faUser } from "@fortawesome/free-solid-svg-icons"; // Import the specif
 
 const Header = () => {
   return (
-    <div className="absolute top-0 flex h-20 w-full items-center justify-baseline">
+    <div className="sticky top-0 flex h-20 w-full items-center justify-baseline bg-(--color-bg)">
       <NavLink
         to="/home"
-        className="absolute top-[15%] ml-[3%] flex items-center  p-5 pt-0 no-underline transition-colors duration-200 hover:bg-zinc-900"
+        className="absolute top-[15%] ml-[3%] flex items-center p-5 pt-0 no-underline transition-colors duration-200 hover:bg-zinc-900"
       >
         <div className="flex h-full flex-col align-middle">
           <h1 className="mr-0.5 pt-5 font-['Impact'] text-[35px] font-light text-white no-underline">
             MANGAZINE
           </h1>
-          <h1 title="Heart is important" className="ml-0.5 text-2xl font-light text-white" >
+          <h1
+            title="Heart is important"
+            className="ml-0.5 text-2xl font-light text-white"
+          >
             「心」が大事
           </h1>
         </div>
