@@ -7,15 +7,15 @@ const Header = () => {
     <div className="sticky top-0 flex h-20 w-full items-center justify-baseline bg-(--color-bg)">
       <NavLink
         to="/home"
-        className="absolute top-[15%] ml-[3%] flex items-center p-5 pt-0 no-underline transition-colors duration-200 hover:bg-zinc-900"
+        className="group hover:group-last-of-type:group-last:h1:text absolute top-[15%] ml-[3%] flex h-25 w-48 items-center justify-center rounded-md align-middle no-underline transition-colors duration-200"
       >
-        <div className="flex h-full flex-col align-middle">
-          <h1 className="mr-0.5 pt-5 font-['Impact'] text-[35px] font-light text-white no-underline">
+        <div className="flex flex-col align-middle">
+          <h1 className="font-['Impact'] text-[35px] font-light text-white no-underline transition-colors duration-200 group-hover:text-black">
             MANGAZINE
           </h1>
           <h1
             title="Heart is important"
-            className="ml-0.5 text-2xl font-light text-white"
+            className="transition:200 ml-0.5 text-2xl font-light text-white transition-colors duration-200"
           >
             「心」が大事
           </h1>
