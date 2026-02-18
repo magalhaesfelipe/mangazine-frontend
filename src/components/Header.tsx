@@ -10,12 +10,12 @@ const Header = () => {
         className="group hover:group-last-of-type:group-last:h1:text absolute top-[15%] ml-[3%] flex h-25 w-48 items-center justify-center rounded-md align-middle no-underline transition-colors duration-200"
       >
         <div className="flex flex-col align-middle">
-          <h1 className="font-['Impact'] text-[35px] font-light text-white no-underline transition-colors duration-200 group-hover:text-black">
+          <h1 className="font-['Impact'] text-[35px] font-light text-white no-underline transition-colors duration-200 group-hover:text-zinc-900">
             MANGAZINE
           </h1>
           <h1
             title="Heart is important"
-            className="transition:200 ml-0.5 text-2xl font-light text-white transition-colors duration-200"
+            className="transition:200 ml-0.5 text-2xl font-light text-white transition-colors duration-200 group-hover:text-[var(--color-red)]"
           >
             「心」が大事
           </h1>
