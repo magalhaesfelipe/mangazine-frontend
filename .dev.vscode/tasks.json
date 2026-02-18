@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "RUN FRONT",
+      "type": "shell",
+      "command": "python",
+      "args": [".vscode/script_clinic.py"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "panel": "dedicated" },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

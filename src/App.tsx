@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { Auth } from "./pages/auth/AuthPage.js";
 import ListContentPage from "./pages/list-content/ListContentPage.js";
 import ListsPage from "./pages/lists/ListsPage.js";
@@ -24,7 +29,7 @@ function App() {
     <Router>
       <div className="app-container">
         <Routes>
-          {/* <Route path="/" element={<Navigate to="auth" />} /> */}
+          <Route path="/" element={<Navigate to="home" />} />
           {/* <Route path="/auth" element={<Auth />} /> */}
           <Route path="/home" element={<HomePage />} />
           <Route path="/details/:itemId/:itemType" element={<DetailsPage />} />
@@ -39,11 +44,26 @@ function App() {
           <Route path="/authorsec" element={<AuthorSection />} />
           <Route path="star" element={<StarRate />} />
 
-          <Route path="/readlist" element={<ProtectedRoute element={ReadlistPage} />} />
-          <Route path="/Lists" element={<ProtectedRoute element={ListsPage} />} />
-          <Route path="/list/:listId" element={<ProtectedRoute element={ListContentPage} />} />
-          <Route path="/rating" element={<ProtectedRoute element={RatingPrompt} />} />
-          <Route path="/create-list" element={<ProtectedRoute element={CreateListPage} />} />
+          <Route
+            path="/readlist"
+            element={<ProtectedRoute element={ReadlistPage} />}
+          />
+          <Route
+            path="/Lists"
+            element={<ProtectedRoute element={ListsPage} />}
+          />
+          <Route
+            path="/list/:listId"
+            element={<ProtectedRoute element={ListContentPage} />}
+          />
+          <Route
+            path="/rating"
+            element={<ProtectedRoute element={RatingPrompt} />}
+          />
+          <Route
+            path="/create-list"
+            element={<ProtectedRoute element={CreateListPage} />}
+          />
 
           {/* // Example of props being passed to the component through the wrapper component 'ProtectedRoute'
               <Route
