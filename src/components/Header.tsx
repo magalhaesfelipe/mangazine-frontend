@@ -10,7 +10,7 @@ const Header = () => {
         className="group hover:group-last-of-type:group-last:h1:text absolute top-[15%] ml-[3%] flex h-25 w-48 items-center justify-center rounded-md align-middle no-underline transition-colors duration-200"
       >
         <div className="flex flex-col align-middle">
-          <h1 className="font-['Impact'] text-[35px] font-light text-white no-underline transition-colors duration-200 group-hover:text-zinc-900">
+          <h1 className="font-['Impact'] text-[35px] font-light text-white no-underline transition-colors duration-200 group-hover:text-zinc-300">
             MANGAZINE
           </h1>
           <h1
