@@ -32,8 +32,7 @@ const mangas = [
     name: "Naruto",
     authorName: "Masashi Kishimoto",
     releaseYear: "2001",
-    cover:
-      "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3232072-01.jpg",
+    cover: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3232072-01.jpg",
     type: "manga",
   },
   {
@@ -41,8 +40,7 @@ const mangas = [
     name: "Naruto",
     authorName: "Masashi Kishimoto",
     releaseYear: "2001",
-    cover:
-      "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3232072-01.jpg",
+    cover: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3232072-01.jpg",
     type: "manga",
   },
   {
@@ -50,8 +48,7 @@ const mangas = [
     name: "Naruto",
     authorName: "Masashi Kishimoto",
     releaseYear: "2001",
-    cover:
-      "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3232072-01.jpg",
+    cover: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3232072-01.jpg",
     type: "manga",
   },
   {
@@ -59,8 +56,7 @@ const mangas = [
     name: "Naruto",
     authorName: "Masashi Kishimoto",
     releaseYear: "2001",
-    cover:
-      "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3232072-01.jpg",
+    cover: "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3232072-01.jpg",
     type: "manga",
   },
 ];
@@ -130,12 +126,12 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
         type="text"
         placeholder={placeholder}
         // onChange={debouncedHandleSearch}
-        className="font-kanit border-main-color mb-5 h-12 w-120 border-[2.5px] bg-transparent pl-6 text-base text-zinc-200 outline-none placeholder:text-gray-500"
+        className="font-kanit mb-5 h-12 w-120 border-[2.5px] border-zinc-700 bg-transparent pl-6 text-base text-zinc-200 outline-none placeholder:text-gray-500"
       />
       {loading && <div className="mt-8 text-lg text-white">Loading...</div>}
-      {showResults && !loading && (
+      {!loading && showResults && (
         <div
-          className={`grid h-auto w-250 grid-cols-2 content-center items-center justify-center gap-5 rounded-sm bg-white/28 p-5 ${
+          className={`grid h-auto w-290 grid-cols-3 content-center items-center justify-center gap-1 rounded-sm bg-zinc-950 p-5 ${
             showResults ? "" : "hidden"
           }`}
         >
@@ -143,22 +139,19 @@ const Searchbar: React.FC<SearchbarProps> = ({ placeholder }) => {
             <div
               key={i}
               onClick={() => handleClick(item._id, item.type)}
-              className="flex w-auto cursor-pointer bg-white p-2 pr-8 text-black hover:bg-gray-200"
+              className="flex w-auto cursor-pointer bg-white p-2 text-black hover:bg-gray-200"
             >
-              <div className="h-full w-30">
+              <div className="h-full w-40">
                 <img
                   src={item.cover}
                   className="h-full w-full rounded-md border border-transparent"
                   alt={item.name}
-                />{" "}
-                {/* Added alt attribute */}
+                />
               </div>
-              <div className="mr-4 ml-5 flex w-[200px] flex-col">
-                <p className="mb-3 text-lg font-bold text-ellipsis text-black">
-                  {item.name}
-                </p>
-                <div className="flex flex-col text-sm text-gray-600">
-                  <p className="mt-5 mb-2">{item.authorName}</p>
+              <div className="grid-col ml-3 grid w-full grid-rows-[65%_35%] flex-col">
+                <p className="mb-3 text-lg font-bold text-ellipsis text-zinc-900">{item.name}</p>
+                <div className="flex flex-col items-baseline justify-end py-1 pl-2 text-sm text-zinc-600">
+                  <p className="">{item.authorName}</p>
                   <p className="whitespace-nowrap">{item.releaseYear}</p>
                 </div>
               </div>

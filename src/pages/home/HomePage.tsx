@@ -48,9 +48,9 @@ const Home = () => {
       <Header />
       <div className="flex items-center justify-center">
         <main className="mt-10 flex flex-col items-center justify-center">
-          <h1 className="font mb-10 flex flex-col items-center font-['Impact'] text-4xl font-light text-zinc-200">
-            <span>Welcome to</span>
-            <span className="text-6xl text-white">MANGAZINE!</span>
+          <h1 className="font mb-10 flex flex-col items-center text-4xl font-light text-zinc-200">
+            <span className="text-zinc-700">Welcome to</span>
+            <span className="font-['Impact'] text-6xl">MANGAZINE!</span>
           </h1>
           <div className="">
             <Searchbar placeholder="Search for a title" />
